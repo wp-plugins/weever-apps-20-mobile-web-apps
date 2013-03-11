@@ -40,32 +40,8 @@ Currently supports:
 
 Additional Features:
 
-- Staging Mode: allows developers to play around with new layouts or work on an app for a new version of a site without needing another API key and without affecting a Live app.
+- Sandbox Mode: allows developers to play around with new layouts or work on an app for a new version of a site without needing another API key and without affecting a Live app.
 - QR Codes: This extension will generate QR codes both for quick previewing of your app as you're building it, and for promoting your app publicly.
-
-A BIG Thank You to those who have provided translations:
-
-Arabic (Sultan G) - Shukran
-Catalan (Isaac Turon) - Gracias
-Czech (Kamil) - Dekuji
-Danish (kfe1970) - Tak
-Dutch (Maikel) - Bedankt
-French (doc75, Luc) - Merci
-German (Tobias, Ralph Stenzel) - Danke
-Hungarian (Gabor Major) - Koszonom
-Italian (Ernesto, eros.mazzurco) - Grazie
-Indonesian (Nanang) - Matur Tampiasih
-Latvian (Kaspars) - Paldies
-Lithuanian (juliuslt) - Aciu
-Norwegian (Julius) - Takk
-Polish (Szymon) - Dziekuje
-Portuguese (rgranzoti, ricardorodh) - Obrigado
-Romanian (Razvan) - Multumesc
-Russian (reddylabeu) - Spasiba
-Spanish (Fernando) - Gracias
-Swedish (Hirschan) - Tack
-Tamil (Bage) - Nandri
-Turkish (Darth crow) - Sag Olun
 
 == Installation ==
 
