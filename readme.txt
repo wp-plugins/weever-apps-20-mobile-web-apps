@@ -10,7 +10,7 @@ Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and 
 
 == Description ==
 
-Weever is a service that turns your WordPress site into a mobile web app for iPhone, Blackberry Touch, Android and iPad.
+Weever is a service that turns your WordPress site into a mobile web app for iPhone, Blackberry Touch, Android and iPad.  Or, use our service to convert the HTML5 web app into a native app for Apple or Android.
 
 Weever functions and feels like a native iOS, Android, or Blackberry app, except with no App Store barriers!
 
