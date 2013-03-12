@@ -2,7 +2,7 @@
 
 final class WeeverConst
 {
-    const VERSION		= '2.1';
+    const VERSION		= '2.1.1';
     const RELEASE_TYPE	= '';
     const RELEASE_NAME	= '2.0 BETA';
     const NAME			= 'Weever Apps - appBuilder(tm) for Wordpress';
