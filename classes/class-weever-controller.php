@@ -361,8 +361,59 @@ class WeeverController {
         die();
     }
 
+	public function ajaxGetMapOptions() {
+		weever_remove_wp_magic_quotes();
 
-    public function ajaxSaveTabLayout() {
+		if ( ! empty($_POST) and check_ajax_referer( 'weever-list-js', 'nonce' ) ) {
+			$weeverapp = new WeeverApp();
+
+			if ( $weeverapp->loaded ) {
+				$result = WeeverHelper::send_to_weever_server('tabs/get_map_config', array('tab_id' => intval( $_POST['tab_id'] )));
+				echo json_encode( $result->map_config );
+			} else {
+				status_header(500);
+				echo __( 'Unable to communicate with Weever Apps server' );
+			}
+		} else {
+			status_header(401);
+		}
+
+		die();
+	}
+
+	public function ajaxSaveMapOptions() {
+		weever_remove_wp_magic_quotes();
+
+		if ( ! empty($_POST) and check_ajax_referer( 'weever-list-js', 'nonce' ) ) {
+			$weeverapp = new WeeverApp();
+
+			if ( $weeverapp->loaded ) {
+				$tab = $weeverapp->get_tab_by_id( $_POST['tab_id'] );
+
+				if ( $tab !== false ) {
+					try {
+						$tab->save_map_options($_POST['options']);
+					} catch ( Exception $e ) {
+						status_header(500);
+						echo $e->getMessage();
+					}
+				} else {
+					echo __( 'Invalid tab id' );
+					status_header(500);
+				}
+			} else {
+				status_header(500);
+				echo __( 'Unable to communicate with Weever Apps server' );
+			}
+		} else {
+			status_header(401);
+		}
+
+		die();
+	}
+
+
+	public function ajaxSaveTabLayout() {
         weever_remove_wp_magic_quotes();
 
         if ( ! empty($_POST) and check_ajax_referer( 'weever-list-js', 'nonce' ) ) {
