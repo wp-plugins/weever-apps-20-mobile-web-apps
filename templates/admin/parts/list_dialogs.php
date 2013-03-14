@@ -108,15 +108,19 @@ function weever_show_edit_dropdown($weeverapp, $component_ids, $type = 'item') {
     <div>
         Min zoom level: <input type="text" id="map_options_minZoom" />
     </div>
+	<div>
+		Custom marker image URL: <input type="text" id="map_options_marker" />
+	</div>
+    <div>
+        Limit distance of results (km): <input type="text" id="map_options_distance" />
+    </div>
     <div>
         GPS radius: <input type="text" id="map_options_gpsRadius" />
     </div>
     <div>
         GPS radius color: <input type="text" id="map_options_gpsRadius_colour" />
     </div>
-	<div>
-		Custom marker image URL: <input type="text" id="map_options_marker" />
-	</div>
+    <input type="hidden" id="map_options_display" />
 </div>
 
 

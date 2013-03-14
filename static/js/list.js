@@ -947,6 +947,8 @@ jQuery(document).ready(function(){
 					jQuery('#map_options_gpsRadius').val(result.gpsRadius);
 					jQuery('#map_options_gpsRadius_colour').val(result.gpsRadius_colour);
 					jQuery('#map_options_marker').val(result.marker);
+                    jQuery('#map_options_distance').val(result.distance);
+                    jQuery('#map_options_display').val(result.display);
 
 					jQuery('#wx-change-map-options-dialog').dialog({
 						modal: 		true,
@@ -974,7 +976,9 @@ jQuery(document).ready(function(){
 											minZoom: jQuery('#map_options_minZoom').val(),
 											gpsRadius: jQuery('#map_options_gpsRadius').val(),
 											gpsRadius_colour: jQuery('#map_options_gpsRadius_colour').val(),
-											marker: jQuery('#map_options_marker').val()
+											marker: jQuery('#map_options_marker').val(),
+                                            distance: jQuery('#map_options_distance').val(),
+                                            display: jQuery('#map_options_display').val()
 										},
 										tab_id: tabId,
 										nonce: nonce
