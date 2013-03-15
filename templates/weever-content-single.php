@@ -16,6 +16,24 @@
     <?php endif; ?>
 
     <div>
-    <?php the_content(); ?>
+        <?php if ( get_option( 'weever_remove_image_links', true ) ): ?>
+            <?php ob_start(); ?>
+            <?php the_content(); ?>
+            <?php $content = ob_get_contents(); ?>
+            <?php ob_end_clean(); ?>
+            <?php
+            // Remove the link around other images
+            $content =
+                preg_replace(
+                    array('{<a(.*?)[^>]*><img}',
+                        '{ wp-image-[0-9]*" /></a>}'),
+                    array('<img','" />'),
+                    $content
+                );
+            ?>
+            <?php echo $content; ?>
+        <?php else: ?>
+            <?php the_content(); ?>
+        <?php endif; ?>
     </div>
 </div>
