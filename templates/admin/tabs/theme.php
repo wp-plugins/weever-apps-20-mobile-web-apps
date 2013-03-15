@@ -439,6 +439,22 @@
                             <textarea style="width: 100%; height: 300px;" name="css"><?php echo esc_textarea( $weeverapp->theme->css ); ?></textarea>
                         </div>
                     </fieldset>
+                    <fieldset class="adminForm">
+                        <h2 class="wxuia-fieldTitle">
+                            <?php echo __( 'Advanced Options', 'weever' ); ?>
+                            <span class="wx-inputContainer">
+                                <input id="wx-button-submit" class="wxuia-button" style="float:right" name="submit" type="submit" value="<?php _e( 'Save Changes', 'weever' ); ?>" />
+                            </span>
+                        </h2>
+                        <div class="wxuia-20p">
+                            <div>
+                                <input type="checkbox" id="do_not_modify_links" name="do_not_modify_links"<?php echo ( get_option('weever_do_not_modify_links', false ) ? ' checked="checked"' : '' ); ?>' /> <label for="do_not_modify_links">Do not modify href links (normally adds full=1 to external links, etc)</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="remove_image_links" name="remove_image_links"<?php echo ( get_option('weever_remove_image_links', true ) ? ' checked="checked"' : '' ); ?>' /> <label for="remove_image_links">Remove links around images added by Wordpress</label>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
             <?php endif; ?>
         <div id="tabs-999">
