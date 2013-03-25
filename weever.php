@@ -3,7 +3,7 @@
 Plugin Name: Weever Apps - appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
 Description: Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry 
-Version: 2.1
+Version: 2.1.5
 Author: Brian Hogg
 Author URI: http://brianhogg.com/
 License: GPL3
@@ -75,6 +75,8 @@ if ( is_admin() ) {
     add_action( 'wp_ajax_ajaxSortPosts', array( 'WeeverController', 'ajaxSortPosts' ) );
     add_action( 'wp_ajax_ajaxSubtabDelete', array( 'WeeverController', 'ajaxSubtabDelete' ) );
     add_action( 'wp_ajax_ajaxSaveTabName', array( 'WeeverController', 'ajaxSaveTabName' ) );
+	add_action( 'wp_ajax_ajaxSaveMapOptions', array( 'WeeverController', 'ajaxSaveMapOptions' ) );
+	add_action( 'wp_ajax_ajaxGetMapOptions', array( 'WeeverController', 'ajaxGetMapOptions' ) );
     add_action( 'wp_ajax_ajaxSaveTabLayout', array( 'WeeverController', 'ajaxSaveTabLayout' ) );
     add_action( 'wp_ajax_ajaxGetIconSrc', array( 'WeeverController', 'ajaxGetIconSrc' ) );
     add_action( 'wp_ajax_ajaxSaveTabIcon', array( 'WeeverController', 'ajaxSaveTabIcon' ) );

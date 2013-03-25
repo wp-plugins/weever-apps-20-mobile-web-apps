@@ -83,6 +83,47 @@ function weever_show_edit_dropdown($weeverapp, $component_ids, $type = 'item') {
     <?php include('list_icon_picker.php'); ?>
 </div>
 
+<div id="wx-change-map-options-dialog" class="wx-jquery-dialog wx-hide">
+	<div>
+    	<input type="checkbox" value="1" id="map_options_cluster" /> <label for="map_options_cluster">Cluster markers?</label>
+	</div>
+	<div>
+        <input type="checkbox" value="1" id="map_options_autoGPS" /> <label for="map_options_autoGPS">Automatically ask for GPS position?</label>
+	</div>
+	<div>
+		Starting latitude: <input type="text" id="map_options_start_latitude" />
+	</div>
+    <div>
+        Starting longitude: <input type="text" id="map_options_start_longitude" />
+    </div>
+    <div>
+        Starting zoom level (0-18): <input type="text" id="map_options_start_zoom" />
+    </div>
+	<div>
+        <input type="checkbox" value="1" id="map_options_starting_zoom_enabled" /> <label for="map_options_starting_zoom_enabled">Starting zoom level enabled? (Auto zoom/center otherwise)</label>
+	</div>
+    <div>
+        Max zoom level: <input type="text" id="map_options_maxZoom" />
+    </div>
+    <div>
+        Min zoom level: <input type="text" id="map_options_minZoom" />
+    </div>
+	<div>
+		Custom marker image URL: <input type="text" id="map_options_marker" />
+	</div>
+    <div>
+        Limit distance of results (km): <input type="text" id="map_options_distance" />
+    </div>
+    <div>
+        GPS radius: <input type="text" id="map_options_gpsRadius" />
+    </div>
+    <div>
+        GPS radius color: <input type="text" id="map_options_gpsRadius_colour" />
+    </div>
+    <input type="hidden" id="map_options_display" />
+</div>
+
+
 <div id="wx-change-layout-dialog" class="wx-jquery-dialog wx-hide">
     <input type="radio" name="tab_layout" value="list" id="tab_layout_list" /> <label for="tab_layout_list">List Layout</label><br />
     <input type="radio" name="tab_layout" value="carousel" id="tab_layout_carousel" /> <label for="tab_layout_carousel">Carousel Layout</label><br />

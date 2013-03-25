@@ -291,9 +291,15 @@ $tab_output = ''; ?>
 		                    <span class="wx-inputContainer">
 	                        <a href="#" style="float: right;" class="wxuia-button wx-nav-label-edit" rel="<?php echo $row->id; ?>">Change Label</a>
 	                    </span>
-	                    <span class="wx-inputContainer">
-	                        <a href="#" style="float: right;" class="wxuia-button wx-nav-layout-edit" layout="<?php echo $row->tabLayout; ?>" rel="<?php echo $row->id; ?>">Change Layout</a>
-	                    </span>
+						<?php if ( 'map' == $row->tabLayout ): ?>
+							<span class="wx-inputContainer">
+								<a href="#" style="float: right;" class="wxuia-button wx-nav-map-options-edit" rel="<?php echo $row->id; ?>">Change Options</a>
+							</span>
+						<?php else: ?>
+		                    <span class="wx-inputContainer">
+	    	                    <a href="#" style="float: right;" class="wxuia-button wx-nav-layout-edit" layout="<?php echo $row->tabLayout; ?>" rel="<?php echo $row->id; ?>">Change Layout</a>
+	        	            </span>
+        				<?php endif; ?>
                 	</h2>
     			</fieldset>
                 <!-- Start: Add a Left and Right Margin of 20px -->

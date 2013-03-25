@@ -157,6 +157,16 @@ class weever_app_tab {
     	return $component;
     }
 
+	public function save_map_options($options) {
+		if ( is_array($options) ) {
+			$postdata['map_config'] = json_encode( $options );
+			$postdata['tab_id'] = $this->id;
+			$result = WeeverHelper::send_to_weever_server('tabs/set_map_config', $postdata);
+		} else {
+			throw new Exception('Invalid map options');
+		}
+	}
+
     /**
      * 
      * @param bool $parent_tab_id

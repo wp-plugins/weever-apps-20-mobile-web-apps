@@ -175,7 +175,7 @@ class WeeverApp {
 				
                 if ( empty( $tab->parent_id ) or $tab->parent_id == $tab->id ) {
                     // Main level tab
-                    $this->_data['tabs'][] = new weever_app_tab( array( 
+                    $this->_data['tabs'][] = new weever_app_tab( array(
                             'id' => $tab->id,
                             'component' => $tab->content,
                             'name' => ( ! empty( $tab->tabTitle ) ? $tab->tabTitle : $tab->title ),
@@ -185,6 +185,7 @@ class WeeverApp {
                             'var' => ( property_exists($tab, 'var')  ? ( ! is_null( json_decode($tab->var) ) ? json_decode($tab->var) : $tab->var ) : false ),
                             'layout' => $tab->layout,
                             'config' => $tab->config,
+							'tabLayout' => $tab->tabLayout,
                          )
                     );
                     
