@@ -4,13 +4,13 @@ Donate link: http://weeverapps.com/
 Tags: AJAX, android, apple, blackberry, weever, weaver, HTML5, iphone, ipod, mac, mobile, smartphone, theme, mobile, web app
 Requires at least: 3.1
 Tested up to: 3.5.1
-Stable tag: 2.1
+Stable tag: 2.1.6
 
 Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry - weeverapps.com
 
 == Description ==
 
-Weever is a service that turns your WordPress site into a mobile web app for iPhone, Blackberry Touch, Android and iPad.
+Weever is a service that turns your WordPress site into a mobile web app for iPhone, Blackberry Touch, Android and iPad.  Or, use our service to convert the HTML5 web app into a native app for Apple or Android.
 
 Weever functions and feels like a native iOS, Android, or Blackberry app, except with no App Store barriers!
 
@@ -40,32 +40,8 @@ Currently supports:
 
 Additional Features:
 
-- Staging Mode: allows developers to play around with new layouts or work on an app for a new version of a site without needing another API key and without affecting a Live app.
+- Sandbox Mode: allows developers to play around with new layouts or work on an app for a new version of a site without needing another API key and without affecting a Live app.
 - QR Codes: This extension will generate QR codes both for quick previewing of your app as you're building it, and for promoting your app publicly.
-
-A BIG Thank You to those who have provided translations:
-
-Arabic (Sultan G) - Shukran
-Catalan (Isaac Turon) - Gracias
-Czech (Kamil) - Dekuji
-Danish (kfe1970) - Tak
-Dutch (Maikel) - Bedankt
-French (doc75, Luc) - Merci
-German (Tobias, Ralph Stenzel) - Danke
-Hungarian (Gabor Major) - Koszonom
-Italian (Ernesto, eros.mazzurco) - Grazie
-Indonesian (Nanang) - Matur Tampiasih
-Latvian (Kaspars) - Paldies
-Lithuanian (juliuslt) - Aciu
-Norwegian (Julius) - Takk
-Polish (Szymon) - Dziekuje
-Portuguese (rgranzoti, ricardorodh) - Obrigado
-Romanian (Razvan) - Multumesc
-Russian (reddylabeu) - Spasiba
-Spanish (Fernando) - Gracias
-Swedish (Hirschan) - Tack
-Tamil (Bage) - Nandri
-Turkish (Darth crow) - Sag Olun
 
 == Installation ==
 
