@@ -17,6 +17,8 @@ if ( ! get_option('weever_do_not_modify_links', false ) ) {
     // Mask external links so we leave only internal ones to play with.
     $jsonHtml->html = str_replace( "href=\"http://", "hrefmask=\"weever://", $jsonHtml->html );
     $jsonHtml->html = str_replace( "href='http://", "hrefmask='weever://", $jsonHtml->html );
+    $jsonHtml->html = str_replace( "href=\"https://", "hrefmask=\"weevers://", $jsonHtml->html );
+    $jsonHtml->html = str_replace( "href='https://", "hrefmask='weevers://", $jsonHtml->html );
 
     // Change all links to absolute vs. relative
     // http://wintermute.com.au/bits/2005-09/php-relative-absolute-links/
@@ -24,8 +26,10 @@ if ( ! get_option('weever_do_not_modify_links', false ) ) {
     $jsonHtml->html = preg_replace( '#(href|src)=\'([^:\']*)(\'|(?:(?:%20|\s|\+)[^\']*\'))#', '$1=\'' . get_site_url() . '$2$3', $jsonHtml->html );
 
     // Restore external links, ensure target="_blank" applies
-    $jsonHtml->html = str_replace( "hrefmask=\"weever://", "href=\"http://", $jsonHtml->html);
-    $jsonHtml->html = str_replace( "hrefmask='weever://", "href='http://", $jsonHtml->html);
+    $jsonHtml->html = str_replace( "hrefmask=\"weever://", "target=\"_blank\" href=\"http://", $jsonHtml->html);
+    $jsonHtml->html = str_replace( "hrefmask='weever://", "target=\"_blank\" href='http://", $jsonHtml->html);
+    $jsonHtml->html = str_replace( "hrefmask=\"weevers://", "target=\"_blank\" href=\"https://", $jsonHtml->html);
+    $jsonHtml->html = str_replace( "hrefmask='weevers://", "target=\"_blank\" href='https://", $jsonHtml->html);
     $jsonHtml->html = str_replace( "<iframe title=\"YouTube video player\" width=\"480\" height=\"390\"",
         "<iframe title=\"YouTube video player\" width=\"160\" height=\"130\"", $jsonHtml->html );
 

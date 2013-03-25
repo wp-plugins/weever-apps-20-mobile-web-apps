@@ -4,7 +4,7 @@ Donate link: http://weeverapps.com/
 Tags: AJAX, android, apple, blackberry, weever, weaver, HTML5, iphone, ipod, mac, mobile, smartphone, theme, mobile, web app
 Requires at least: 3.1
 Tested up to: 3.5.1
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 
 Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry - weeverapps.com
 
