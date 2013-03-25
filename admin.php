@@ -165,8 +165,8 @@ function weever_admin_page() {
 	                    update_option( 'weever_subtab_color', $_POST['subtab_color'] );
 	                    update_option( 'weever_subtab_text_color', $_POST['subtab_text_color'] );
                         if ( apply_filters( 'weever_list_show_wordpress_content', true ) ) {
-                            update_option( 'weever_remove_image_links', isset( $_POST['remove_image_links'] ) ? true : false );
-                            update_option( 'weever_do_not_modify_links', isset( $_POST['do_not_modify_links'] ) ? true : false );
+                            update_option( 'weever_remove_image_links', isset( $_POST['remove_image_links'] ) ? 1 : 0 );
+                            update_option( 'weever_do_not_modify_links', isset( $_POST['do_not_modify_links'] ) ? 1 : 0 );
                         }
                         add_settings_error('weever_api_key', 'weever_settings', __( 'Weever Apps theme settings saved', 'weever' ), 'updated');
 	                } catch (Exception $e) {
@@ -174,7 +174,7 @@ function weever_admin_page() {
 	                }
 	
 	    	        break;
-	
+
 	    	    case 'weever-account':
 	    	        try {
 	                    $weeverapp->site_key = trim( $_POST['site_key'] );

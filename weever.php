@@ -3,7 +3,7 @@
 Plugin Name: Weever Apps - appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
 Description: Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry 
-Version: 2.1.4
+Version: 2.1.5
 Author: Brian Hogg
 Author URI: http://brianhogg.com/
 License: GPL3
