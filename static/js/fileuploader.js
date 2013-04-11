@@ -640,7 +640,7 @@ qq.extend(qq.FileUploader.prototype, {
         
         if (result.success){
             qq.addClass(item, this._classes.success); 
-            this._callback(result.url);   
+            this._callback(result.url, result.crop);
         } else {
             qq.addClass(item, this._classes.fail);
         }         

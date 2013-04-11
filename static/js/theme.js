@@ -135,9 +135,15 @@ jQuery(document).ready(function(){
 	        onComplete: function(id, fileName, responseJSON){
 	        	//console.debug(responseJSON);
 	        },
-	        callback: function(url) {
+	        callback: function(url, crop) {
 	        	jQuery("#wx-upload-info").remove();
 	        	jQuery('.qq-upload-success').hide();
+
+                if ( ! crop ) {
+                    jQuery("#" + image_id).attr("src", url);
+                    jQuery('input[name=' + input_name + ']').attr('value', url);
+                    return;
+                }
 
 	        	// Call the cropper
 	        	jQuery('#wx-jcrop-dialog-img').attr('src', url);
@@ -177,7 +183,7 @@ jQuery(document).ready(function(){
 		    	        	        	jQuery('#wx-jcrop-dialog').dialog('close');
 		        					},
 		        					error: function(v,msg) {
-		        						alert('There was an error saving the image, please try again');
+		        						alert('There was an error saving the image' + ( msg ? ' (' + msg + ')' : '' ));
 		        					}
 		        				});
 	        				//}
