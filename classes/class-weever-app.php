@@ -473,6 +473,17 @@ class WeeverApp {
             $data['icon_id'] = self::CONTACT_ICON_ID;
         }
 
+        if ( 'rss' == $data['component'] ) {
+            if ( ! filter_var( $data['cms_feed'], FILTER_VALIDATE_URL ) ) {
+                // try adding http:// at beginning in case they forgot
+                $data['cms_feed'] = 'http://' . $data['cms_feed'];
+            }
+            if ( ! WeeverHelper::is_rss_url_valid($data['cms_feed']) ) {
+                $data['cms_feed'] = WeeverHelper::get_rss_url_from_site_url($data['cms_feed']);
+            }
+            $data['cms_feed'] = WeeverHelper::get_rss_r3s_feed_url($data['cms_feed']);
+        }
+
         // Translate old component / component_behaviour values to the new config / config_cache
         $data = $this->convert_component_to_content_config($data);
         
@@ -507,14 +518,34 @@ class WeeverApp {
             $postdata['tab_id'] = intval($data['edit_id']);
 
         if ( isset( $postdata['confirm_feed'] ) and $postdata['confirm_feed'] ) {
-            $result = WeeverHelper::send_to_weever_server('validator/validate_feed', $postdata);
-            
-            // Verify it's a valid json
-            if ( empty($result) )
-                echo json_encode( array( 'api_check'=>false, 'invalid_json'=>$result ) );
-            else
-                echo json_encode( $result );
+            if ( 'rss' == $data['component'] or 'r3s' == $data['component'] ) {
+                // TODO: Move this to server code ('html' type validator/feed returner?)
+                $result = wp_remote_get( $data['cms_feed'] );
+                if ( ! is_wp_error($result) and is_array($result) and isset($result['body']) ) {
+                    $result = json_decode( $result['body'] );
+                    if ( $result and isset($result->items) and is_array($result->items) ) {
+                        $feed_items = array_slice($result->items, 0, 3);
+                        $retval = array();
+                        foreach ( $feed_items as $feed_item ) {
+                            $retval[] = array(
+                                            'image' => ( ( isset($feed_item->image, $feed_item->image->mobile) and $feed_item->image->mobile ) ? $feed_item->image->mobile : '' ),
+                                            'url' => ( ( isset($feed_item->url) and $feed_item->url ) ? $feed_item->url : '' ),
+                                            'title' => ( ( isset($feed_item->name) and $feed_item->name ) ? strip_tags($feed_item->name) : '' ),
+                                            'content' => ( ( isset($feed_item->description) and $feed_item->description ) ? substr(strip_tags($feed_item->description), 0, 100) : '' ),
+                                        );
+                        }
+                        echo json_encode( array( 'feed' => $retval, 'success' => true ) );
+                    }
+                }
+            } else {
+                $result = WeeverHelper::send_to_weever_server('validator/validate_feed', $postdata);
 
+                // Verify it's a valid json
+                if ( empty($result) )
+                    echo json_encode( array( 'api_check'=>false, 'invalid_json'=>$result ) );
+                else
+                    echo json_encode( $result );
+            }
             return;
         } else {
             $result = WeeverHelper::send_to_weever_server('tabs/add_tab', $postdata);            
@@ -534,6 +565,11 @@ class WeeverApp {
      */
     public function convert_component_to_content_config($data) {
         switch ( strtolower($data['component']) ) {
+            case 'rss':
+            case 'r3s':
+                $data['config'] = json_encode(array('url' => $data['cms_feed']));
+                $data['content'] = 'html';
+                break;
             case 'blog':
                 $data['config'] = json_encode(array('url' => site_url($data['cms_feed'])));
                 $data['content'] = 'html';

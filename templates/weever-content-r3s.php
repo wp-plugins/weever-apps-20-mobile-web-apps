@@ -33,17 +33,17 @@ if ( ! get_option('weever_do_not_modify_links', false ) ) {
     $jsonHtml->html = str_replace( "<iframe title=\"YouTube video player\" width=\"480\" height=\"390\"",
         "<iframe title=\"YouTube video player\" width=\"160\" height=\"130\"", $jsonHtml->html );
 
-    // Add full=1 to the end of all links
+    // Add fullsite=1 to the end of all links
     // With query param
-    $jsonHtml->html = preg_replace( '`(href)="http([^?"]*)\?([^?"#]*)(#)?([^?"#]*)"`i', '$1="http$2?$3&full=1$4$5"', $jsonHtml->html );
-    $jsonHtml->html = preg_replace( '`(href)=\'http([^?\']*)\?([^?\']*)(#)?([^?\'#]*)\'`i', '$1=\'http$2?$3&full=1$4$5\'', $jsonHtml->html );
+    $jsonHtml->html = preg_replace( '`(href)="http([^?"]*)\?([^?"#]*)(#)?([^?"#]*)"`i', '$1="http$2?$3&fullsite=1$4$5"', $jsonHtml->html );
+    $jsonHtml->html = preg_replace( '`(href)=\'http([^?\']*)\?([^?\']*)(#)?([^?\'#]*)\'`i', '$1=\'http$2?$3&fullsite=1$4$5\'', $jsonHtml->html );
     // Without query param
-    $jsonHtml->html = preg_replace( '`(href)="http([^?"#]*)(#)?([^?"#]*)"`i', '$1="http$2?full=1$3$4"', $jsonHtml->html );
-    $jsonHtml->html = preg_replace( '`(href)=\'http([^?\']*)(#)?([^?\'#]*)\'`i', '$1=\'http$2?full=1$3$4\'', $jsonHtml->html );
+    $jsonHtml->html = preg_replace( '`(href)="http([^?"#]*)(#)?([^?"#]*)"`i', '$1="http$2?fullsite=1$3$4"', $jsonHtml->html );
+    $jsonHtml->html = preg_replace( '`(href)=\'http([^?\']*)(#)?([^?\'#]*)\'`i', '$1=\'http$2?fullsite=1$3$4\'', $jsonHtml->html );
 
-    // Make sure any internal app links aren't affected by the full=1
-    $jsonHtml->html = str_replace('?full=1#!/', '#!/', $jsonHtml->html);
-    $jsonHtml->html = str_replace('full=1#!/', '#!/', $jsonHtml->html);
+    // Make sure any internal app links aren't affected by the fullsite=1
+    $jsonHtml->html = str_replace('?fullsite=1#!/', '#!/', $jsonHtml->html);
+    $jsonHtml->html = str_replace('fullsite=1#!/', '#!/', $jsonHtml->html);
 }
 
 // Add the geo data if any

@@ -32,7 +32,7 @@
             <?php else: ?>
             <div id="preview-app-dialog-no-tabs-welcome">
                 <strong>Welcome to appBuilder<span style="position: relative; top: -.5em; font-size: .5em; font-weight: normal;">&trade;</span></strong> <span style="display: block; font-size: 14px; clear: both; line-height: 1.5em; margin: 1em;">Your app will preview here as soon as you add a first feature!</span>
-                <span style="display: block; font-size: 14px; clear: both; line-height: 1.5em; margin: 1em;"><strong>First time building an app?</strong><br/><br/>Try adding a page to your app via the buttons to the left.<br/><br/>When you're done adding features, go to <strong>Design</strong> and set your color styles!</span>
+                <span style="display: block; font-size: 14px; clear: both; line-height: 1.5em; margin: 1em;"><strong>First time building an app?</strong><br/><br/>Try adding a page to your app via the buttons to the left.<br/><br/>When you're done adding features, go to <strong>Style</strong> and set your color styles!</span>
             </div>
             <?php endif; ?>
         </div>

@@ -144,6 +144,11 @@ $tab_output = ''; ?>
                             </li>
                         <?php endif; ?>
 
+                        <li class="wxui-btn white large radius3 wx-floatleft wx-add-source-icon wx-add-single" ref="add-rss" id="add-rss">
+                            <img src="http://weeverapps.com/wp-content/plugins/weever-apps-for-wordpress/static/images/icons/nav/rss.png">
+                            <span><?php _e( 'RSS Feed / Website' );?></span>
+                        </li>
+
                         <?php if ( ! apply_filters( 'weever_list_show_wordpress_content', true ) ): ?>
                             <li rel="page" class="wxui-btn white large radius3 wx-floatleft wx-add-new-content-button wx-add-new-accordionbutton wx-add-source-icon">
                                 <img src="http://weeverapps.com/wp-content/plugins/weever-apps-for-wordpress/static/images/icons/nav/page.png"><span><?php _e( 'Add Page' ); ?></span>

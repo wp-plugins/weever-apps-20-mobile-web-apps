@@ -47,6 +47,12 @@ class WeeverController {
             $result = $uploader->handleUpload( $uploads['path'] . '/' );
             $_SESSION['last_upload'] = $result;
             unset($result['filename']);
+
+            if ( ! function_exists('getimagesize') or ! function_exists('imagecreatefrompng') or ! function_exists('imagecreatetruecolor') )
+                $result['crop'] = false;
+            else
+                $result['crop'] = true;
+
             // to pass data through iframe you will need to encode all html tags
             echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
         }
@@ -61,8 +67,8 @@ class WeeverController {
         if ( is_user_logged_in() and current_user_can('manage_options') and isset( $_SESSION['last_upload'] ) ) {
             $targ_w = intval($_POST['image_width']);
             $targ_h = intval($_POST['image_height']);
-            //$jpeg_quality = 90;
-            $png_compression = 6;
+            $jpeg_quality = 90;
+            //$png_compression = 6;
 
             $src = $_SESSION['last_upload']['filename'];
             //$image_string = file_get_contents($src);
@@ -101,7 +107,7 @@ class WeeverController {
                     $image_height = $size_arr[1];
                 }
 
-                $dest_basename = 'crop-' . hash('md5', basename($src)) . time() . '.png';
+                $dest_basename = 'crop-' . hash('md5', basename($src)) . time() . '.jpg';
                 $dest_image = str_replace(basename($src), $dest_basename, $src);
 
                 // Resize the image down so it's not larger than the maximum size (targ_w/targ_h)
@@ -116,12 +122,13 @@ class WeeverController {
                 // Resample
                 $final_img = imagecreatetruecolor( $targ_w, $targ_h );
                 imagecopyresampled($final_img, $dst_r, 0, 0, 0, 0, $targ_w, $targ_h, $image_width, $image_height);
-                imagepng($final_img, $dest_image, $png_compression);
+                imagejpeg($final_img, $dest_image, $jpeg_quality);
 
                 // Send over the new image name
                 echo str_replace(basename($src), '', $_SESSION['last_upload']['url']) . $dest_basename;
             }
         } else {
+            echo 'No session set or invalid user';
             status_header(500);
         }
 

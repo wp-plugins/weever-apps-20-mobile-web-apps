@@ -920,6 +920,19 @@ function weever_category_select_dropdown($id, $class = 'wx-cms-feed-select') {
 
 </div>
 
+<div id="wx-add-rss-dialog" class="wx-jquery-dialog wx-hide wx-choose-content">
+
+    <p>Add an RSS Feed</p>
+
+    <div id="wx-add-page-r3s-url">
+
+        <label for='wx-add-page-rss-url-input' id='wx-add-page-rss-url-input-label' class='wx-page-label wx-jqui-label'><?php _e( 'Enter an RSS feed URL or a website with an RSS feed', 'weever' ); ?></label>
+        <input type='text' value='' id='wx-add-page-rss-url-input' class='wx-dialog-input wx-page-input' name='unnamed' placeholder='<?php echo __('http://', 'weever'); ?>' />
+
+    </div>
+
+</div>
+
 <div id="wx-upgrade-notice-sms" class="wx-jquery-dialog wx-hide">
 
 	<div>
