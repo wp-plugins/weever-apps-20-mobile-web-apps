@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: brianhogg, weeverapps
+Contributors: weeverapps
 Donate link: http://weeverapps.com/
 Tags: AJAX, android, apple, blackberry, weever, weaver, HTML5, iphone, ipod, mac, mobile, smartphone, theme, mobile, web app
 Requires at least: 3.1
