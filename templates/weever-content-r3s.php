@@ -13,6 +13,9 @@ foreach ( @$html->find('img') as $vv ) {
 if ( ! $jsonHtml->image )
     $jsonHtml->image = "";
 
+$jsonHtml->url = get_permalink();
+$jsonHtml->uuid = base64_encode( site_url() ) . '-' . get_the_ID();
+
 if ( ! get_option('weever_do_not_modify_links', false ) ) {
     // Mask external links so we leave only internal ones to play with.
     $jsonHtml->html = str_replace( "href=\"http://", "hrefmask=\"weever://", $jsonHtml->html );
