@@ -162,35 +162,19 @@ function weever_admin_page() {
 	                    // Save the colours
 	                    update_option( 'weever_main_titlebar_color', $_POST['main_titlebar_color'] );
 	                    update_option( 'weever_main_titlebar_text_color', $_POST['main_titlebar_text_color'] );
-	                    /*
-	                    update_option( 'weever_inactive_button_color', $_POST['inactive_button_color'] );
-	                    update_option( 'weever_inactive_button_text_color', $_POST['inactive_button_text_color'] );
-	                    update_option( 'weever_active_button_color', $_POST['active_button_color'] );
-	                    update_option( 'weever_active_button_text_color', $_POST['active_button_text_color'] );
-	                    */
 	                    update_option( 'weever_subtab_color', $_POST['subtab_color'] );
 	                    update_option( 'weever_subtab_text_color', $_POST['subtab_text_color'] );
-	                     
-	                    /*
-	                    
-	                    jQuery('#inactive_button_colorpicker').farbtastic('#inactive_button_color');
-	                    jQuery('#inactive_button_text_colorpicker').farbtastic('#inactive_button_text_color');
-	                    
-	                    jQuery('#active_button_colorpicker').farbtastic('#active_button_color');
-	                    jQuery('#active_button_text_colorpicker').farbtastic('#active_button_text_color');
-	                    
-	                    jQuery('#subtab_colorpicker').farbtastic('#subtab_color');
-	                    jQuery('#subtab_text_colorpicker').farbtastic('#subtab_text_color');*/
-	                    
-	                     
-	                    
-	                    add_settings_error('weever_api_key', 'weever_settings', __( 'Weever Apps theme settings saved', 'weever' ), 'updated');
+                        if ( apply_filters( 'weever_list_show_wordpress_content', true ) ) {
+                            update_option( 'weever_remove_image_links', isset( $_POST['remove_image_links'] ) ? 1 : 0 );
+                            update_option( 'weever_do_not_modify_links', isset( $_POST['do_not_modify_links'] ) ? 1 : 0 );
+                        }
+                        add_settings_error('weever_api_key', 'weever_settings', __( 'Weever Apps theme settings saved', 'weever' ), 'updated');
 	                } catch (Exception $e) {
 	        	        add_settings_error('weever_theme', 'weever_settings', $e->getMessage() . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://weeverapps.com/support' ) );
 	                }
 	
 	    	        break;
-	
+
 	    	    case 'weever-account':
 	    	        try {
 	                    $weeverapp->site_key = trim( $_POST['site_key'] );

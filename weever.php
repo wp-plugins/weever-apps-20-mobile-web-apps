@@ -3,7 +3,7 @@
 Plugin Name: Weever Apps - appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
 Description: Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry 
-Version: 2.1
+Version: 2.1.8
 Author: Brian Hogg
 Author URI: http://brianhogg.com/
 License: GPL3
@@ -75,6 +75,8 @@ if ( is_admin() ) {
     add_action( 'wp_ajax_ajaxSortPosts', array( 'WeeverController', 'ajaxSortPosts' ) );
     add_action( 'wp_ajax_ajaxSubtabDelete', array( 'WeeverController', 'ajaxSubtabDelete' ) );
     add_action( 'wp_ajax_ajaxSaveTabName', array( 'WeeverController', 'ajaxSaveTabName' ) );
+	add_action( 'wp_ajax_ajaxSaveMapOptions', array( 'WeeverController', 'ajaxSaveMapOptions' ) );
+	add_action( 'wp_ajax_ajaxGetMapOptions', array( 'WeeverController', 'ajaxGetMapOptions' ) );
     add_action( 'wp_ajax_ajaxSaveTabLayout', array( 'WeeverController', 'ajaxSaveTabLayout' ) );
     add_action( 'wp_ajax_ajaxGetIconSrc', array( 'WeeverController', 'ajaxGetIconSrc' ) );
     add_action( 'wp_ajax_ajaxSaveTabIcon', array( 'WeeverController', 'ajaxSaveTabIcon' ) );
@@ -98,8 +100,10 @@ function weever_get_redirect_url( $weeverapp = false ) {
 	
 	$request_uri = str_replace( "?full=0", "", $request_uri );
 	$request_uri = str_replace( "&full=0", "", $request_uri );
-	
-	if ( $request_uri && $request_uri != 'index.php' && $request_uri != '/' )
+    $request_uri = str_replace( "?fullsite=0", "", $request_uri );
+    $request_uri = str_replace( "&fullsite=0", "", $request_uri );
+
+    if ( $request_uri && $request_uri != 'index.php' && $request_uri != '/' )
 		$exturl = '?exturl=' . $request_uri;
 	else
 		$exturl = "";
@@ -141,7 +145,9 @@ function weever_desktop_print_scripts() {
 	parse_str( $query, $params );
 	if ( isset( $params['full'] ) )
 		unset( $params['full'] );
-	$params['full'] = 0;
+    if ( isset( $params['fullsite'] ) )
+        unset( $params['fullsite'] );
+    $params['fullsite'] = 0;
 	$url = preg_replace( '/\?.*/', '', $url ) . '?' . http_build_query( $params );
 	
 	wp_localize_script('weever-desktop', 'WDesktop',
@@ -169,15 +175,18 @@ function weever_init() {
 	if ( $weeverapp->site_key && $weeverapp->app_enabled && $weeverapp->primary_domain )
 	{
 		// Handle the full param and skipping mobile detection
-		$full = get_query_var( 'full' );
-		if ( $full != '' ) { 
-			if ( $full == '0' and isset( $_SESSION['ignore_mobile'] ) )
-				unset( $_SESSION['ignore_mobile'] );
-			
-			if ( $full == '1' )
-				$_SESSION['ignore_mobile'] = '1';
-		}
-		
+        $full_query_params = array( 'full', 'fullsite' );
+        foreach ( $full_query_params as $full_param ) {
+            $full = get_query_var( $full_param );
+            if ( $full != '' ) {
+                if ( $full == '0' and isset( $_SESSION['ignore_mobile'] ) )
+                    unset( $_SESSION['ignore_mobile'] );
+
+                if ( $full == '1' )
+                    $_SESSION['ignore_mobile'] = '1';
+            }
+        }
+
 	    // Run the mobile checks
 		$uagent_obj = new WeeverMdetect();
 
@@ -447,6 +456,7 @@ function weever_query_vars($vars) {
     // For including a callback function for R3S feed/document
     $vars[] = 'callback';
     $vars[] = 'full';
+    $vars[] = 'fullsite';
     
     // Distance
     $vars[] = 'latitude';

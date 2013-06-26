@@ -4,6 +4,57 @@
 
         private static $_weeverapp = false;
 
+        public static function get_rss_url_from_site_url($site_url) {
+            $retval = false;
+            $result = wp_remote_get($site_url);
+            if ( ! is_wp_error( $result ) and is_array( $result ) and isset( $result['body'] ) ) {
+                // search for the <link rel="alternate" .../> RSS tag
+                $matches = null;
+                $dom = new DOMDocument();
+                $dom->loadHTML($result['body']);
+                $link_tags = $dom->getElementsByTagName('link');
+                foreach ( $link_tags as $link_tag ) {
+                    if ( $link_tag->hasAttributes() ) {
+                        $attributes = $link_tag->attributes;
+                        if ( ! is_null($attributes) ) {
+                            if ( 'alternate' == $attributes->getNamedItem('rel')->nodeValue and 'application/rss+xml' == $attributes->getNamedItem('type')->nodeValue ) {
+                                $rss_url = $attributes->getNamedItem('href')->nodeValue;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if ( isset($rss_url) ) {
+                    $rss_url_parts = parse_url( $rss_url );
+                    if ( strlen( $rss_url ) and is_array( $rss_url_parts ) and ! isset( $rss_url_parts['host'] ) ) {
+                        // may be a relative url, add the domain of the site_url onto it
+                        $url_parts = parse_url( $site_url );
+                        $rss_url = trailingslashit( $url_parts['scheme'] . '://' . $url_parts['host'] ) . ltrim( $rss_url, '/' );
+                    }
+                    if ( FALSE !== filter_var( $rss_url, FILTER_VALIDATE_URL ) )
+                        $retval = $rss_url;
+                }
+            }
+            return $retval;
+        }
+
+        public static function is_rss_url_valid($url) {
+            $retval = false;
+            $request_url = self::get_rss_r3s_feed_url($url);
+            $result = wp_remote_get( $request_url );
+            if ( ! is_wp_error( $result ) and isset( $result['body'] ) ) {
+                $r3s_feed = json_decode( $result['body'] );
+                if ( ! is_null( $r3s_feed ) and isset( $r3s_feed->count ) and $r3s_feed->count > 0 ) {
+                    $retval = true;
+                }
+            }
+            return $retval;
+        }
+
+        public static function get_rss_r3s_feed_url($rss_url) {
+            return WeeverConst::LIVE_SERVER . 'api/v2/_rss2r3s/byUrl?url=' . urlencode($rss_url);
+        }
+
         /**
          * Function to take a url and ensure it is an absolute url
          * http://www.geekality.net/2011/05/12/php-dealing-with-absolute-and-relative-urls/

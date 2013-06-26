@@ -696,21 +696,26 @@ wx.features = [
         name:			'R3S Object',
         component:		'r3s',
         title:			true,
-        types:			['blog', 'page', 'map', 'panel', 'directory', 'aboutapp', 'proximity'],
-        component:		{
-
-            'blog':			'blog',
-            'directory':	'dir	ectory',
-            'map':			'map',
-            'proximity':	'proximity',
-            'aboutapp':		'aboutapp',
-            'page':			'page',
-            'panel':		'panel'
-
-        },
+        confirm_feed:   true,
+        types:			'blog',
         fields:			{
 
             cms_feed: 	'#wx-add-page-r3s-url-input'
+
+        }
+
+    },
+    {
+
+        id:				'rss',
+        name:			'RSS Feed',
+        component:		'rss',
+        title:			true,
+        confirm_feed:   true,
+        types:			'blog',
+        fields:			{
+
+            cms_feed: 	'#wx-add-page-rss-url-input'
 
         }
 
