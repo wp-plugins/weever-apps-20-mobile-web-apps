@@ -152,6 +152,7 @@ jQuery(document).ready(function(){
 	        	
 	        	jQuery('#wx-jcrop-dialog').dialog({
 	        		modal: true,
+					dialogClass: 'wp-dialog',
 	        		resizable: false,
 	        		width: 'auto',
 	        		height: 'auto',

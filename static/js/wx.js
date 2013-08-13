@@ -285,7 +285,8 @@ wx.confirmAddTabItem	= function(a) {
 
 	jQuery(dialogId).dialog({
 		
-		modal: 		true, 
+		modal: 		true,
+		dialogClass: 'wp-dialog',
 		resizable: 	false,
 		width: 		'auto',
 		height: 	'auto',
@@ -438,11 +439,13 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 		}
 		
 		if ( undefined != wx.parentFeatureData ) {
-			titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir + parentFeatureData.id + ".png' /> " + parentFeatureData.name + ": " + featureData.name;
+//			titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir + parentFeatureData.id + ".png' /> " + parentFeatureData.name + ": " + featureData.name;
+			titlebarHtml += parentFeatureData.name + ": " + featureData.name;
 		}
 		else {
-			titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir + featureData.id + ".png' /> " + featureData.name;
-		}		
+//			titlebarHtml += "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir + featureData.id + ".png' /> " + featureData.name;
+			titlebarHtml += featureData.name;
+		}
 		
 		/* So correct tab type is checkboxed if we got here via Tab Types */
 		if( true == populateOptions && true == single ) {
@@ -482,13 +485,15 @@ wx.localizedConditionalDialog	= function (buttonName, dialogId, backAction, popu
 	else { 
 		console.log(subType);
 		wx.activeTypeDialog = subType[0];
-		titlebarHtml 	+= "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir +  subType[0] + ".png' /> " + wx.types[ subType[0] ].name;
+//		titlebarHtml 	+= "<img class='wx-jquery-dialog-titlebar-icon' src='" + wx.navIconDir +  subType[0] + ".png' /> " + wx.types[ subType[0] ].name;
+		titlebarHtml 	+= wx.types[ subType[0] ].name;
 		action 			= function(a) { null; };
 	}
 
 	jQuery(dialogId).dialog({
 		
-		modal: 		true, 
+		modal: 		true,
+		dialogClass: 'wp-dialog',
 		resizable: 	false,
 		width: 		'auto',
 		height: 	'auto',
