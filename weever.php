@@ -3,13 +3,13 @@
 Plugin Name: Weever Apps - appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
 Description: Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry 
-Version: 2.1.9
-Author: Brian Hogg
-Author URI: http://brianhogg.com/
+Version: 3.0.0
+Authors: Weever, Andrew J. Holden, Matt Grande
+Author URI: http://weeverapps.com
 License: GPL3
 */
 
-/*  Copyright 2011 Weever Apps Inc. (email : brian@weeverapps.com)
+/*  Copyright 2011 Weever Apps Inc. (email : office@weeverapps.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -44,10 +44,10 @@ else
     require_once dirname( __FILE__ ) . '/classes/class-weever-const.php';
 
 // R3S classes for app content output
-require_once dirname( __FILE__ ) . '/classes/class-r3s.php';
+// require_once dirname( __FILE__ ) . '/classes/class-r3s.php';
 
 // SimpleDOM HTML parser
-require_once dirname( __FILE__ ) . '/classes/class-simpledom.php';
+// require_once dirname( __FILE__ ) . '/classes/class-simpledom.php';
 
 // Mobile detection class
 require_once dirname( __FILE__ ) . '/classes/class-weever-mdetect.php';
@@ -57,8 +57,6 @@ require_once dirname( __FILE__ ) . '/classes/class-weever-helper.php';
 
 // Weever App state object classes
 require_once dirname( __FILE__ ) . '/classes/class-weever-app.php';
-require_once dirname( __FILE__ ) . '/classes/class-weever-app-tab.php';
-require_once dirname( __FILE__ ) . '/classes/class-weever-app-subtab.php';
 require_once dirname( __FILE__ ) . '/classes/class-weever-app-theme-styles.php';
 require_once dirname( __FILE__ ) . '/classes/class-weever-app-theme-launch.php';
 
@@ -67,28 +65,13 @@ if ( is_admin() ) {
 	require_once dirname( __FILE__ ) . '/classes/class-weever-controller.php';
 
 	require_once dirname( __FILE__ ) . '/classes/class-fileuploader.php';
-	
+
     // Register the ajax calls
-    add_action( 'wp_ajax_ajaxMoveTab', array( 'WeeverController', 'ajaxMoveTab' ) );
     add_action( 'wp_ajax_ajaxCropImage', array( 'WeeverController', 'ajaxCropImage' ) );
-    add_action( 'wp_ajax_ajaxHandleUpload', array( 'WeeverController', 'ajaxHandleUpload' ) );    
-    add_action( 'wp_ajax_ajaxSortPosts', array( 'WeeverController', 'ajaxSortPosts' ) );
-    add_action( 'wp_ajax_ajaxSubtabDelete', array( 'WeeverController', 'ajaxSubtabDelete' ) );
-    add_action( 'wp_ajax_ajaxSaveTabName', array( 'WeeverController', 'ajaxSaveTabName' ) );
-	add_action( 'wp_ajax_ajaxSaveMapOptions', array( 'WeeverController', 'ajaxSaveMapOptions' ) );
-	add_action( 'wp_ajax_ajaxGetMapOptions', array( 'WeeverController', 'ajaxGetMapOptions' ) );
-    add_action( 'wp_ajax_ajaxSaveTabLayout', array( 'WeeverController', 'ajaxSaveTabLayout' ) );
-    add_action( 'wp_ajax_ajaxGetIconSrc', array( 'WeeverController', 'ajaxGetIconSrc' ) );
-    add_action( 'wp_ajax_ajaxSaveTabIcon', array( 'WeeverController', 'ajaxSaveTabIcon' ) );
-    add_action( 'wp_ajax_ajaxTabPublish', array( 'WeeverController', 'ajaxTabPublish' ) );
-    add_action( 'wp_ajax_ajaxPublishSelected', array( 'WeeverController', 'ajaxPublishSelected' ) );
-    add_action( 'wp_ajax_ajaxUnpublishSelected', array( 'WeeverController', 'ajaxUnpublishSelected' ) );
-    add_action( 'wp_ajax_ajaxDeleteSelected', array( 'WeeverController', 'ajaxDeleteSelected' ) );
-    add_action( 'wp_ajax_ajaxSaveSubtabOrder', array( 'WeeverController', 'ajaxSaveSubtabOrder' ) );
-    add_action( 'wp_ajax_ajaxSaveTabOrder', array( 'WeeverController', 'ajaxSaveTabOrder' ) );
-    add_action( 'wp_ajax_ajaxSaveNewTab', array( 'WeeverController', 'ajaxSaveNewTab' ) );
+    add_action( 'wp_ajax_ajaxHandleUpload', array( 'WeeverController', 'ajaxHandleUpload' ) );
     add_action( 'wp_ajax_ajaxToggleAppStatus', array( 'WeeverController', 'ajaxToggleAppStatus' ) );
-    add_action( 'wp_ajax_ajaxUpdateTabSettings', array( 'WeeverController', 'ajaxUpdateTabSettings' ) );
+    add_action( 'wp_ajax_ajaxToggleTabletStatus', array( 'WeeverController', 'ajaxToggleTabletStatus' ) );
+    add_action( 'wp_ajax_ajaxSaveTheme', array( 'WeeverController', 'ajaxSaveTheme' ) );
 }
 
 function weever_get_redirect_url( $weeverapp = false ) {
@@ -100,10 +83,8 @@ function weever_get_redirect_url( $weeverapp = false ) {
 	
 	$request_uri = str_replace( "?full=0", "", $request_uri );
 	$request_uri = str_replace( "&full=0", "", $request_uri );
-    $request_uri = str_replace( "?fullsite=0", "", $request_uri );
-    $request_uri = str_replace( "&fullsite=0", "", $request_uri );
-
-    if ( $request_uri && $request_uri != 'index.php' && $request_uri != '/' )
+	
+	if ( $request_uri && $request_uri != 'index.php' && $request_uri != '/' )
 		$exturl = '?exturl=' . $request_uri;
 	else
 		$exturl = "";
@@ -145,9 +126,7 @@ function weever_desktop_print_scripts() {
 	parse_str( $query, $params );
 	if ( isset( $params['full'] ) )
 		unset( $params['full'] );
-    if ( isset( $params['fullsite'] ) )
-        unset( $params['fullsite'] );
-    $params['fullsite'] = 0;
+	$params['full'] = 0;
 	$url = preg_replace( '/\?.*/', '', $url ) . '?' . http_build_query( $params );
 	
 	wp_localize_script('weever-desktop', 'WDesktop',
@@ -175,18 +154,15 @@ function weever_init() {
 	if ( $weeverapp->site_key && $weeverapp->app_enabled && $weeverapp->primary_domain )
 	{
 		// Handle the full param and skipping mobile detection
-        $full_query_params = array( 'full', 'fullsite' );
-        foreach ( $full_query_params as $full_param ) {
-            $full = get_query_var( $full_param );
-            if ( $full != '' ) {
-                if ( $full == '0' and isset( $_SESSION['ignore_mobile'] ) )
-                    unset( $_SESSION['ignore_mobile'] );
-
-                if ( $full == '1' )
-                    $_SESSION['ignore_mobile'] = '1';
-            }
-        }
-
+		$full = get_query_var( 'full' );
+		if ( $full != '' ) { 
+			if ( $full == '0' and isset( $_SESSION['ignore_mobile'] ) )
+				unset( $_SESSION['ignore_mobile'] );
+			
+			if ( $full == '1' )
+				$_SESSION['ignore_mobile'] = '1';
+		}
+		
 	    // Run the mobile checks
 		$uagent_obj = new WeeverMdetect();
 
@@ -260,23 +236,23 @@ add_filter( 'plugin_action_links_weever/weever.php', 'weever_settings_link' );
  * Custom R3S feed for content distribution
  */
 
-function weever_create_r3sfeed() {
-	status_header(200);
+// function weever_create_r3sfeed() {
+// 	status_header(200);
 	
-	$post_type = get_query_var('post_type');
+// 	$post_type = get_query_var('post_type');
 	
-	if ( ! empty( $post_type ) and post_type_exists( $post_type ) and file_exists( get_stylesheet_directory() . '/feed-r3s-' . str_replace('/', '', $post_type) . '.php') )
-		load_template( get_stylesheet_directory() . '/feed-r3s-' . str_replace('/', '', get_query_var('post_type')) . '.php' );
-	elseif ( file_exists( get_stylesheet_directory() . '/feed-r3s.php' ) ) {
-		load_template( get_stylesheet_directory() . '/feed-r3s.php' );
-	} elseif ( file_exists( get_template_directory() . '/feed-r3s.php' ) ) {
-		load_template( get_template_directory() . '/feed-r3s.php' );
-	} else {
-		load_template( dirname( __FILE__ ) . '/templates/feed-r3s.php' );
-	}
-}
+// 	if ( ! empty( $post_type ) and post_type_exists( $post_type ) and file_exists( get_stylesheet_directory() . '/feed-r3s-' . str_replace('/', '', $post_type) . '.php') )
+// 		load_template( get_stylesheet_directory() . '/feed-r3s-' . str_replace('/', '', get_query_var('post_type')) . '.php' );
+// 	elseif ( file_exists( get_stylesheet_directory() . '/feed-r3s.php' ) ) {
+// 		load_template( get_stylesheet_directory() . '/feed-r3s.php' );
+// 	} elseif ( file_exists( get_template_directory() . '/feed-r3s.php' ) ) {
+// 		load_template( get_template_directory() . '/feed-r3s.php' );
+// 	} else {
+// 		load_template( dirname( __FILE__ ) . '/templates/feed-r3s.php' );
+// 	}
+// }
 
-add_action( 'do_feed_r3s', 'weever_create_r3sfeed', 10, 1 );
+// add_action( 'do_feed_r3s', 'weever_create_r3sfeed', 10, 1 );
 
 function weever_no_limits_for_feed( $val ) {
     global $wp_query;
@@ -407,6 +383,10 @@ function weever_app_request() {
 				// Add in the color picker CSS first
 ?>
 
+/* App preview cursor */
+
+div#ext-viewport { cursor: url(<?php echo esc_html( WEEVER_PLUGIN_URL . 'static/img/greycircle.png' ); ?>) 16 16, pointer !important; }
+
 /* Logo Area Background Color */
 
 div.wx-titlebar {
@@ -456,7 +436,6 @@ function weever_query_vars($vars) {
     // For including a callback function for R3S feed/document
     $vars[] = 'callback';
     $vars[] = 'full';
-    $vars[] = 'fullsite';
     
     // Distance
     $vars[] = 'latitude';

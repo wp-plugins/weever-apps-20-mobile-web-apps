@@ -1,10 +1,10 @@
 === Plugin Name ===
-Contributors: weeverapps
+Contributors: mattgrande, weeverapps
 Donate link: http://weeverapps.com/
 Tags: AJAX, android, apple, blackberry, weever, weaver, HTML5, iphone, ipod, mac, mobile, smartphone, theme, mobile, web app
 Requires at least: 3.1
-Tested up to: 3.6
-Stable tag: 2.1.9
+Tested up to: 3.7.1
+Stable tag: 3.0.0
 
 Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry - weeverapps.com
 
@@ -18,12 +18,12 @@ This plugin enables you to build and manage your app entirely within WordPress' 
 
 Setting up a Weever App is extremely easy. All you do is:
 
-- Sign up for an subscription key at http://weeverapps.com/
+- Sign up for an subscription key at http://weeverapps.com/pricing
 - Install the plugin
 - Paste in the API key
 - Start adding content and branding to your app!
 
-The plugin will forward the devices you specify to your app, and automatically provides the app with the most up-to-date info, so you do not have to manage both your app and your site.
+The plugin will forward mobile devices to your app, and automatically provides the app with the most up-to-date info, so you do not have to manage both your app and your site.
 
 Currently supports:
 
@@ -52,14 +52,14 @@ Additional Features:
 1. Scan the QR code with your phone to preview your app
 1. Turn your app online by clicking the icon in the top-right corner in the 'Weever Apps' screen
 
-You can obtain a subscription key at http://weeverapps.com/
+You can obtain a subscription key at http://weeverapps.com/pricing
 
 == Frequently Asked Questions ==
 
 = How do I start creating my mobile app? =
 
 1. Install the plugin
-1. Sign up for a subscription key at http://weeverapps.com/
+1. Sign up for a subscription key at http://weeverapps.com/pricing
 1. Add the content you wish to appear in your mobile app from the 'App Features + Navigation' screen - simply click a tab, select the content you want to appear, and submit!
 1. Scan the QR code with your phone to preview your app
 1. Turn your app online by clicking the icon in the top-right corner in the 'Weever Apps' screen
@@ -80,27 +80,18 @@ Our support site - http://support.weeverapps.com/ - contains many more answers a
 
 == Screenshots ==
 
-1. Select blog content by category, tag, search terms, and custom taxonomy
-2. Sample page content
-3. Easily add maps using standard Wordpress post geolocation data
-4. Include social media feeds from Twitter, Identi.ca and Facebook
-5. Event listing from Facebook or Google Calendar
-6. Photos from Flickr, Facebook, Foursquare
-7. Video streams from Youtube, Vimeo
-8. Contact information
-9. Forms generated using Wufoo
-10. Add to launch screen ability with customizable icon
+1. Here is the first screenshot
+2. Now we have a **second** screenshot!
+3. Wow! We've included a third screenshot!
 
 == Changelog ==
 
-= 2.1.8 =
+= 3.0 =
 
-Added uuid and url to individual item feed
+Initial version of weever appBuilder 3.0 plugin
 
-= 2.1.7 =
+== Upgrade Notice ==
 
-Added support for RSS feeds, changes to image uploading and saving
+= 3.0.0 =
 
-= 2.1 =
-
-Initial version of weever appBuilder 2.0 plugin
+This version has a completely new, faster, back-end and a slick new UI to make building mobile apps faster and easier. Upgrade today!
