@@ -23,24 +23,24 @@ wxApp = wxApp || {};
     	},
 
     	save: function() {
-    		console.log('Save.');
-            var me = this;
-            var tabId = this.model.get('id');
-            var title = $('#container-title').val();
-            var iconId = $('input:radio[name="wx-icon"]:checked').val();
-            var numCompleted = 0;
+            alert(' Saving... ');
+            var me = this,
+                tabId = this.model.get('id'),
+                title = $('#container-title').val(),
+                iconId = $('input:radio[name="wx-icon"]:checked').val(),
+                numCompleted = 0;
 
             wx.makeApiCall( 'tabs/set_tabTitle', { tab_id: tabId, tabTitle: title }, function() {
-                console.log('Title Saved');
                 me.model.set('tabTitle', title);
                 if (++numCompleted == 2) {
                     wx.rebuildApp();
                 }
             });
 
-            wx.makeApiCall( 'tabs/set_tabIcon_id', { tab_id: tabId, tabIcon_id: iconId }, function() {
-                console.log('Tab Icon Saved');
-                me.model.set('tabIcon_id', iconId);
+            wx.makeApiCall( 'tabs/set_tabIcon', { tab_id: tabId, tabIcon: iconId }, function() {
+                alert('updating');
+                me.model.set('tabIcon_id', null);
+                me.model.set('tabIcon', iconId);
                 if (++numCompleted == 2) {
                     wx.rebuildApp();
                 }

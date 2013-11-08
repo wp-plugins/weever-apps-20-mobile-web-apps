@@ -96,11 +96,13 @@ wxApp = wxApp || {};
         showDropTab: function() {
             $('#dropTab').show();
             $('.wx-layout-tablist .wx-tab').addClass('dragging');
+            $('#editListTabsSortable').addClass('dragging');
         },
 
         hideDropTab: function() {
             $('#dropTab').hide();
             $('.wx-layout-tablist .wx-tab.dragging').removeClass('dragging');
+            $('#editListTabsSortable.dragging').removeClass('dragging');
         },
 
         clearBodyStyles: function() {
@@ -108,9 +110,6 @@ wxApp = wxApp || {};
         },
 
         changeFont: function(font) {
-            f = font;
-            wxApp.currentFont = font;
-
             var css = "@font-face { " +
             "    font-family: 'wxFont-1'; " +
             "    src: " +
@@ -130,6 +129,7 @@ wxApp = wxApp || {};
     // Load the current icon font
     wx.makeApiCall('design/get_font_id', {}, function(data) {
         if ( typeof data.font_id !== 'undefined' ) {
+            wxApp.font = data.font_id;
             var font = new wxApp.IconFont();
             font.fetch( data.font_id, function() {
                 // Put the font on the page.

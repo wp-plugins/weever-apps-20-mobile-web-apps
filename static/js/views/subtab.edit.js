@@ -147,7 +147,10 @@ wxApp = wxApp || {};
         },
 
         setIconFromView: function( model ) {
-            model.set( 'icon_id', this.$('input:radio[name="wx-icon"]:checked').val() );
+            var icon = this.$('input:radio[name="wx-icon"]:checked').val();
+
+            model.set( 'icon_id', null );
+            model.set( 'icon', icon );
             return model;
         },
 
