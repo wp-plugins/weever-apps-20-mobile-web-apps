@@ -1,5 +1,5 @@
-=== Plugin Name ===
-Contributors: mattgrande, weeverapps
+=== appBuilder for Wordpress ===
+Contributors: mattgrande, weeverapps,holdencreative
 Donate link: http://weeverapps.com/
 Tags: appbuilder, app builder, build app, app, apps, mobile, android, apple, ios, blackberry, tizen, HTML5, iphone, mobile plugin, responsive, mobile theme, mobile site, web app, hybrid, native, maps, gps, geo, geotag, geolocation, google maps, weever, weaver, touch
 Requires at least: 3.1
@@ -10,13 +10,21 @@ The most powerful app builder for Wordpress.  Create an impressive mobile app in
 
 == Description ==
 
-appBuilder for Wordpress allows you to build a single web app that works for iPhone, Android, Windows 8, Blackberry 10 and tablets.  Or, use our service to convert your HTML5 web app into a hybrid app for the App store, Google Play, Windows Store or Blackberry World marketplaces.
+**Build impressive web apps in minutes.**
 
-Your app will look, feel and function like a 'native' iOS, Android, Windows 8, or Blackberry app!
+appBuilder for Wordpress allows you to build an HTML5 web app that works for iPhone, Android, Windows 8, Blackberry 10 and tablets.
 
-This plugin enables you to build and manage your app entirely within WordPress' administrator backend, presenting your web site content in a responsive-plus, touch-friendly context. App users will be able to quickly find your latest news, follow your social network feeds, tap to make a phone call or email, watch videos, swipe through photos and more.
+Web apps launch instantly for mobile browsers, but can also be installed to the phone and tablet home screen. Your app will look and feel like a 'native' iOS, Android, Windows 8, or Blackberry app!
 
-Getting started:
+We also offer an optional service to convert your HTML5 web app into a hybrid app for the App store, Google Play, Windows Store or Blackberry World marketplaces.
+
+**How it works**
+
+This plugin enables you to build and manage your app entirely within WordPress' administrator backend, presenting your web site content in a responsive-plus, touch-friendly context.
+
+App users will be able to quickly find your latest news, follow your social network feeds, tap to make a phone call or email, watch videos, swipe through photos and more.
+
+**Getting started:**
 
 - Sign up for an app subscription key at http://weeverapps.com/pricing
 - Install the plugin
@@ -25,41 +33,35 @@ Getting started:
 
 The plugin includes an option to instantly launch the app for mobile visitors to your web site address.  The plugin also automatically streams new posts and pages from your web site to your app according to your specifications.
 
-Partial list of app features:
+**Partial list of app features:**
 
-- Wordpress content: from pages, posts, categories, tags, search results and custom post types
+- Wordpress content: from pages, posts, categories, tags, search results and custom posts
 - Add RSS feeds from other web sites, web services, etc.
 - Click to call and email buttons
-
 - Prompt to install the app to the visitors home screen
 - Full rebranding and reseller options for design and launch screens
 - Multiple language support for generic app elements and menus
-
 - Maps: GPS-enabled mobile maps of your Wordpress content
 - Nearest to me: list locations (posts in Wordpress) by nearest-distance first
 - Display geotagged content from the wp_geolocation plugin or post-to-map directly with the Wordpress admin. app
-
 - Live social streams from: Twitter, Facebook, and more
 - Videos: Youtube playlists and channels, Vimeo
 - Photo streams and galleries: Flickr, Picasa, Facebook Albums, Foursquare Venue Photos (live stream)
-
 - Event Listings: Google Calendar, Facebook Events
 - Forms via Wufoo Forms and a custom mobile-friendly contact form generator
 - Add miscellaneous streams from services like Blogger and Joomla and custom API's.
-
 - App works for iPhone/iPod/iPad, Android, Windows 8, Blackberry 10, with further compatibilities for Firefox and Tizen coming soon.
 
-Partial list of builder and marketing features:
+**Partial list of builder and marketing features:**
 
 - Preview your app in real-time as you build
 - Build on desktop, tablet or even build an app using your phone!
 - Select colors, layouts, language and more
-
 - Social sharing: share your app on Twitter and other social networks via a simple web link
 - QR Codes: View and print QR Codes to share your app publicly in print media
 - Optional services for sending push notifications and SMS alerts to app users
 
-Developer / Design options:
+**Developer / Designer friendly options:**
 
 - Instantly add and preview custom CSS and design code
 - Create custom views using the open-source R3S API
@@ -116,11 +118,11 @@ Weever Apps custom clients include both small businesses and enterprise brands, 
 
 == Screenshots ==
 
-1. Preview your web app in real-time as you build. [appbuilder-for-wp-01-interface.jpg]
-2. Create GPS-enabled mobile maps using Wordpress posts. [appbuilder-for-wp-02-maps.jpg]
-3. Add Wordpress posts, pages, tags, search results and more. [appbuilder-for-wp-03-content.jpg]
-4. Launch your HTML5 app instantly for mobile visitors, optionally convert and submit your app to app stores (add-on service) [appbuilder-for-wp-04-appstores.jpg]
-5. You can build your app inside Wordpress using a desktop computer, phone or tablet [appbuilder-for-wp-05-tablet.jpg]
+1. Preview your web app in real-time as you build.
+2. Create GPS-enabled mobile maps using Wordpress posts.
+3. Add Wordpress posts, pages, tags, search results and more.
+4. Launch your HTML5 app instantly for mobile visitors, optionally convert and submit your app to app stores (add-on service)
+5. You can build your app inside Wordpress using a desktop computer, phone or tablet
 
 == Changelog ==
 

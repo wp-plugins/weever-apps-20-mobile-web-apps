@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Weever Apps - appBuilder for Wordpress
+Plugin Name: appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
-Description: Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry 
+Description: The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
 Version: 3.0.0
 Authors: Weever, Andrew J. Holden, Matt Grande
 Author URI: http://weeverapps.com
