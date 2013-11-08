@@ -15,6 +15,7 @@
             <div class="row">
                 <div class="large-12 columns">
                     <input <?php if ( ! $weeverapp->site_key ) echo 'class="error"'; ?> type="text" name="site_key" value="<?php echo $weeverapp->site_key; ?>" />
+                    <br>
                     <div class="wx-inputContainer" id="save-button">
                         <button id="wx-button-submit" class="success" name="submit" type="submit" value="Save Changes">Save app subscription key</button>
                     </div>

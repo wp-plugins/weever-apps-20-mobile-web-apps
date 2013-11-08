@@ -247,6 +247,7 @@
 
 <script type="text/javascript">
     var wx = wx || {};
+    wx.pluginUrl = "<?php echo str_replace('templates/admin/', '', plugin_dir_url( __FILE__ )); /* This is in the templates/admin folder, so remove that from the path. */ ?>";
     wx.navIconDir = "<?php echo WEEVER_PLUGIN_URL; ?>static/img/";
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
     wx.siteKey = "<?php echo $weeverapp->site_key; ?>";

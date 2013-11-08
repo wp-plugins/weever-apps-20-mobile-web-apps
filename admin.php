@@ -137,6 +137,7 @@ function weever_admin_page() {
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			try {
+				update_option( 'weever_api_key', $_POST['site_key'] );
 				$weeverapp->site_key = trim( $_POST['site_key'] );
     
                 if ( isset( $_POST['stagingmode'] ) ) {

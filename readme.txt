@@ -1,10 +1,10 @@
 === appBuilder for Wordpress ===
-Contributors: mattgrande, weeverapps,holdencreative
+Contributors: mattgrande, weeverapps, holdencreative
 Donate link: http://weeverapps.com/
 Tags: appbuilder, app builder, build app, app, apps, mobile, android, apple, ios, blackberry, tizen, HTML5, iphone, mobile plugin, responsive, mobile theme, mobile site, web app, hybrid, native, maps, gps, geo, geotag, geolocation, google maps, weever, weaver, touch
 Requires at least: 3.1
 Tested up to: 3.7.1
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 
 The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
 
@@ -126,11 +126,21 @@ Weever Apps custom clients include both small businesses and enterprise brands, 
 
 == Changelog ==
 
-= 3.0 =
+= 3.0.1 =
+
+- Minor bugfixes
+- Plugin path URLs are now more dynamic
+- Fix for tab loading when icon ID is null
+
+= 3.0.0 =
 
 Initial version of weever appBuilder 3.0 plugin
 
 == Upgrade Notice ==
+
+= 3.0.1 =
+
+This version has a completely new, faster, back-end and a slick new UI to make building mobile apps faster and easier. Upgrade today!
 
 = 3.0.0 =
 
