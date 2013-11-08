@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Weever Apps - appBuilder for Wordpress
+Plugin Name: appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
-Description: Weever Apps: Turn your site into a true HTML5 'web app' for iPhone, Android and Blackberry 
+Description: The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
 Version: 3.0.0
 Authors: Weever, Andrew J. Holden, Matt Grande
 Author URI: http://weeverapps.com
@@ -44,10 +44,10 @@ else
     require_once dirname( __FILE__ ) . '/classes/class-weever-const.php';
 
 // R3S classes for app content output
-// require_once dirname( __FILE__ ) . '/classes/class-r3s.php';
+require_once dirname( __FILE__ ) . '/classes/class-r3s.php';
 
 // SimpleDOM HTML parser
-// require_once dirname( __FILE__ ) . '/classes/class-simpledom.php';
+require_once dirname( __FILE__ ) . '/classes/class-simpledom.php';
 
 // Mobile detection class
 require_once dirname( __FILE__ ) . '/classes/class-weever-mdetect.php';
@@ -236,23 +236,23 @@ add_filter( 'plugin_action_links_weever/weever.php', 'weever_settings_link' );
  * Custom R3S feed for content distribution
  */
 
-// function weever_create_r3sfeed() {
-// 	status_header(200);
+function weever_create_r3sfeed() {
+	status_header(200);
 	
-// 	$post_type = get_query_var('post_type');
+	$post_type = get_query_var('post_type');
 	
-// 	if ( ! empty( $post_type ) and post_type_exists( $post_type ) and file_exists( get_stylesheet_directory() . '/feed-r3s-' . str_replace('/', '', $post_type) . '.php') )
-// 		load_template( get_stylesheet_directory() . '/feed-r3s-' . str_replace('/', '', get_query_var('post_type')) . '.php' );
-// 	elseif ( file_exists( get_stylesheet_directory() . '/feed-r3s.php' ) ) {
-// 		load_template( get_stylesheet_directory() . '/feed-r3s.php' );
-// 	} elseif ( file_exists( get_template_directory() . '/feed-r3s.php' ) ) {
-// 		load_template( get_template_directory() . '/feed-r3s.php' );
-// 	} else {
-// 		load_template( dirname( __FILE__ ) . '/templates/feed-r3s.php' );
-// 	}
-// }
+	if ( ! empty( $post_type ) and post_type_exists( $post_type ) and file_exists( get_stylesheet_directory() . '/feed-r3s-' . str_replace('/', '', $post_type) . '.php') )
+		load_template( get_stylesheet_directory() . '/feed-r3s-' . str_replace('/', '', get_query_var('post_type')) . '.php' );
+	elseif ( file_exists( get_stylesheet_directory() . '/feed-r3s.php' ) ) {
+		load_template( get_stylesheet_directory() . '/feed-r3s.php' );
+	} elseif ( file_exists( get_template_directory() . '/feed-r3s.php' ) ) {
+		load_template( get_template_directory() . '/feed-r3s.php' );
+	} else {
+		load_template( dirname( __FILE__ ) . '/templates/feed-r3s.php' );
+	}
+}
 
-// add_action( 'do_feed_r3s', 'weever_create_r3sfeed', 10, 1 );
+add_action( 'do_feed_r3s', 'weever_create_r3sfeed', 10, 1 );
 
 function weever_no_limits_for_feed( $val ) {
     global $wp_query;

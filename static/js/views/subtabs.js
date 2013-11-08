@@ -55,7 +55,6 @@ wxApp = wxApp || {};
                         Backbone.Events.trigger( 'subtab:dragstart' );
                     },
                     stop: function(event, ui) {
-                        console.log('trigger dragstop');
                         Backbone.Events.trigger( 'subtab:dragstop' );
                     },
                     update: function(event, ui) {
@@ -64,6 +63,7 @@ wxApp = wxApp || {};
                             return element.replace('SubtabID', '');
                         }) );
                         wx.makeApiCall( 'tabs/sort_tabs', { order: order }, function() {
+                            wx.rebuildApp();
                             me.setSubTabCollectionOrder( order.split(',') );
                             var firstTabId = order.split(',')[0];
                             var mainTabId = $(ui.item).data('backbone-view').model.get('parent_id');
@@ -73,8 +73,8 @@ wxApp = wxApp || {};
                     },
                     helper: 'clone',
                     cursor: 'move',
-                    handle: '.wx-subtab-movehandle',
-                    cursorAt: { top: 0, left: 0 }
+                    handle: '.wx-subtab-movehandle'/*,
+                    cursorAt: { top: 0, left: 0 }*/
                 });
             }
         },
