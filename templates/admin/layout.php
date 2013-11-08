@@ -1,6 +1,8 @@
 <!-- start: container -->
 <div id="appbuilder">
 <div id="interface" class="platform">
+
+<!-- primary navigation -->
 <nav class="top-bar" style="">
     <ul class="title-area">
         <!-- Title Area -->
@@ -12,21 +14,38 @@
     <section class="top-bar-section">
         <ul class="right">
             <!-- remove dividers for cms platforms -->
+            <li class=""><a href="#" data-reveal-id="wx-account">subscription key</a></li>
             <!--
             <li class="divider"></li>
             <!-- -->
-            <li class=""><a href="http://weeverapps.com/pricing" target="_BLANK">plans and pricing</a></li>
+            <li class=""><a target="_blank" href="http://weeverapps.com/login">visitor statistics</a></li>
             <!--
             <li class="divider"></li>
             <!-- -->
-            <li class=""><a href="http://weeverapps.com/login/" target="_BLANK">visitor statistics</a></li>
+            <li class=""><a target="_blank" href="http://weeverapps.com/login/">my account</a></li>
             <!--
             <li class="divider"></li>
             <!-- -->
-            <li class=""><a href="#" data-reveal-id="wx-account">my account</a></li>
         </ul>
     </section>
 </nav>
+
+<!-- upgrade prompts -->
+<div id="account-expiration-warning" class="row" style="display: none;">
+    <div data-alert class="alert-box secondary">
+        Your free trial app expires <span id="expiry-days">in ?? days</span>
+        <a target="_blank" href="http://weeverapps.com/pricing">View plans and pricing</a>.
+        <a href="#" class="close">&times;</a>
+    </div>
+</div>
+
+<div id="account-expired" class="row" style="display: none;">
+    <div data-alert class="alert-box alert">
+        Your app subscription is expired.
+        <a target="_blank" href="http://weeverapps.com/pricing">View plans and pricing</a>.
+        <a href="#" class="close">&times;</a>
+    </div>
+</div>
 
 <!-- wp errors and messages -->
 <?php $errors = get_settings_errors(); ?>
@@ -115,9 +134,9 @@
                         <div id="preview-app-dialog-webkit" style="">
                             <iframe id="preview-app-dialog-frame" height="568" width="320" frameborder="0" scrolling="no" name="iframe-preview" seamless></iframe>
                             <div id="iframe-loading" style="display: none;margin: 0 auto;width: 300px;height: 568px;border: 1px #222 solid;box-sizing: content-box;padding: 0 10px;">
-                                <div style="padding-top: 1.875em; text-align: center">
+                                <div style="padding-top: 3.75em; text-align: center">
                                     <p>
-                                        <img src="<?php echo WEEVER_PLUGIN_URL; ?>static/img/loading.gif" /> Updating
+                                        <img src="<?php echo WEEVER_PLUGIN_URL; ?>static/img/loading.gif" /> applying changes
                                     </p>
                                 </div>
                             </div>
@@ -153,7 +172,7 @@
 <!-- end - user interface -->
 
 <!-- spacer -->
-<br>
+
 
 <!-- footer -->
 
@@ -164,7 +183,7 @@
             <p class="wx-footer-icon"><span class="appbuilder-icon icon-earth"></span></p>
             <h5>appBuilder&trade;</h5>
             <p>appBuilder is made with care by <b><a target="_blank" href="http://weeverapps.com">Weever Apps</a></b>, a company in Hamilton, Canada.  appBuilder is used in over 60 countries and 16 languages.</p>
-            <p>Weever Apps clients include both small businesses and enterprise brands, like Xerox, Habitat for Humanity, and Microsoft.</p>
+            <p>Weever Apps clients include both small businesses and enterprise brands, like Allergan, Habitat for Humanity, and Microsoft.</p>
         </div>
         <div class="large-8 columns">
             <div class="row">
@@ -228,10 +247,12 @@
 
 <script type="text/javascript">
     var wx = wx || {};
+    wx.pluginUrl = "<?php echo str_replace('templates/admin/', '', plugin_dir_url( __FILE__ )); /* This is in the templates/admin folder, so remove that from the path. */ ?>";
     wx.navIconDir = "<?php echo WEEVER_PLUGIN_URL; ?>static/img/";
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
     wx.siteKey = "<?php echo $weeverapp->site_key; ?>";
     wx.apiUrl = "<?php echo WeeverHelper::get_root_weever_api_url(); ?>";
+    wx.poll = true;
 
     jQuery( document ).ready( function() {
 
@@ -246,18 +267,24 @@
 
     var buildNum = '';
     function doPoll() {
-        wx.getText('_metadata/get_build_version', function(data) {
-            if (data != buildNum) {
-                buildNum = data;
-                console.log(buildNum);
-                var url = "<?php echo esc_url( WeeverConst::LIVE_SERVER . 'app/' . $weeverapp->primary_domain ); ?>?simphone=1&cache_manifest=false";
-                jQuery('#preview-app-dialog-frame').attr('rel', url);
-                jQuery('#preview-app-dialog-frame').attr('src', url);
-                jQuery('#iframe-loading').hide();
-                jQuery('#preview-app-dialog-frame').show();
-            }
+        if ( wx.poll ) {
+            wx.getText('_metadata/get_build_version', function(data) {
+                if (data != buildNum) {
+                    buildNum = data;
+                    console.log(buildNum);
+                    var url = "<?php echo esc_url( WeeverConst::LIVE_SERVER . 'app/' . $weeverapp->primary_domain ); ?>?simphone=1&cache_manifest=false";
+                    jQuery('#preview-app-dialog-frame').attr('rel', url);
+                    jQuery('#preview-app-dialog-frame').attr('src', url);
+                    jQuery('#iframe-loading').hide();
+                    jQuery('#preview-app-dialog-frame').show();
+                    wx.poll = false;
+                }
+                setTimeout(doPoll, 1000);
+            });
+        } else {
+            // Check back later.
             setTimeout(doPoll, 1000);
-        });
+        }
     }
 </script>
 

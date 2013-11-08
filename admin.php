@@ -137,6 +137,7 @@ function weever_admin_page() {
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			try {
+				update_option( 'weever_api_key', $_POST['site_key'] );
 				$weeverapp->site_key = trim( $_POST['site_key'] );
     
                 if ( isset( $_POST['stagingmode'] ) ) {
@@ -258,7 +259,7 @@ function weever_page_scripts_init() {
 		// Foundation scripts
 		// wp_register_script('zepto', plugins_url('static/js/vendor/zepto.js', __FILE__));
 		// wp_enqueue_script( 'zepto');
-		wp_register_script('foundation', plugins_url('static/js/foundation/foundation.js', __FILE__), array('zepto'));
+		wp_register_script('foundation', plugins_url('static/js/foundation/foundation.js', __FILE__));
 		wp_enqueue_script( 'foundation');
 		wp_register_script('foundation.abide', plugins_url('static/js/foundation/foundation.abide.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.abide');
