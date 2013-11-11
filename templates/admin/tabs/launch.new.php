@@ -128,7 +128,7 @@
                     </div>
                 </div>
 				<div>
-                    <a class="button secondary" href="../wp-content/plugins/wp_weeverapps/print-qr.html?domain=<?php echo $weeverapp->primary_domain; ?>&style=smooth&error=3&margin=1&size=20" target="_BLANK">Print</a>
+                    <a class="button secondary" href="<?php plugins_url( 'print-qr.html', __FILE__ ); ?>?domain=<?php echo $weeverapp->primary_domain; ?>&style=smooth&error=3&margin=1&size=20" target="_BLANK">Print</a>
 					<button onclick="jQuery('#qr-modal').foundation('reveal', 'close');">Done</button>
                     <a class="close-reveal-modal">&#215;</a>
 				</div>
