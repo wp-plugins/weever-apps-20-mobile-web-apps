@@ -1,20 +1,18 @@
-=== appBuilder for Wordpress ===
-Contributors: mattgrande, weeverapps, holdencreative
+=== Plugin Name ===
+Contributors: weeverapps
 Donate link: http://weeverapps.com/
 Tags: appbuilder, app builder, build app, app, apps, mobile, android, apple, ios, blackberry, tizen, HTML5, iphone, mobile plugin, responsive, mobile theme, mobile site, web app, hybrid, native, maps, gps, geo, geotag, geolocation, google maps, weever, weaver, touch
 Requires at least: 3.1
 Tested up to: 3.7.1
-Stable tag: 3.0.2
+Stable tag: 3.0.4
 
 The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
 
 == Description ==
 
-**Build impressive web apps in minutes.**
+**appBuilder for Wordpress allows you to build an HTML5 web app that works for iPhone, iPad, Android, Windows 8, Blackberry 10 and tablets.**
 
-appBuilder for Wordpress allows you to build an HTML5 web app that works for iPhone, Android, Windows 8, Blackberry 10 and tablets.
-
-Web apps launch instantly for mobile browsers, but can also be installed to the phone and tablet home screen. Your app will look and feel like a 'native' iOS, Android, Windows 8, or Blackberry app!
+Web apps launch instantly for mobile browsers, but can also be installed to a phone or tablet's home screen. Your app will look and feel like a 'native' iOS, Android, Windows 8, or Blackberry app!
 
 We also offer an optional service to convert your HTML5 web app into a hybrid app for the App store, Google Play, Windows Store or Blackberry World marketplaces.
 
@@ -67,6 +65,7 @@ The plugin includes an option to instantly launch the app for mobile visitors to
 - Create custom views using the open-source R3S API
 - Drag and drop tabs in your app to new positions, update instantly
 - Mobile redirect snippet for launching your app from other third-party web sites
+- Full rebranding and reseller options - be your own app development agency
 
 == Installation ==
 
@@ -125,6 +124,18 @@ Weever Apps custom clients include both small businesses and enterprise brands, 
 5. You can build your app inside Wordpress using a desktop computer, phone or tablet
 
 == Changelog ==
+
+= 3.0.4 =
+
+Remove debugger code.
+
+= 3.0.3 =
+
+- Several UX improvements
+- Bug fixes
+- Error messages are improved
+- Tabs have been removed from the Build page
+- The Image Cropper has been disabled
 
 = 3.0.2 =
 

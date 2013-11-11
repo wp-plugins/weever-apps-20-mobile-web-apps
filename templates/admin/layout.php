@@ -77,7 +77,7 @@
                 </div>
             </section>
             <section>
-                <p class="title" data-section-title><a href="#panel2">2. Edit <span>&rarr;</span></a></p>
+                <p class="title" id="edit-title" data-section-title><a href="#panel2">2. Edit <span>&rarr;</span></a></p>
                 <div class="content" data-section-content>
                     <?php require( dirname(__FILE__) . '/tabs/edit.new.php' ); ?>
                 </div>
@@ -241,6 +241,14 @@
 </div>
 
 
+<ol class="joyride-list" data-joyride>
+    <li data-id="edit-title" data-text="Got it, thanks!">
+        <p><b>Congratulations,</b></p>
+        <p>You have added a first new feature to your app. Nice job!</p>
+        <p>Use the <b>&ldquo;Edit&rdquo;</b> area to change the icon and label for this feature or to remove it from your app at any time.</p>
+    </li>
+</ol>
+
 <!-- endof: container -->
 </div>
 </div>
@@ -257,7 +265,6 @@
     jQuery( document ).ready( function() {
 
         jQuery(document).foundation();
-        // jQuery('#preview-app-dialog-frame').attr('rel', "<?php echo esc_url( WeeverConst::LIVE_SERVER . 'app/' . $weeverapp->primary_domain ); ?>?simphone=1&cache_manifest=false");
         doPoll();
 
         <?php if ( isset( $_GET['page'] ) and basename( $_GET['page'] ) == 'weever-account' ) { ?>
