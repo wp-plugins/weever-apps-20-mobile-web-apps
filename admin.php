@@ -19,12 +19,18 @@ function weever_override_wordpress_styles() {
 }
 
 function fix_jquery_version() {
-    echo '<script type=\'text/javascript\' src=\'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js\'></script>';
-    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/jquery-ui.custom.min.js', __FILE__ ) . '\'></script>';
-    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/underscore.min.js', __FILE__ ) . '\'></script>';
-    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/backbone.min.js', __FILE__ ) . '\'></script>';
-    global $wp_scripts;
-    $wp_scripts->remove( 'jquery' );
+
+	$page = ( isset( $_GET['page'] ) ? basename( $_GET['page'] ) : '' );
+
+	if ( substr( $page, 0, strlen('weever-') ) == 'weever-' )
+	{
+		echo '<script type=\'text/javascript\' src=\'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js\'></script>';
+	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/jquery-ui.custom.min.js', __FILE__ ) . '\'></script>';
+	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/underscore.min.js', __FILE__ ) . '\'></script>';
+	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/backbone.min.js', __FILE__ ) . '\'></script>';
+	    global $wp_scripts;
+	    $wp_scripts->remove( 'jquery' );
+	}
     // $wp_scripts->remove( 'jquery-ui' );
     // $wp_scripts->remove( 'jquery-ui-core' );
     // // $wp_scripts->remove( 'jquery-core' );
