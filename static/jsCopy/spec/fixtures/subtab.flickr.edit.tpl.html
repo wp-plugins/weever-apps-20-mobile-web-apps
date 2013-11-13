@@ -1,0 +1,15 @@
+<script type="text/template" id="flickr-subtab-edit-template">
+
+    <p>Share photo streams and image galleries from a <a target="_blank" href="http://flickr.com">Flickr</a> account.</p>
+
+    <div>
+        <label for="wx-flickr-photostream"><input type="radio" class="wx-content-radio" name="flickr-content" id="wx-flickr-photostream" value="flickrPhotostream" <% if ( 'flickrPhotostream' == content ) { %>checked<% } %> /> Flickr photo stream (all photos)</label>
+        <label for="wx-flickr-photosets"><input type="radio" class="wx-content-radio" name="flickr-content" id="wx-flickr-photosets" value="flickrPhotosets" <% if ( 'flickrPhotosets' == content ) { %>checked<% } %> /> Flickr photo sets (galleries)</label>
+    </div>
+
+    <br>
+
+    <label for='wx-flickr-input' id='wx-flickr-input-label'>Enter a Flickr web address</label>
+    <input type='text' value='<%- config.url %>' id="wx-flickr-input" class='wx-dialog-input wx-edit-input' name='component_behaviour' placeholder='' />
+
+</script>
