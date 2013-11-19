@@ -63,7 +63,7 @@
 
     </div>
 
-    <button class="button secondary" id="finish-crop">Done</button>
+    <button class="button secondary radius" id="finish-crop">Done</button>
     <div id="wx-jcrop-dialog-loading" style="display: none;"><img src="<?php echo WEEVER_PLUGIN_URL; ?>static/img/loading.gif" /> Saving...</div>
 
 </div>

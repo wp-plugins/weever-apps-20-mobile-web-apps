@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="max-width: 100%;">
     <!-- start: left col -->
     <div class="large-8 columns">
 
@@ -17,7 +17,7 @@
                     <input <?php if ( ! $weeverapp->site_key ) echo 'class="error"'; ?> type="text" name="site_key" value="<?php echo $weeverapp->site_key; ?>" />
                     <br>
                     <div class="wx-inputContainer" id="save-button">
-                        <button id="wx-button-submit" class="success" name="submit" type="submit" value="Save Changes">Save app subscription key</button>
+                        <button id="wx-button-submit" class="success radius" name="submit" type="submit" value="Save Changes">Save app subscription key</button>
                     </div>
                     <label><a target="_blank" href="http://weeverapps.com/pricing"><?php echo __( 'Need a subscription key?' ); ?></a></label>
                 </div>
