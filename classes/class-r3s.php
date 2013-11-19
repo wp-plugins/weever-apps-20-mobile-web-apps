@@ -2,7 +2,7 @@
 /*
 *
 *	Weever Cartographer R3S Output Template for Wordpress
-*	(c) 2010-2011 Weever Inc. <http://www.weever.ca/>
+*	(c) 2010-2011 Weever Inc. <http://www.weeverapps.com/>
 *
 *	Author: 	Robert Gerald Porter (rob@weeverapps.com)
 *	Version: 	0.9.2

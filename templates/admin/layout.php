@@ -53,13 +53,11 @@
     <?php foreach($errors as $error): ?>
         <!-- <div id="message" class="<?php echo $error['type']; ?>"><p><strong><?php echo __($error['message'], 'weever'); ?></strong></p></div> -->
         <div class="row">
-            <div class="large-12 columns">
                 <div data-alert class="alert-box alert">
                     <?php echo __($error['message'], 'weever'); ?>
                     <!-- <a href="#" data-reveal-id="myModal">View plans and pricing</a>. -->
                     <a href="#" class="close">&times;</a>
                 </div>
-            </div>
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -132,7 +130,7 @@
                     <!-- -->
                     <?php if ( ! isset( $tab_found ) or $tab_found ): ?>
                         <div id="preview-app-dialog-webkit" style="">
-                            <iframe id="preview-app-dialog-frame" height="568" width="320" frameborder="0" scrolling="no" name="iframe-preview" seamless></iframe>
+                            <iframe id="preview-app-dialog-frame" rel="<?php echo esc_url( WeeverConst::LIVE_SERVER . 'app/' . $weeverapp->primary_domain ); ?>?simphone=1&cache_manifest=false" height="568" width="320" frameborder="0" scrolling="no" name="iframe-preview" seamless></iframe>
                             <div id="iframe-loading" style="display: none;margin: 0 auto;width: 300px;height: 568px;border: 1px #222 solid;box-sizing: content-box;padding: 0 10px;">
                                 <div style="padding-top: 3.75em; text-align: center">
                                     <p>
@@ -140,11 +138,13 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
-                        <div id="preview-app-dialog-no-webkit" style="display:none;">
-                            <p>Scan this QR Code with a touch-based smart phone to preview your app!</p>
-                            <p><img src="<?php echo $weeverapp->qr_code_private; ?>"  class="wx-qr-imgprev" /></p>
-                            <p>To view a preview of your app while you build, open this page with the <a target="_blank" href="http://google.com/chrome/">Google Chrome</a> or <a href="http://www.apple.com/safari/">Safari</a> web browser.</p>
+                            <div id="preview-app-dialog-no-webkit" style="display: none;margin: 0 auto;width: 300px;height: 568px;border: 1px #222 solid;box-sizing: content-box;padding: 0 10px;">
+                                <div style="padding-top: 3.75em; text-align: center">
+                                    <p>Scan this QR Code with a touch-based smart phone to preview your app!</p>
+                                    <p><img src="http://qr.weeverapps.com/?site=<?php echo $weeverapp->primary_domain; ?>"  class="wx-qr-imgprev" /></p>
+                                    <p>To view a preview of your app while you build, open this page with the <a target="_blank" href="http://google.com/chrome/">Google Chrome</a> or <a href="http://www.apple.com/safari/">Safari</a> web browser.</p>
+                                </div>
+                            </div>
                         </div>
                     <?php else: ?>
                         <div id="preview-app-dialog-no-tabs-welcome">
@@ -161,7 +161,7 @@
 
         <div class="row">
             <div class="small-10 small-centered large-12 large-uncentered columns">
-                <button class="large button secondary expand" id="refresh_preview"><span class="appbuilder-icon icon-refresh"></span> Refresh Preview</button>
+                <button class="large button secondary expand radius" id="refresh_preview"><span class="appbuilder-icon icon-refresh"></span> Refresh Preview</button>
             </div>
         </div>
 
@@ -278,12 +278,8 @@
             wx.getText('_metadata/get_build_version', function(data) {
                 if (data != buildNum) {
                     buildNum = data;
-                    console.log(buildNum);
-                    var url = "<?php echo esc_url( WeeverConst::LIVE_SERVER . 'app/' . $weeverapp->primary_domain ); ?>?simphone=1&cache_manifest=false";
-                    jQuery('#preview-app-dialog-frame').attr('rel', url);
-                    jQuery('#preview-app-dialog-frame').attr('src', url);
-                    jQuery('#iframe-loading').hide();
-                    jQuery('#preview-app-dialog-frame').show();
+                    console.log( 'New build: ' + buildNum );
+                    wx.refreshAppPreview();
                     wx.poll = false;
                 }
                 setTimeout(doPoll, 1000);
