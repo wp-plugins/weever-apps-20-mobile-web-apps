@@ -13,7 +13,7 @@ final class WeeverConst
     // const LICENSE		= 'GPL v3.0';
     // const LICENSE_URL	= 'http://www.gnu.org/licenses/gpl-3.0.html';
     // const RELEASE_DATE	= '';
-    // const BUGS_EMAIL 	= 'bugs@weever.ca';
+    // const BUGS_EMAIL 	= 'bugs@weeverapps.com';
     // const SUPPORT_WEB	= 'http://www.weeverapps.com/';
     const LIVE_SERVER	= 'http://weeverapp.com/';
     // const LIVE_SERVER   = 'http://enceladus.weeverdev.com/';
