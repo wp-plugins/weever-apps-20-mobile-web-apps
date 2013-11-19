@@ -18,37 +18,37 @@
 				<?php echo __( 'Share a link to your web app.  You\'ll get the opportunity to preview your message before it goes out.', 'weever' ); ?>
 			</p>
 
-			<ul class="large-block-grid-3">
+			<ul class="small-block-grid-3 large-block-grid-4">
 				<li>
-					<a target="_blank" href="http://twitter.com/intent/tweet?url=<?php echo urlencode($weeverapp->primary_domain) ?>&via=WeeverApps">
-						<img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_social/twitter.jpg'; ?>" />
-						<div>Share on Twitter</div>
+					<a target="_blank" class="wx-launch-share" id="share-app-twitter" href="http://twitter.com/intent/tweet?url=<?php echo urlencode($weeverapp->primary_domain) ?>&via=WeeverApps">
+                        &nbsp;
 					</a>
-				</li>
+                    <a target="blank" class="button success expand small radius" href="http://twitter.com/intent/tweet?url=<?php echo urlencode($weeverapp->primary_domain) ?>&via=WeeverApps">Twitter</a>
+                </li>
 				<li>
-					<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        <img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_social/facebook.jpg'; ?>" />
-						<div>Share on Facebook</div>
+					<a target="_blank" class="wx-launch-share" id="share-app-facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($weeverapp->primary_domain) ?>">
+                        &nbsp;
 					</a>
-				</li>
+                    <a target="blank" class="button success expand small radius" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($weeverapp->primary_domain) ?>">Facebook</a>
+                </li>
 				<li>
-					<a target="_blank" href="mailto:?subject=Share App&body=Link to App: <?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++QR Code Link: http%3A%2F%2Fchart.apis.google.com%2Fchart%3Fcht%3Dqr%2526chs%3D250x250%2526choe%3DUTF-8%2526chld%3DH%7C0%2526chl%3D<?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++via appBuilder&trade; - Build your app today at http://weeverapps.com/">
-                        <img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_social/email.jpg'; ?>" />
-                        <div>Email a Link</div>
+					<a target="_blank" class="wx-launch-share" id="share-app-email" href="mailto:?subject=Share App&body=Link to App: <?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++QR Code Link: http%3A%2F%2Fchart.apis.google.com%2Fchart%3Fcht%3Dqr%2526chs%3D250x250%2526choe%3DUTF-8%2526chld%3DH%7C0%2526chl%3D<?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++via appBuilder&trade; - Build your app today at http://weeverapps.com/">
+                        &nbsp;
 					</a>
-				</li>
+                    <a target="blank" class="button success expand small radius" href="mailto:?subject=Share App&body=Link to App: <?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++QR Code Link: http%3A%2F%2Fchart.apis.google.com%2Fchart%3Fcht%3Dqr%2526chs%3D250x250%2526choe%3DUTF-8%2526chld%3DH%7C0%2526chl%3D<?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++via appBuilder&trade; - Build your app today at http://weeverapps.com/">Email</a>
+                </li>
 				<li>
-					<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($weeverapp->primary_domain) ?>&title={<?php echo urlencode($weeverapp->primary_domain) ?>}source=Weever%20appBuilder">
-                        <img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_social/linkedin.jpg'; ?>" />
-						<div>Post to LinkedIn</div>
+					<a target="_blank" class="wx-launch-share" id="share-app-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($weeverapp->primary_domain) ?>&title={<?php echo urlencode($weeverapp->primary_domain) ?>}source=Weever%20appBuilder">
+                        &nbsp;
 					</a>
-				</li>
+                    <a target="blank" class="button success expand small radius" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($weeverapp->primary_domain) ?>&title={<?php echo urlencode($weeverapp->primary_domain) ?>}source=Weever%20appBuilder">LinkedIn</a>
+                </li>
 				<li>
-					<a target="_blank" href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode($weeverapp->primary_domain) ?>&media=http%3A%2F%2Fweeverapps.com%2Fwp-content%2Fplugins%2Fweever-apps-for-wordpress%2Fstatic%2Fimages%2Ftablet_load_default.png">
-                        <img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_social/pinterest.jpg'; ?>" />
-						<div>Share on Pinterest</div>
+					<a target="_blank" class="wx-launch-share" id="share-app-pinterest" href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode($weeverapp->primary_domain) ?>&media=http%3A%2F%2Fweeverapps.com%2Fwp-content%2Fplugins%2Fweever-apps-for-wordpress%2Fstatic%2Fimages%2Ftablet_load_default.png">
+                        &nbsp;
 					</a>
-				</li>
+                    <a target="blank" class="button success expand small radius" href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode($weeverapp->primary_domain) ?>&media=http%3A%2F%2Fweeverapps.com%2Fwp-content%2Fplugins%2Fweever-apps-for-wordpress%2Fstatic%2Fimages%2Ftablet_load_default.png">Pinterest</a>
+                </li>
 			</ul>
 		</div>
 	</section>
@@ -57,49 +57,53 @@
 	<section>
 		<p class="title" data-section-title><a href="#"><?php echo __( 'submit to app stores', 'weever' ); ?></a></p>
 		<div class="content" data-section-content>
-			<p class="wx-ui-title">Publish to app stores <span class="label success"><?php echo __( 'add-on service', 'weever' ); ?></span></p>
-			<p>Have Weever Apps create a &lsquo;hybrid app&rsquo; based on your web app and submit it to the stores you specify.  We offer discount pricing when submitting to multiple stores.</p>
-            <ul class="large-block-grid-3">
+
+			<p class="wx-ui-title">Publish to app stores <span class="label secondary"><?php echo __( 'add-on service', 'weever' ); ?></span></p>
+
+            <p>Have Weever Apps create a &lsquo;hybrid app&rsquo; based on your web app and submit it to the stores you specify.  We offer discount pricing when submitting to multiple stores.</p>
+
+            <ul class="small-block-grid-3 large-block-grid-4">
                 <li>
-                    <a target="_blank" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        <img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_appstores/itunes.jpg'; ?>" />
-                        <div>Submit to the App Store&trade;</div>
+                    <a target="_blank" class="wx-launch-publish" id="publish-app-itunes" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
+                        &nbsp;
                     </a>
+                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">App Store&trade;</a>
                 </li>
                 <li>
-                    <a target="_blank" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        <img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_appstores/googleplay.jpg'; ?>" />
-                        <div>Submit to Google Play&trade;</div>
+                    <a target="_blank" class="wx-launch-publish" id="publish-app-google-play" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
+                        &nbsp;
                     </a>
+                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">Google Play&trade;</a>
+
                 </li>
                 <li>
-                    <a target="_blank" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        <img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_appstores/windowsstore.jpg'; ?>" />
-                        <div>Submit to Windows Store&trade;</div>
+                    <a target="_blank" class="wx-launch-publish" id="publish-app-windows-store" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
+                        &nbsp;
                     </a>
+                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">Windows&trade;</a>
                 </li>
                 <li>
-                    <a target="_blank" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        <img src="<?php echo WEEVER_PLUGIN_URL . 'static/img/launch_appstores/blackberry.jpg'; ?>" />
-                        <div>Submit to BlackBerry World&trade;</div>
+                    <a target="_blank" class="wx-launch-publish" id="publish-app-blackberry-world" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
+                        &nbsp;
                     </a>
+                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">BlackBerry</a>
                 </li>
             </ul>
 
             <br>
 
             <!-- Push notifications -->
-            <p class="wx-ui-title">Push Notifications <span class="label success">add-on service</span> <span class="label secondary">Hybrid Only</span></p>
+            <p class="wx-ui-title">Push Notifications <span class="label secondary">add-on service</span> <span class="label secondary">Hybrid Only</span></p>
             <p>Send &lsquo;push notifications&rsquo; to customers who have your hybrid app installed.</p>
-            <p><a target="_blank" class="button secondary" href="http://weeverapps.com/native-app/">View plans and pricing</a></p>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/native-app/">View plans and pricing</a></p>
 
             <br>
 
             <!-- NFC stickers -->
-            <p class="wx-ui-title">NFC Stickers <span class="label success">add-on service</span</p>
+            <p class="wx-ui-title">NFC Stickers <span class="label secondary">add-on service</span</p>
             <p>Imagine tapping a poster with your phone and seeing an app launch instantly.  That technology is here today with NFC Stickers!</p>
             <p>NFC Stickers (aka 'tags') come with a sticker backing and are pre-programmed to go to your Mobile App URL.  NFC Stickers are compatible with Android, Windows 8 and Blackberry 10 devices.</p>
-            <p><a target="_blank" class="button secondary" href="http://weeverapps.com/nfc-tags/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">View plans and pricing</a></p>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/nfc-tags/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">View plans and pricing</a></p>
 
         </div>
 	</section>
@@ -110,7 +114,7 @@
 		<div class="content" data-section-content>
 			<p class="wx-ui-title">App QR Code</p>
 			<p>Your app includes a set of QR Codes for print marketing use.  When a mobile user scans your QR code with a barcode reader like or Google Goggles (<a target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.unveil">Android</a> | <a target="_blank" href="https://itunes.apple.com/us/app/google-mobile-app/id284815942">iTunes</a>)  or the <a target="_blank" href="http://www.i-nigma.mobi">i-nigma QR Reader</a>, your app launches instantly to their touch phone or tablet browser.</p>
-			<a class="button secondary" href="#" data-reveal-id="qr-modal">View your QR Code</a>
+			<a class="button success radius" href="#" data-reveal-id="qr-modal">View your QR Code</a>
 
 			<div id="qr-modal" class="reveal-modal">
                 <div class="row">
@@ -128,7 +132,7 @@
                     </div>
                 </div>
 				<div>
-                    <a class="button secondary" href="<?php plugins_url( 'print-qr.html', __FILE__ ); ?>?domain=<?php echo $weeverapp->primary_domain; ?>&style=smooth&error=3&margin=1&size=20" target="_BLANK">Print</a>
+                    <a class="button success radius" href="<?php plugins_url( 'print-qr.html', __FILE__ ); ?>?domain=<?php echo $weeverapp->primary_domain; ?>&style=smooth&error=3&margin=1&size=20" target="_BLANK">Print</a>
 					<button onclick="jQuery('#qr-modal').foundation('reveal', 'close');">Done</button>
                     <a class="close-reveal-modal">&#215;</a>
 				</div>
@@ -139,25 +143,25 @@
             <br>
 
             <!-- SMS messaging -->
-            <p class="wx-ui-title">SMS Messages <span class="label success">add-on service</span></p>
+            <p class="wx-ui-title">SMS Messages <span class="label secondary">add-on service</span></p>
             <p>Statistics indicate that SMS messages are ready by over 90% of recipients.  Weever Apps SMS Messaging service allows you to send targeted offers to your mobile audience.</p>
-            <p><a target="_blank" class="button secondary" href="http://weeverapps.com/sms/">View plans and pricing</a>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/sms/">View plans and pricing</a>
 
             <br>
             <br>
 
             <!-- NFC stickers -->
-            <p class="wx-ui-title">NFC Stickers <span class="label success">add-on service</span></p>
+            <p class="wx-ui-title">NFC Stickers <span class="label secondary">add-on service</span></p>
             <p>Imagine tapping a poster with your phone and seeing an app launch instantly.  That technology is here today with NFC Stickers!</p>
             <p>NFC Stickers (aka 'tags') come with a sticker backing and are pre-programmed to go to your Mobile App URL.  Weever NFC Stickers are compatible with Android, Windows 8 and Blackberry 10 devices.</p>
-            <p><a target="_blank" class="button secondary" href="http://weeverapps.com/nfc-tags/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">View plans and pricing</a></p>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/nfc-tags/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">View plans and pricing</a></p>
 
             <br>
 
             <!-- Push notifications -->
-            <p class="wx-ui-title">Push Notifications <span class="label success">add-on service</span> <span class="label secondary">Hybrid Only</span></p>
+            <p class="wx-ui-title">Push Notifications <span class="label secondary">add-on service</span> <span class="label secondary">Hybrid Only</span></p>
             <p>Send &lsquo;push notifications&rsquo; to customers who have downloaded your hybrid app from the App Store&trade; Google Play&trade; Windows Store&trade; or Blackberry World&trade;.</p>
-            <p><a target="_blank" class="button secondary" href="http://weeverapps.com/native-app/">View plans and pricing</a></p>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/native-app/">View plans and pricing</a></p>
 
 		</div>
 	</section>

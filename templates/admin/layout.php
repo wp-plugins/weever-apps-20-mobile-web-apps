@@ -53,13 +53,11 @@
     <?php foreach($errors as $error): ?>
         <!-- <div id="message" class="<?php echo $error['type']; ?>"><p><strong><?php echo __($error['message'], 'weever'); ?></strong></p></div> -->
         <div class="row">
-            <div class="large-12 columns">
                 <div data-alert class="alert-box alert">
                     <?php echo __($error['message'], 'weever'); ?>
                     <!-- <a href="#" data-reveal-id="myModal">View plans and pricing</a>. -->
                     <a href="#" class="close">&times;</a>
                 </div>
-            </div>
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -161,7 +159,7 @@
 
         <div class="row">
             <div class="small-10 small-centered large-12 large-uncentered columns">
-                <button class="large button secondary expand" id="refresh_preview"><span class="appbuilder-icon icon-refresh"></span> Refresh Preview</button>
+                <button class="large button secondary expand radius" id="refresh_preview"><span class="appbuilder-icon icon-refresh"></span> Refresh Preview</button>
             </div>
         </div>
 
