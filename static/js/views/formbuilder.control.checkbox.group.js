@@ -3,27 +3,16 @@
 wxApp = wxApp || {};
 
 (function($){
-	wxApp.FormBuilderControlCheckboxGroupView = Backbone.View.extend({
-
-		initialize: function() {
-			console.log('checkbox group view init');
-			this.template = _.template( $('#form-builder-checkbox-group').html() );
-			this.collection.bind('add', this.addOne, this);
-		},
-
-		render: function() {
-			console.log('checkbox group view render');
-			this.$el.html( this.template() );
-			return this;
-		},
+	wxApp.FormBuilderControlCheckboxGroupView = wxApp.FormBuilderControlBaseGroupView.extend({
+		className: 'wx-form-builder-checkbox-group',
+		tplSelector: '#form-builder-checkbox-group',
 
 		addOne: function( checkbox ) {
-			console.log('checkbox group view add');
-			var view = new wxApp.FormBuilderControlInputView({
+			var view = new wxApp.FormBuilderControlCheckboxView({
 				model: checkbox,
 				type: 'checkbox'
 			});
-			this.$('.wx-form-builder-checkbox-group').append( view.render().el );
+			this.addToView( view );
 		}
 
 	});

@@ -33,15 +33,17 @@ wxApp = wxApp || {};
             'change .wx-dialog-input': 'next',
 			'change .wx-social-input': 'next',
 			'keydown .wx-dialog-input': 'hideValidateFeed',
+            'keyup .wx-edit-title': 'editTitle',
 			'click .wx-finish-button': 'finish',
 			'click .wx-next-button': 'next',
-            'change .wx-content-radio' : 'contentChange'
+            'change .wx-content-radio' : 'contentChange',
+            'click .close-reveal-modal': 'close',
+            'close': 'close'
         },
 
         render: function() {
 
-            console.log('render');
-
+            m = this.model;
             this.$el.html( this.baseEditTpl( this.model.toJSON() ) );
             this.$('.subtab').html( this.subTabEditTpl( this.model.toJSON() ) );
 
@@ -63,10 +65,6 @@ wxApp = wxApp || {};
                     this.$('.wx-edit-title-div').hide();
             }
 
-            // Put the cursor in the first text box
-            // zub = this.$el;
-            // this.$('input[type=text]:first').focus();
-
             // Once the reveal modal is open...
             var me = this.$el;
             meeeee = me;
@@ -81,13 +79,18 @@ wxApp = wxApp || {};
                 if (height < 315)
                     height = 315;
 
-                me.find('div.content').height( height );
+                me.find('.previewTabs div.content').height( height );
 
                 // Put the cursor in the first text box
                 me.find('input[type=text]:first').focus();
             });
 
             return this;
+        },
+
+        close: function() {
+            this.model.destroy();
+            this.undelegateEvents();
         },
 
         startValidation: function() {
@@ -105,21 +108,25 @@ wxApp = wxApp || {};
         },
 
 		finish: function() {
-            console.log('Finish clicked.');
-            this.setModelFromView(this.model);
-            this.setTitleFromView(this.model);
-            this.setIconFromView(this.model);
-			this.saveModel();
+            if ( this.validate() ) {
+                this.setModelFromView(this.model);
+                this.setTitleFromView(this.model);
+                this.setIconFromView(this.model);
+    			this.saveModel();
 
-            this.$el.foundation('reveal', 'close');
+                this.$el.foundation('reveal', 'close');
 
-            wx.rebuildApp();
+                wx.rebuildApp();
+            }
 		},
+
+        validate: function() {
+            // This can be overridden in child sub tabs.
+            return true;
+        },
 
 		next: function() {
             if ( !this.model.validateFeed ) { return; }
-
-            console.log('next');
 
             this.$('#dialog-loader').show();
             
@@ -140,6 +147,13 @@ wxApp = wxApp || {};
             this.model.save();
 		},
 
+        editTitle: function( ev ) {
+            // This is really only needed for Form Builder.
+            if ( $('.wx-validate-feed.panel').length ) {
+                $('.wx-validate-feed.panel > h3').text( $( ev.currentTarget ).val() );
+            }
+        },
+
         setTitleFromView: function( model ) {
             if ( model.allowTitleEdit && this.$('.wx-edit-title') )
                 model.set('title', this.$('.wx-edit-title').val() );
@@ -159,7 +173,6 @@ wxApp = wxApp || {};
         },
 
 		validateFeed: function() {
-            console.log('validate feed');
             var me = this;
 			// copy the model to validate with the server, without updating the existing model
             var modelCopy = this.getModelCopy();
@@ -168,7 +181,6 @@ wxApp = wxApp || {};
 		},
 
         getModelCopy: function() {
-            console.log('get model copy');
             var modelCopy = $.extend( true, {}, this.model );
             return modelCopy;
         },
@@ -189,8 +201,6 @@ wxApp = wxApp || {};
 		displayFeedSample: function(feedSample) {
 			var me = this;
 			this.$('.wx-validate-feed').show();
-			wx.log('displayFeedSample ***');
-			wx.log(feedSample);
 			if ( ! feedSample.feed.length ) {
 				this.$('.wx-validate-feed').html('No content added yet?');
 			} else {
@@ -210,7 +220,6 @@ wxApp = wxApp || {};
 		},
 
 		getFeedSample: function(model, callback) {
-            console.log('get feed sample');
 			var data = model.getAPIData();
 			data.api_check = 1;
 			data.confirm_feed = 1;

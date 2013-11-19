@@ -27,7 +27,6 @@ var wxApp = wxApp || {};
         var apiUrl = wx.apiUrl + endpoint + '?app_key=' + wx.siteKey;
         var queryStr = [];
         datatype = datatype || 'json';
-        console.log( datatype );
 
         for ( var p in paramsObj ) {
             queryStr.push( encodeURIComponent(p) + '=' + encodeURIComponent(paramsObj[p]) );
@@ -59,7 +58,7 @@ var wxApp = wxApp || {};
 
                 jQuery('#wx-modal-loading-text').html(message);
                 jQuery('#wx-modal-secondary-text').html('');
-                jQuery('#wx-modal-error-text').html(WPText.WEEVER_JS_SERVER_ERROR);
+                jQuery('#wx-modal-error-text').html( 'Server Error Occurred' );
             }
         });
     };
@@ -70,7 +69,7 @@ var wxApp = wxApp || {};
         else {
             jQuery('#wx-modal-loading-text').html(v.message ? v.message : 'Error');
             jQuery('#wx-modal-secondary-text').html('');
-            jQuery('#wx-modal-error-text').html(WPText.WEEVER_JS_SERVER_ERROR);
+            jQuery('#wx-modal-error-text').html( 'Server Error Occurred' );
         }
         Backbone.Events.trigger( 'api:success' );
     };
@@ -232,7 +231,7 @@ jQuery(document).ready(function() {
             success: function(msg){
                 jQuery('#wx-modal-loading-text').html(msg);
 
-                jQuery('#wx-modal-secondary-text').html(WPText.WEEVER_JS_APP_UPDATED);
+                jQuery('#wx-modal-secondary-text').html( 'App Updated' );
                 document.location.href = WPText.WEEVER_JS_ADMIN_LIST_URL+"#wxnavtip-content";
                 document.location.reload(true);
             },
@@ -240,7 +239,7 @@ jQuery(document).ready(function() {
                 jQuery('#wx-modal-loading-text').html(msg);
 
                 jQuery('#wx-modal-secondary-text').html('');
-                jQuery('#wx-modal-error-text').html(WPText.WEEVER_JS_SERVER_ERROR);
+                jQuery('#wx-modal-error-text').html( 'Server Error Occurred' );
             }
         });
     };
@@ -346,8 +345,8 @@ jQuery(document).ready(function() {
 	    .ajaxStart(function() {
 	    	jQuery('#wx-modal-error-text').html('');
 	        jQuery(this).fadeIn(200);
-	        jQuery('#wx-modal-loading-text').html(WPText.WEEVER_JS_SAVING_CHANGES);
-	        jQuery('#wx-modal-secondary-text').html(WPText.WEEVER_JS_PLEASE_WAIT);
+	        jQuery('#wx-modal-loading-text').html( 'Please Wait...' );
+	        jQuery('#wx-modal-secondary-text').html( 'Please wait, communicating with server' );
 
 			// Disable any finish buttons
 	        setTimeout( function() {

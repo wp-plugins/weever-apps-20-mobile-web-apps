@@ -292,13 +292,13 @@
             	    $retval = json_decode($result['body']);
                     if ( false === $retval )
                         // Not valid json
-                        throw new Exception( __( 'Error communicating with the Weever Apps server', 'weever' ) );
+                        throw new Exception( __( 'Sorry, there was a communication error.', 'weever' ) );
                     elseif ( isset($retval->error) and true == $retval->error )
-                        throw new Exception( __( 'Error communicating with the Weever Apps server - ' . $retval->message, 'weever' ) );                        
+                        throw new Exception( __( 'Sorry, there was a communication error.', 'weever' ) );
             	} else {
             		$error = ( is_wp_error( $result ) ? ': ' . $result->get_error_message() : '' );
             		
-            	    throw new Exception( __( 'Error communicating with the Weever Apps server' . $error, 'weever' ) );
+            	    throw new Exception( __( 'Sorry, there was a communication error.', 'weever' ) );
             	}
             } else {
                 var_dump(debug_backtrace(FALSE));

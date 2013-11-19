@@ -11,13 +11,18 @@ var wxApp = wxApp || {};
             // TODO: Call a function in each model to see if the type/content matches
             switch ( tabData.content ) {
                 case 'twitter':
+                case 'twitterUser':
                     retVal = 'TwitterSubTab';
                     break;
+                case 'youtube':
                 case 'youtubePlaylist':
                     retVal = 'YoutubeSubTab';
                     break;
                 case 'flickrPhotosets':
                     retVal = 'FlickrSubTab';
+                    break;
+                case 'formbuilder':
+                    retVal = 'FormBuilderSubTab';
                     break;
                 default:
                     // Check against type first (more specific but only newer tabs), then content (more generic)
@@ -53,10 +58,8 @@ var wxApp = wxApp || {};
         },
 
         fetch: function() {
-            console.log('Get tabs.');
             var me = this;
             wx.makeApiCall('tabs/get_tabs', {}, function(data) {
-                console.log(data.tabs.length + ' tabs got.');
                 if ( typeof data.tabs != 'undefined' ) {
                     var tabs = [];
                     for ( var tabIndex = 0; tabIndex < data.tabs.length; tabIndex++ ) {

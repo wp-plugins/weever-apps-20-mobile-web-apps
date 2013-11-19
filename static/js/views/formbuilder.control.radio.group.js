@@ -3,26 +3,16 @@
 wxApp = wxApp || {};
 
 (function($){
-	wxApp.FormBuilderControlRadioGroupView = Backbone.View.extend({
-
-		initialize: function() {
-			console.log('radio group view init');
-			this.template = _.template( $('#form-builder-radio-group').html() );
-			//console.log(this);
-			this.collection.bind('add', this.addOne, this);
-		},
-
-		render: function() {
-			this.$el.html( this.template() );
-			return this;
-		},
+	wxApp.FormBuilderControlRadioGroupView = wxApp.FormBuilderControlBaseGroupView.extend({
+		className: 'wx-form-builder-radio-group',
+		tplSelector: '#form-builder-radio-group',
 
 		addOne: function( radio ) {
-			var view = new wxApp.FormBuilderControlInputView({
+			var view = new wxApp.FormBuilderControlRadioView({
 				model: radio,
 				type: 'radio'
 			});
-			this.$('.wx-form-builder-radio-group').append( view.render().el );
+			this.addToView( view );
 		}
 
 	});
