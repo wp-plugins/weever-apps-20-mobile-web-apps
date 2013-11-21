@@ -80,6 +80,9 @@ class WeeverController {
                         $weeverapp->app_enabled = ( $weeverapp->app_enabled ? 0 : 1 );
                     }
                     $weeverapp->save();
+
+                    status_header(204);
+
                 } catch ( Exception $e ) {
                     status_header(500);
                     echo $e->getMessage();
