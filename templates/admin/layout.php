@@ -275,7 +275,9 @@
     var buildNum = '';
     function doPoll() {
         if ( wx.poll ) {
+            console.log('Poll...')
             wx.getText('_metadata/get_build_version', function(data) {
+                console.log(data);
                 if (data != buildNum) {
                     buildNum = data;
                     console.log( 'New build: ' + buildNum );
