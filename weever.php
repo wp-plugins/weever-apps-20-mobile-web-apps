@@ -3,7 +3,7 @@
 Plugin Name: appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
 Description: The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
-Version: 3.0.14
+Version: 3.0.15
 Authors: Weever, Andrew J. Holden, Matt Grande
 Author URI: http://weeverapps.com
 License: GPL3
@@ -223,7 +223,7 @@ add_action( 'template_redirect', 'weever_init', 0 );
  */
 function weever_settings_link( $links ) {
     if ( function_exists( "admin_url" ) ) {
-		$settings_link = '<a href="' . admin_url( 'admin.php?page=weever-account' ) . '">' . __( 'Settings' ) . '</a>';
+		$settings_link = '<a href="' . admin_url( 'admin.php?page=weever-account' ) . '">Settings</a>';
         array_push( $links, $settings_link );
     }
     return $links;
