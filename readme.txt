@@ -4,7 +4,7 @@ Donate link: http://weeverapps.com/
 Tags: appbuilder, app builder, build app, app, apps, mobile, android, apple, ios, blackberry, tizen, HTML5, iphone, mobile plugin, responsive, mobile theme, mobile site, web app, hybrid, native, maps, gps, geo, geotag, geolocation, google maps, weever, weaver, touch
 Requires at least: 3.1
 Tested up to: 3.7.1
-Stable tag: 3.0.15
+Stable tag: 3.0.17
 
 The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
 
@@ -124,6 +124,15 @@ Weever Apps custom clients include both small businesses and enterprise brands, 
 5. You can build your app inside Wordpress using a desktop computer, phone or tablet
 
 == Changelog ==
+
+= 3.0.17 =
+
+- Properly allow for internal linking when there is an <img> surrounded by <a> (Normally we strip the <a>).
+- Fix issue with how the colour picker was being loaded.
+
+= 3.0.16 =
+
+- Added support for cross-origin AJAX requests using non-pretty permalinks
 
 = 3.0.15 =
 
