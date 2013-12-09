@@ -22,10 +22,10 @@
             <?php $content = ob_get_contents(); ?>
             <?php ob_end_clean(); ?>
             <?php
-            // Remove the link around other images
+            // Remove the link around other images unless the href starts with #!/ (ie, unless it's an internal link)
             $content =
                 preg_replace(
-                    array('{<a(.*?)[^>]*><img}',
+                    array('{<a(?=\s|>)(?!(?:[^>=]|=([\'"])(?:(?!\1).)*\1)*?\shref=[\'"](.*?)?#!/(.*?)[\'"]?)[^>]*><img}',
                         '{ wp-image-[0-9]*" /></a>}'),
                     array('<img','" />'),
                     $content
