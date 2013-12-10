@@ -293,7 +293,7 @@
     }
 </script>
 
-<script type="text/javascript" src="<?php echo WEEVER_PLUGIN_URL; ?>static/js/jscolor/jscolor.js" />
+<script type="text/javascript" src="<?php echo WEEVER_PLUGIN_URL; ?>static/js/jscolor/jscolor.js"></script>
 
 <input type="hidden" id="nonce" name="nonce" value="<?php echo wp_create_nonce( 'weever-list-js' ); ?>" />
 <input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $weeverapp->site_key; ?>" />
