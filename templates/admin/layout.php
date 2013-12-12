@@ -255,7 +255,7 @@
 
 <script type="text/javascript">
     var wx = wx || {};
-    wx.pluginUrl = "<?php echo str_replace('templates/admin/', '', plugin_dir_url( __FILE__ )); /* This is in the templates/admin folder, so remove that from the path. */ ?>";
+    wx.pluginUrl = "<?php echo WEEVER_PLUGIN_URL; ?>";
     wx.navIconDir = "<?php echo WEEVER_PLUGIN_URL; ?>static/img/";
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
     wx.siteKey = "<?php echo $weeverapp->site_key; ?>";
@@ -275,7 +275,9 @@
     var buildNum = '';
     function doPoll() {
         if ( wx.poll ) {
+            console.log('Poll...')
             wx.getText('_metadata/get_build_version', function(data) {
+                console.log(data);
                 if (data != buildNum) {
                     buildNum = data;
                     console.log( 'New build: ' + buildNum );
@@ -290,6 +292,8 @@
         }
     }
 </script>
+
+<script type="text/javascript" src="<?php echo WEEVER_PLUGIN_URL; ?>static/js/jscolor/jscolor.js"></script>
 
 <input type="hidden" id="nonce" name="nonce" value="<?php echo wp_create_nonce( 'weever-list-js' ); ?>" />
 <input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $weeverapp->site_key; ?>" />
