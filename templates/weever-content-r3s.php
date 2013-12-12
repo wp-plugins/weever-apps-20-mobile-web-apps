@@ -11,8 +11,8 @@ if ( ! get_option('weever_do_not_modify_links', false ) ) {
 
     // Change all links to absolute vs. relative
     // http://wintermute.com.au/bits/2005-09/php-relative-absolute-links/
-    $jsonHtml->html = preg_replace( '#(href|src)="([^:"]*)("|(?:(?:%20|\s|\+)[^"]*"))#', '$1="' . get_site_url() . '$2$3', $jsonHtml->html );
-    $jsonHtml->html = preg_replace( '#(href|src)=\'([^:\']*)(\'|(?:(?:%20|\s|\+)[^\']*\'))#', '$1=\'' . get_site_url() . '$2$3', $jsonHtml->html );
+    // $jsonHtml->html = preg_replace( '#(href|src)="([^:"]*)("|(?:(?:%20|\s|\+)[^"]*"))#', '$1="' . get_site_url() . '$2$3', $jsonHtml->html );
+    // $jsonHtml->html = preg_replace( '#(href|src)=\'([^:\']*)(\'|(?:(?:%20|\s|\+)[^\']*\'))#', '$1=\'' . get_site_url() . '$2$3', $jsonHtml->html );
 
     // Restore external links, ensure target="_blank" applies
     $jsonHtml->html = str_replace( "hrefmask=\"weever://", "target=\"_blank\" href=\"http://", $jsonHtml->html);

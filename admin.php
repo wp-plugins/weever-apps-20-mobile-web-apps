@@ -204,8 +204,8 @@ function weever_page_scripts_init() {
 		wp_register_script('modernizr', plugins_url( 'static/js/vendor/custom.modernizr.js', __FILE__ ));
 		wp_enqueue_script( 'modernizr');
 
-		wp_register_script('jscolor', plugins_url( 'static/js/jscolor/jscolor.js', __FILE__ ));
-		wp_enqueue_script( 'jscolor');
+		// wp_register_script('jscolor', plugins_url( 'static/js/jscolor/jscolor.js', __FILE__ ));
+		// wp_enqueue_script( 'jscolor');
 
 		wp_register_script( 'fileuploader.js', plugins_url( 'static/js/fileuploader.js', __FILE__ ), array(), WeeverConst::VERSION );
 		
