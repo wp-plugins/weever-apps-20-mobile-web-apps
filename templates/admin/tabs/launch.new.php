@@ -18,7 +18,7 @@
 				<?php echo __( 'Share a link to your web app.  You\'ll get the opportunity to preview your message before it goes out.', 'weever' ); ?>
 			</p>
 
-			<ul class="small-block-grid-3 large-block-grid-4">
+			<ul class="small-block-grid-3 large-block-grid-5">
 				<li>
 					<a target="_blank" class="wx-launch-share" id="share-app-twitter" href="http://twitter.com/intent/tweet?url=<?php echo urlencode($weeverapp->primary_domain) ?>&via=WeeverApps">
                         &nbsp;
@@ -62,7 +62,7 @@
 
             <p>Have Weever Apps create a &lsquo;hybrid app&rsquo; based on your web app and submit it to the stores you specify.  We offer discount pricing when submitting to multiple stores.</p>
 
-            <ul class="small-block-grid-3 large-block-grid-4">
+            <ul class="small-block-grid-3 large-block-grid-5">
                 <li>
                     <a target="_blank" class="wx-launch-publish" id="publish-app-itunes" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
                         &nbsp;
@@ -73,7 +73,7 @@
                     <a target="_blank" class="wx-launch-publish" id="publish-app-google-play" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
                         &nbsp;
                     </a>
-                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">Google Play&trade;</a>
+                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">Play&trade;</a>
 
                 </li>
                 <li>
