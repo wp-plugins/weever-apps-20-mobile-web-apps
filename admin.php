@@ -4,8 +4,6 @@ add_action('admin_print_scripts', 'fix_jquery_version', 1);
 add_action('admin_menu', 'weever_override_wordpress_styles');
 add_action('admin_menu', 'weever_admin_add_page');
 
-add_action('init', 'my_function_name');
-
 weever_admin_warnings();
 
 /**
