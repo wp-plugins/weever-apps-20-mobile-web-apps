@@ -4,6 +4,8 @@ add_action('admin_print_scripts', 'fix_jquery_version', 1);
 add_action('admin_menu', 'weever_override_wordpress_styles');
 add_action('admin_menu', 'weever_admin_add_page');
 
+add_action('init', 'my_function_name');
+
 weever_admin_warnings();
 
 /**
@@ -196,6 +198,9 @@ function weever_page_scripts_init() {
         wp_enqueue_script( 'combined.js' );
 
     } else {
+
+    	wp_register_script( 'jquery-iframe-transport', plugins_url( 'static/js/vendor/jquery.iframe-transport.js', __FILE__ ), array(), WeeverConst::VERSION );
+    	wp_enqueue_script( 'jquery-iframe-transport' );
 
 		wp_register_script( 'weever.js', plugins_url( 'static/js/weever.js', __FILE__ ), array(), WeeverConst::VERSION );
 		wp_enqueue_script( 'weever.js' );

@@ -100,22 +100,8 @@
 
         <!-- start: plugin only - mobile redirect status -->
         <!-- -->
-        <div class="row">
-            <div class="small-8 columns" style="padding-left: 0; padding-right: 0;">
-                <h6 class="subheader wx-switch-labelright">
-                    <img class="wx-load-spinner" src="<?php echo WEEVER_PLUGIN_URL; ?>static/img/loading.gif" alt="Loading" id="status-loading" />
-                    &nbsp;app is <span id="appStatus"><b><?php if ($weeverapp->app_enabled) { echo 'on'; } else { echo 'off'; } ?>line</b></span> for mobile visitors.
-                </h6>
-            </div>
-            <div class="small-4 columns" style="padding-right: 0;">
-                <div class="switch">
-                    <input id="off" name="switch-x" type="radio" <?php if (!$weeverapp->app_enabled) { echo 'checked'; } ?>>
-                    <label for="off" onclick="">offline</label>
-                    <input id="on" name="switch-x" type="radio"  <?php if ($weeverapp->app_enabled) { echo 'checked'; } ?>>
-                    <label for="on" onclick="">online</label>
-                    <span></span>
-                </div>
-            </div>
+        <div class="row" id="appToggle">
+            
         </div>
 
         <!-- start: app preview -->
@@ -260,6 +246,8 @@
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
     wx.siteKey = "<?php echo $weeverapp->site_key; ?>";
     wx.apiUrl = "<?php echo WeeverHelper::get_root_weever_api_url(); ?>";
+    wx.uploadPath = "<?php echo wp_upload_dir()['path']; ?>";
+    wx.uploadUrl  = "<?php echo wp_upload_dir()['url']; ?>";
     wx.poll = true;
 
     jQuery( document ).ready( function() {
