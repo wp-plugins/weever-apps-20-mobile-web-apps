@@ -246,8 +246,9 @@
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
     wx.siteKey = "<?php echo $weeverapp->site_key; ?>";
     wx.apiUrl = "<?php echo WeeverHelper::get_root_weever_api_url(); ?>";
-    wx.uploadPath = "<?php echo wp_upload_dir()['path']; ?>";
-    wx.uploadUrl  = "<?php echo wp_upload_dir()['url']; ?>";
+    <?php $upload_dir = wp_upload_dir(); ?>
+    wx.uploadPath = "<?php echo $upload_dir['path']; ?>";
+    wx.uploadUrl  = "<?php echo $upload_dir['url']; ?>";
     wx.poll = true;
 
     jQuery( document ).ready( function() {
