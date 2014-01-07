@@ -293,8 +293,8 @@ function weever_page_scripts_init() {
 	        wp_enqueue_script( $file_name );
 	    }
 
-		wp_register_script( 'weever.theme.js', plugins_url( 'static/js/theme.js', __FILE__ ), array(  'fileuploader.js' ), WeeverConst::VERSION );
-		wp_enqueue_script( 'weever.theme.js' );
+		// wp_register_script( 'weever.theme.js', plugins_url( 'static/js/theme.js', __FILE__ ), array(  'fileuploader.js' ), WeeverConst::VERSION );
+		// wp_enqueue_script( 'weever.theme.js' );
 
 	}
 
