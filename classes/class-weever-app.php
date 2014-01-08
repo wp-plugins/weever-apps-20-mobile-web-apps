@@ -331,7 +331,7 @@ class WeeverApp {
             $config = WeeverHelper::send_to_weever_server('config/get_config', array( 'site_key' => $this->_data['site_key'] ) );
             $account = WeeverHelper::send_to_weever_server('account/get_account', array( 'site_key' => $this->_data['site_key'] ) );
             
-            $this->_data['app_enabled'] = $config->online;
+            $this->_data['app_enabled'] = $config->config->online;
 
             // Save raw data for loading into front-end javascript 
             // $this->_data['raw_tabsync_data'] = json_encode( array( 'tabs' => $result->tabs, 'config' => $config->config, 'account' => $account->account ) );
