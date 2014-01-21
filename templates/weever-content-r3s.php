@@ -3,22 +3,11 @@
 $html = WeeverSimpleHTMLDomHelper::str_get_html( $jsonHtml->html );
 
 if ( ! get_option('weever_do_not_modify_links', false ) ) {
-    // Mask external links so we leave only internal ones to play with.
-    $jsonHtml->html = str_replace( "href=\"http://", "hrefmask=\"weever://", $jsonHtml->html );
-    $jsonHtml->html = str_replace( "href='http://", "hrefmask='weever://", $jsonHtml->html );
-    $jsonHtml->html = str_replace( "href=\"https://", "hrefmask=\"weevers://", $jsonHtml->html );
-    $jsonHtml->html = str_replace( "href='https://", "hrefmask='weevers://", $jsonHtml->html );
+    
+    // Make all external links target="_BLANK"
+    make_links_target_blank( $html->nodes[0] );
+    $jsonHtml->html = $html->save();
 
-    // Change all links to absolute vs. relative
-    // http://wintermute.com.au/bits/2005-09/php-relative-absolute-links/
-    $jsonHtml->html = preg_replace( '#(href|src)="([^:"]*)("|(?:(?:%20|\s|\+)[^"]*"))#', '$1="' . get_site_url() . '$2$3', $jsonHtml->html );
-    $jsonHtml->html = preg_replace( '#(href|src)=\'([^:\']*)(\'|(?:(?:%20|\s|\+)[^\']*\'))#', '$1=\'' . get_site_url() . '$2$3', $jsonHtml->html );
-
-    // Restore external links, ensure target="_blank" applies
-    $jsonHtml->html = str_replace( "hrefmask=\"weever://", "target=\"_blank\" href=\"http://", $jsonHtml->html);
-    $jsonHtml->html = str_replace( "hrefmask='weever://", "target=\"_blank\" href='http://", $jsonHtml->html);
-    $jsonHtml->html = str_replace( "hrefmask=\"weevers://", "target=\"_blank\" href=\"https://", $jsonHtml->html);
-    $jsonHtml->html = str_replace( "hrefmask='weevers://", "target=\"_blank\" href='https://", $jsonHtml->html);
     $jsonHtml->html = str_replace( "<iframe title=\"YouTube video player\" width=\"480\" height=\"390\"",
         "<iframe title=\"YouTube video player\" width=\"160\" height=\"130\"", $jsonHtml->html );
 
@@ -81,4 +70,29 @@ if ( function_exists( 'get_post_meta' ) ) {
     }
 }
 
+
+/* This method makes all external links TARGET="_BLANK"
+ * Unless $in_there is set to true, in which case it ignores them.
+ * Currently, $in_ther is set when within the class 'wx-enable-imglinks'
+ */
+function make_links_target_blank($node, $deep=0, $in_there=false) {
+    if (count($node->attr)>0) {
+        foreach($node->attr as $k=>$v) {
+            if ( $k === 'class' and $v === 'wx-enable-imglinks' ) {
+                $in_there = true;
+            }
+            else if ( $in_there == false and ($k === 'href' || $k === 'src') ) {
+
+                // If the link is external (eg, if it starts with http), we 
+                // add a TARGET="_BLANK". Internal links do not start with http.
+                if ( strpos( $v, 'http' ) === 0 ) {
+                    $node->attr[' target'] = "_BLANK";
+                }
+            }
+        }
+    }
+
+    foreach($node->nodes as $c)
+        make_links_target_blank($c, $deep+1, $in_there);
+}
 
