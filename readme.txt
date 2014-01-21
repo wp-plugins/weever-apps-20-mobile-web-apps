@@ -3,8 +3,8 @@ Contributors: weeverapps
 Donate link: http://weeverapps.com/
 Tags: appbuilder, app builder, build app, app, apps, mobile, android, apple, ios, blackberry, tizen, HTML5, iphone, mobile plugin, responsive, mobile theme, mobile site, web app, hybrid, native, maps, gps, geo, geotag, geolocation, google maps, weever, weaver, touch
 Requires at least: 3.1
-Tested up to: 3.7.1
-Stable tag: 3.0.12
+Tested up to: 3.8
+Stable tag: 3.0.30
 
 The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
 
@@ -124,6 +124,83 @@ Weever Apps custom clients include both small businesses and enterprise brands, 
 5. You can build your app inside Wordpress using a desktop computer, phone or tablet
 
 == Changelog ==
+
+= 3.0.30 =
+
+- Fixed an issue with adding R3S feeds.
+
+= 3.0.29 =
+
+- Fixed an issue with adding RSS feeds.
+
+= 3.0.28 =
+
+- Fixed an issue where, in rare circumstances, Custom Domains were not being set properly.
+
+= 3.0.27 =
+
+- Sessions were being started in a way that resulted in warnings being displayed for some users. This has been fixed.
+
+= 3.0.26 =
+
+- Fix an issue with enabling apps.
+
+= 3.0.25 =
+
+- Fix an issue that prevented users from being able to upload photos.
+
+= 3.0.24 =
+
+- Fix a Firefox issue that prevented users from being able to upload photos.
+
+= 3.0.23 =
+
+- Fix a Firefox issue that prevented users from being able to upload photos.
+
+= 3.0.22 =
+
+- Fix an issue for our PRO subscribers! Custom branding is now working as expected.
+
+= 3.0.21 =
+
+- Improve mobile detection to handle some new phones, and fix an issue with detecting Blackberry 10s.
+
+= 3.0.20 =
+
+- Fix for a geolocation bug.
+
+= 3.0.19 =
+
+- There was an issue with displaying the "Advanced" section. This has been resolved.
+
+= 3.0.18 =
+
+- Fix bug with regular expression.
+
+= 3.0.17 =
+
+- Properly allow for internal linking when there is an <img> surrounded by <a> (Normally we strip the <a>).
+- Fix issue with how the colour picker was being loaded.
+
+= 3.0.16 =
+
+- Added support for cross-origin AJAX requests using non-pretty permalinks
+
+= 3.0.15 =
+
+- User interface design improvements.
+- Added more options for social sharing
+
+= 3.0.14 =
+
+- User interface design improvements.
+- Added more options for social sharing
+- Fixed bug with Wufoo forms,
+
+= 3.0.13 =
+
+- Improve how edit forms load.
+- Add proper response to app status switcher.
 
 = 3.0.12 =
 

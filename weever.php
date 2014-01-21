@@ -3,7 +3,7 @@
 Plugin Name: appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
 Description: The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
-Version: 3.0.12
+Version: 3.0.30
 Authors: Weever, Andrew J. Holden, Matt Grande
 Author URI: http://weeverapps.com
 License: GPL3
@@ -95,7 +95,12 @@ function weever_get_redirect_url( $weeverapp = false ) {
 	} else {
 		$url = 'http://weeverapp.com/app/' . $weeverapp->primary_domain . $exturl;
 	}
-	
+
+	// Prevent redirection if attempting to access an OAuth URI.
+	if ( stristr( $request_uri, '/oauth/' ) ) {
+		$url = false;
+	}
+
 	return $url;
 }
 
@@ -136,9 +141,6 @@ function weever_desktop_print_scripts() {
 }
 
 function weever_init() {
-    // Initialize the session
-    if ( ! session_id() && !is_admin() )
-	    session_start();
 
 	// Check if a feed, R3S encoded template, or the admin site is being accessed
 	$template = get_query_var( 'template' );
@@ -203,6 +205,11 @@ function weever_init() {
 		// Finally, redirect
 		$url = weever_get_redirect_url( $weeverapp );
 
+		// Do not redirect if $url == false
+		if ( ! $url ) {
+			return;
+		}
+
 		if ( ! headers_sent( $filename, $linenum ) ) {
 			header( 'Location: ' . $url );
 		} else {
@@ -216,6 +223,13 @@ function weever_init() {
 
 add_action( 'template_redirect', 'weever_init', 0 );
 
+function weever_session_init() {
+	// Initialize the session
+	if ( !session_id() )	// && !is_admin() 
+		session_start();
+}
+add_action('wp_loaded', 'weever_session_init');
+
 /**
  * Add a link to the settings page from the plugins listing page
  *
@@ -223,7 +237,7 @@ add_action( 'template_redirect', 'weever_init', 0 );
  */
 function weever_settings_link( $links ) {
     if ( function_exists( "admin_url" ) ) {
-		$settings_link = '<a href="' . admin_url( 'admin.php?page=weever-account' ) . '">' . __( 'Settings' ) . '</a>';
+		$settings_link = '<a href="' . admin_url( 'admin.php?page=weever-account' ) . '">Settings</a>';
         array_push( $links, $settings_link );
     }
     return $links;
@@ -296,10 +310,22 @@ function weever_app_request() {
     {
     	switch ( $wp_query->query_vars['template'] ) {
     		case 'weever_cartographer':
+
+				if ( isset( $wp_query->query_vars['weever_page_id'] ) ) {
+					$page_id = $wp_query->query_vars['weever_page_id'];
+				}
+				else if ( isset( $wp_query->query_vars['wx_page_id'] ) ) {
+					$page_id = $wp_query->query_vars['wx_page_id'];
+				}
+				else {
+					$page_id = get_the_ID();
+				}
+				global $post;
+				$post = get_post( $page_id );
+				setup_postdata( $post );
+
 		    	// Capture the HTML from the template file
 				ob_start();
-
-				the_post();
 
 				header('Content-type: application/json');
 				header('Cache-Control: no-cache, must-revalidate');
@@ -316,12 +342,11 @@ function weever_app_request() {
 				$jsonHtml->publisher = get_option('blogname'); // $conf->getValue('config.sitename');
 
 				$jsonHtml->name = get_the_title();
-				$jsonHtml->author = get_the_author_meta('display_name');
-				$jsonHtml->datetime["published"] = get_lastpostdate('GMT'); //mysql2date('Y-m-d H:i:s', get_lastpostdate('GMT'), false);  //$v->created;
-				$jsonHtml->datetime["modified"] = get_lastpostmodified('GMT'); //mysql2date('Y-m-d H:i:s', get_lastpostmodified('GMT'), false); //$v->modified;
+				$jsonHtml->author = get_the_author_meta( 'display_name' );
+				$jsonHtml->datetime["published"] = $post->post_date_gmt;
+				$jsonHtml->datetime["modified"] = $post->post_modified_gmt;
 
                 // Look for post type before more generic stylesheet
-                $post = get_post( get_the_ID() );
                 $template_suffixes = array( '-' . $post->post_type, '' );
 
                 foreach ( $template_suffixes as $suffix ) {
@@ -426,6 +451,8 @@ add_action('template_redirect', 'weever_app_request');
  */
 function weever_query_vars($vars) {
     $vars[] = 'template';
+	$vars[] = 'weever_page_id';
+	$vars[] = 'wx_page_id';
 
     // For pagination in the r3s feed
     $vars[] = 'limit';
