@@ -184,7 +184,7 @@ class WeeverApp {
         if ( $this->is_valid() ) {
             if ( $this->staging_mode ) {
                 $type = 'stage';
-                $queryExtra = '&staging=1';
+                $queryExtrax = '&staging=1';
             } else {
                 $type = 'live';
                 $queryExtra = '';
@@ -330,6 +330,7 @@ class WeeverApp {
             
             $config = WeeverHelper::send_to_weever_server('config/get_config', array( 'site_key' => $this->_data['site_key'] ) );
             $account = WeeverHelper::send_to_weever_server('account/get_account', array( 'site_key' => $this->_data['site_key'] ) );
+            $domains = WeeverHelper::send_to_weever_server('design/get_domain', array( 'site_key' => $this->_data['site_key'] ) );
             
             $this->_data['app_enabled'] = $config->config->online;
 
@@ -341,7 +342,14 @@ class WeeverApp {
             // $this->_data['ecosystem'] = $config->config->syndication->ecosystem;
             
             $this->_data['primary_domain'] = trim( str_ireplace( 'http://', '', str_ireplace( 'https://', '', $account->account->site ) ), '/' );
-            
+            update_option( 'weever_primary_domain', $this->_data['primary_domain'] );
+
+            if ( $domains and $domains->domain ) {
+                $d = end( $domains->domain );
+                $this->_data['domain'] = $d->domain;
+                update_option( 'weever_domain', $this->_data['domain'] );
+            }
+
             // TODO: Modify to use new string-based tiers later
             $this->_data['tier'] = $account->account->tier_raw;
             
