@@ -185,7 +185,7 @@
         }
 
         public static function get_page_link_relative( $page ) {
-            return "index.php?page_id=$page->ID";
+            return "index.php?wx_page_id=$page->ID";
         }
 
         /**

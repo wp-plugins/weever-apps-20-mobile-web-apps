@@ -100,22 +100,8 @@
 
         <!-- start: plugin only - mobile redirect status -->
         <!-- -->
-        <div class="row">
-            <div class="small-8 columns" style="padding-left: 0; padding-right: 0;">
-                <h6 class="subheader wx-switch-labelright">
-                    <img class="wx-load-spinner" src="<?php echo WEEVER_PLUGIN_URL; ?>static/img/loading.gif" alt="Loading" id="status-loading" />
-                    &nbsp;app is <span id="appStatus"><b><?php if ($weeverapp->app_enabled) { echo 'on'; } else { echo 'off'; } ?>line</b></span> for mobile visitors.
-                </h6>
-            </div>
-            <div class="small-4 columns" style="padding-right: 0;">
-                <div class="switch">
-                    <input id="off" name="switch-x" type="radio" <?php if (!$weeverapp->app_enabled) { echo 'checked'; } ?>>
-                    <label for="off" onclick="">offline</label>
-                    <input id="on" name="switch-x" type="radio"  <?php if ($weeverapp->app_enabled) { echo 'checked'; } ?>>
-                    <label for="on" onclick="">online</label>
-                    <span></span>
-                </div>
-            </div>
+        <div class="row" id="appToggle">
+            
         </div>
 
         <!-- start: app preview -->
@@ -255,11 +241,15 @@
 
 <script type="text/javascript">
     var wx = wx || {};
-    wx.pluginUrl = "<?php echo str_replace('templates/admin/', '', plugin_dir_url( __FILE__ )); /* This is in the templates/admin folder, so remove that from the path. */ ?>";
+    wx.cms = "<?php echo WeeverConst::CMS; ?>";
+    wx.pluginUrl = "<?php echo WEEVER_PLUGIN_URL; ?>";
     wx.navIconDir = "<?php echo WEEVER_PLUGIN_URL; ?>static/img/";
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
     wx.siteKey = "<?php echo $weeverapp->site_key; ?>";
     wx.apiUrl = "<?php echo WeeverHelper::get_root_weever_api_url(); ?>";
+    <?php $upload_dir = wp_upload_dir(); ?>
+    wx.uploadPath = "<?php echo $upload_dir['path']; ?>";
+    wx.uploadUrl  = "<?php echo $upload_dir['url']; ?>";
     wx.poll = true;
 
     jQuery( document ).ready( function() {
@@ -275,7 +265,9 @@
     var buildNum = '';
     function doPoll() {
         if ( wx.poll ) {
+            console.log('Poll...')
             wx.getText('_metadata/get_build_version', function(data) {
+                console.log(data);
                 if (data != buildNum) {
                     buildNum = data;
                     console.log( 'New build: ' + buildNum );
@@ -290,6 +282,8 @@
         }
     }
 </script>
+
+<script type="text/javascript" src="<?php echo WEEVER_PLUGIN_URL; ?>static/js/jscolor/jscolor.js"></script>
 
 <input type="hidden" id="nonce" name="nonce" value="<?php echo wp_create_nonce( 'weever-list-js' ); ?>" />
 <input type="hidden" name="site_key" id="wx-site-key" value="<?php echo $weeverapp->site_key; ?>" />
