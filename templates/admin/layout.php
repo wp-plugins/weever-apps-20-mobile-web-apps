@@ -241,6 +241,7 @@
 
 <script type="text/javascript">
     var wx = wx || {};
+    wx.cms = "<?php echo WeeverConst::CMS; ?>";
     wx.pluginUrl = "<?php echo WEEVER_PLUGIN_URL; ?>";
     wx.navIconDir = "<?php echo WEEVER_PLUGIN_URL; ?>static/img/";
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
