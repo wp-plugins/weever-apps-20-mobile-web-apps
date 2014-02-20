@@ -3,7 +3,7 @@
 Plugin Name: appBuilder for Wordpress
 Plugin URI: http://weeverapps.com/pricing
 Description: The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
-Version: 3.0.33
+Version: 3.0.34
 Authors: Weever, Andrew J. Holden, Matt Grande
 Author URI: http://weeverapps.com
 License: GPL3
@@ -345,6 +345,7 @@ function weever_app_request() {
 				$jsonHtml->author = get_the_author_meta( 'display_name' );
 				$jsonHtml->datetime["published"] = $post->post_date_gmt;
 				$jsonHtml->datetime["modified"] = $post->post_modified_gmt;
+				$jsonHtml->uuid = base64_encode( get_the_ID() );
 
                 // Look for post type before more generic stylesheet
                 $template_suffixes = array( '-' . $post->post_type, '' );
