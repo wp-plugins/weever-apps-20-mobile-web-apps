@@ -70,7 +70,9 @@ if ( is_admin() ) {
     add_action( 'wp_ajax_ajaxHandleUpload', array( 'WeeverController', 'ajaxHandleUpload' ) );
     add_action( 'wp_ajax_ajaxToggleAppStatus', array( 'WeeverController', 'ajaxToggleAppStatus' ) );
     add_action( 'wp_ajax_ajaxToggleTabletStatus', array( 'WeeverController', 'ajaxToggleTabletStatus' ) );
-    add_action( 'wp_ajax_ajaxSaveTheme', array( 'WeeverController', 'ajaxSaveTheme' ) );
+	add_action( 'wp_ajax_ajaxSaveTheme', array( 'WeeverController', 'ajaxSaveTheme' ) );
+	add_action( 'wp_ajax_ajaxSaveDocusignCredentials', array( 'WeeverController', 'ajaxSaveDocusignCredentials' ) );
+	add_action( 'wp_ajax_ajaxRetrieveDocusignCredentials', array( 'WeeverController', 'ajaxRetrieveDocusignCredentials' ) );
 }
 
 function weever_get_redirect_url( $weeverapp = false ) {
@@ -300,6 +302,37 @@ if ( WEEVER_DEV ) {
 	add_action( 'wp_feed_options', 'weever_disable_feed_cache' );
 }
 
+function get_image_url() {
+	$image = null;
+
+	/* Use the featured image, if any */
+	if ( has_post_thumbnail( get_the_ID() ) ) {
+		$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ) );
+	
+		if ( is_array( $image ) and isset( $image[0] ) )
+			$image = $image[0];
+	}
+
+	if ( empty( $image ) ) {
+
+		$html = WeeverSimpleHTMLDomHelper::str_get_html(get_the_content());
+
+		foreach ( @$html->find('img') as $vv )
+		{
+			if ( $vv->src )
+			{
+				$image = WeeverHelper::make_absolute($vv->src, get_site_url());
+				break;
+			}
+		}
+	}
+
+	if ( empty( $image ) )
+		$image = "";
+
+	return $image;
+}
+
 /**
  * Handling the sending of individual pieces of content to the Weever app
  */
@@ -332,6 +365,8 @@ function weever_app_request() {
 
 				$callback = get_query_var('callback');
 
+				$image = get_image_url();
+
 				// specs @ https://github.com/WeeverApps/r3s-spec
 
 				$jsonHtml = new R3SHtmlContentDetailsMap;
@@ -346,6 +381,8 @@ function weever_app_request() {
 				$jsonHtml->datetime["published"] = $post->post_date_gmt;
 				$jsonHtml->datetime["modified"] = $post->post_modified_gmt;
 				$jsonHtml->uuid = base64_encode( get_the_ID() );
+				$jsonHtml->url = get_permalink() . '?template=weever_cartographer&showall=1&geotag=true&start=0&limit=25&callback=Ext.data.JsonP.callback3';
+				$jsonHtml->image = $image;
 
                 // Look for post type before more generic stylesheet
                 $template_suffixes = array( '-' . $post->post_type, '' );
@@ -364,7 +401,6 @@ function weever_app_request() {
                 }
 
 				$jsonHtml->html =  ob_get_clean();
-				$jsonHtml->image = null;
 
                 // See if there's a processor file for posts
                 foreach ( $template_suffixes as $suffix ) {
