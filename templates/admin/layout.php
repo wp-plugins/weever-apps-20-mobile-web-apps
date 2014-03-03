@@ -247,40 +247,33 @@
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
     wx.siteKey = "<?php echo $weeverapp->site_key; ?>";
     wx.apiUrl = "<?php echo WeeverHelper::get_root_weever_api_url(); ?>";
+    wx.liveUrl = "<?php echo WeeverHelper::get_root_weever_live_url(); ?>";
     <?php $upload_dir = wp_upload_dir(); ?>
     wx.uploadPath = "<?php echo $upload_dir['path']; ?>";
     wx.uploadUrl  = "<?php echo $upload_dir['url']; ?>";
-    wx.poll = true;
+    wx.formbuilderAdvanced = <?php echo WeeverConst::ADVANCED_FORMBUILDER; ?>;
+    wx.currentUserEmail = '<?php echo wp_get_current_user()->user_email; ?>';
+    wx.currentBuildVersion = 1;
+    wx.expectedBuildVersion = 0;
+    wx.newBuildPollingHandle = null;
+    wx.refreshPreviewHandle = null;
 
     jQuery( document ).ready( function() {
 
-        jQuery(document).foundation();
-        doPoll();
+	    wx.setCurrentBuildVersion( function() {
+		    // Initialize expectedBuildVersion
+		    wx.expectedBuildVersion = wx.currentBuildVersion;
+	    } );
 
-        <?php if ( isset( $_GET['page'] ) and basename( $_GET['page'] ) == 'weever-account' ) { ?>
+	    jQuery(document).foundation();
+
+	    setTimeout( wx.refreshAppPreview, 500 );
+
+	    <?php if ( isset( $_GET['page'] ) and basename( $_GET['page'] ) == 'weever-account' ) { ?>
         jQuery('#wx-account').foundation('reveal', 'open');
         <?php } ?>
     } );
 
-    var buildNum = '';
-    function doPoll() {
-        if ( wx.poll ) {
-            console.log('Poll...')
-            wx.getText('_metadata/get_build_version', function(data) {
-                console.log(data);
-                if (data != buildNum) {
-                    buildNum = data;
-                    console.log( 'New build: ' + buildNum );
-                    wx.refreshAppPreview();
-                    wx.poll = false;
-                }
-                setTimeout(doPoll, 1000);
-            });
-        } else {
-            // Check back later.
-            setTimeout(doPoll, 1000);
-        }
-    }
 </script>
 
 <script type="text/javascript" src="<?php echo WEEVER_PLUGIN_URL; ?>static/js/jscolor/jscolor.js"></script>

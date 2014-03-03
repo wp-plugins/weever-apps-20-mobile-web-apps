@@ -25,25 +25,26 @@
         <div>
             <button class="wx-next-button radius">Preview &nbsp;</button>
             <button class="wx-finish-button success radius">Save and add to app</button>
-            <img id="dialog-loader" class="wx-load-spinner" src="<?php echo WEEVER_PLUGIN_URL; ?>static/img/loading.gif" />
+			&nbsp; <a class="wx-close-button wx-cancel-link radius">or cancel</a>
+            <img id="dialog-loader" class="wx-load-spinner" src="<%- wx.navIconDir %>loading.gif" />
         </div>
     </div>
 
     <div class="large-6 small-12 columns">
         <div class="section-container auto previewTabs" data-section>
-            <% if ( validateFeed || buildPreview ) { %>
+            <% if ( validateFeed ) { %>
                 <section class="active">
                     <p class="title" data-section-title><a href="#panel1">Preview</a></p>
                     <div class="content" data-section-content style="height: 315px; overflow-y: auto;">
                         <div class="wx-validate-feed">
-                            <div class="panel wx-preview">
+                            <div class="panel wx-preview-form">
                                 <h3 class="wx-preview-msg">preview</h3>
                             </div>
                         </div>
                     </div>
                 </section>
             <% } %>
-            <section <% if ( ! (validateFeed || buildPreview) ) { %>class="active"<% } %>>
+            <section <% if ( ! (validateFeed) ) { %>class="active"<% } %>>
                 <p class="title" data-section-title><a href="#panel2">Choose Icon</a></p>
                 <div class="content icon-selector" data-section-content style="height: 315px; overflow-y: auto;">
                     <ul class="large-block-grid-7">
@@ -68,5 +69,9 @@
         </div>
     </div>
 
-    <a class="close-reveal-modal">&#215;</a>
+	<% if ( type == 'formbuilder' ) { %>
+		<a class="wx-close-reveal-modal">&#215;</a>
+	<% } else { %>
+		<a class="close-reveal-modal">&#215;</a>
+	<% } %>
 </script>
