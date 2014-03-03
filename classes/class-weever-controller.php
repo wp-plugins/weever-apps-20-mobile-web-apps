@@ -24,6 +24,46 @@
 
 class WeeverController {
 
+	public static function ajaxEncryptDocusignCredentials() {
+		$key = get_option( 'weever_encryption_key' );
+		if ( ! $key ) {
+			$num = mt_rand( 0, 0xffffffff );
+			$key = sprintf( "%08x" , $num );
+			update_option( 'weever_encryption_key', $key );
+		}
+
+		$credentials = json_encode( $_POST );
+		$encrypted = base64_encode(
+			mcrypt_encrypt(
+				MCRYPT_RIJNDAEL_256,
+				md5( $key ),
+				$credentials,
+				MCRYPT_MODE_CBC,
+				md5( md5( $key ) )
+			)
+		);
+
+		die( $encrypted );
+	}
+
+	public static function ajaxDecryptDocusignCredentials() {
+		$key = get_option( 'weever_encryption_key' );
+		$encrypted = $_POST['wx_docusign'];
+
+		$decrypted = rtrim(
+			mcrypt_decrypt(
+				MCRYPT_RIJNDAEL_256,
+				md5( $key ),
+				base64_decode( $encrypted ),
+				MCRYPT_MODE_CBC,
+				md5( md5( $key ) )
+			),
+			"\0"
+		);
+
+		die( $decrypted );
+	}
+
     public static function ajaxHandleUpload() {
         if ( is_user_logged_in() and current_user_can('manage_options') ) {
             // list of valid extensions, ex. array("jpeg", "xml", "bmp")
@@ -121,70 +161,4 @@ class WeeverController {
 
         die();
 	}
-
-	// public function ajaxSaveNewTab() {
-	// 	weever_remove_wp_magic_quotes();
-		
-	// 	if ( ! empty($_POST) and check_ajax_referer( 'weever-list-js', 'nonce' ) ) {
- //            $weeverapp = new WeeverApp();
-
- //            if ( $weeverapp->loaded ) {
- //                $tab = $weeverapp->get_tab( $_POST['type'] );
-
- //                if ( $tab !== false ) {
- //                    try {
- //                    	// If it's a page tab, look for an image (if any) to add as an icon
- //                    	if ( 'page' == $_POST['component'] ) {
- //                    		$page_id = str_replace( 'index.php?page_id=', '', $_POST['cms_feed'] );
-                    		
- //                    		if ( is_numeric( $page_id ) ) {
- //                    			$page = get_page( $page_id );
-                    			
- //                    			if ( ! empty( $page ) ) {
-	// 		                    	if ( has_post_thumbnail( $page_id ) ) {
-	// 		                    		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $page_id ) );
-			                    	
-	// 		                    		if ( is_array( $image ) and isset( $image[0] ) )
-	// 		                    			$image = $image[0];
-	// 		                    	}
-			                    	
-	// 		                    	if ( empty( $image ) ) {
-	// 		                    		$html = WeeverSimpleHTMLDomHelper::str_get_html( $page->post_content );
-			                    	
-	// 		                    		foreach ( @$html->find('img') as $vv )
-	// 		                    		{
-	// 		                    			if ( $vv->src )
-	// 		                    			{
-	// 		                    				$image = WeeverHelper::make_absolute($vv->src, get_site_url());
-	// 		                    				break;
-	// 		                    			}
-	// 		                    		}
-	// 		                    	}
-			                    	
-	// 		                    	if ( empty( $image ) )
-	// 		                    		$image = "";
-	                    	
-	// 								$_POST['var'] = $image;
- //                    			}
- //                    		}
- //                    	}
-                    	
- //                        // Create a new subtab with the given params
- //                        $tab->create_subtab( $_POST );
- //                    } catch ( Exception $e ) {
- //                        status_header(500);
- //                        echo $e->getMessage();
- //                    }
- //                } else {
- //                    status_header(500);
- //                    echo __( 'Invalid tab id' );
- //                }
- //            }
- //        } else {
- //            status_header(401);
- //            echo __( 'Authentication error' );
- //        }
-
- //        die();
-	// }
 }

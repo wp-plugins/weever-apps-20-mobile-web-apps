@@ -67,6 +67,7 @@ function weever_admin_add_page() {
 function weever_load_backbone_templates() {
     // Backbone Templates
     $backbone_template_files = glob( dirname( __FILE__ ) . '/static/js/spec/fixtures/*.html' );
+    
     foreach ( $backbone_template_files as $backbone_template_file )
         require_once( $backbone_template_file );
 }
@@ -280,7 +281,7 @@ function weever_page_scripts_init() {
 	        wp_enqueue_script( $file_name );
 	    }
 
-	    $pre_loaded_views = array( 'formbuilder.control.js', 'tab.js', 'subtab.edit.js', 'style.js' );
+	    $pre_loaded_views = array( 'formbuilder.control.js', 'tab.js', 'subtab.edit.js', 'subtab.formbuilder.edit.js', 'style.js' );
     	foreach ($pre_loaded_views as $i => $value) {
     		$file_name = 'views.' . basename( $value );
     		wp_register_script( $file_name, plugins_url( 'static/js/views/' . basename( $value ), __FILE__ ), array(), WeeverConst::VERSION, true );
