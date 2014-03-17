@@ -62,6 +62,7 @@
 		$feedItem->image["full"] = $image;
 		$feedItem->url = get_permalink(); //JURI::root()."index.php?option=com_content&view=article&id=".$v->id;
 		$feedItem->author = get_the_author_meta('display_name'); // $v->created_by;
+		$feedItem->uuid = base64_encode( get_the_ID() );
 
 		// TODO: Get the site name from the current state object
 		$feedItem->publisher = ""; //$mainframe->getCfg('sitename');
