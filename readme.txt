@@ -24,7 +24,7 @@ App users will be able to quickly find your latest news, follow your social netw
 
 **Getting started:**
 
-- Sign up for an app subscription key at http://weeverapps.com/pricing
+- Sign up for an app subscription key at http://weeverapps.com/product/cms/
 - Install the plugin
 - Paste in the API key
 - Start adding content and branding to your app!
@@ -76,7 +76,7 @@ The plugin includes an option to instantly launch the app for mobile visitors to
 1. Launch your app instantly for mobile visitors to your site by putting the app 'online'
 1. OR, share your app via a simple web link, QR code and more
 
-You can obtain a subscription key at http://weeverapps.com/pricing
+You can obtain a subscription key at http://weeverapps.com/product/cms/
 
 If you need installation support visit http://support.weeverapps.com
 
@@ -85,7 +85,7 @@ If you need installation support visit http://support.weeverapps.com
 = How do I start creating my mobile app? =
 
 1. Install the plugin
-1. Sign up for a subscription key at http://weeverapps.com/pricing
+1. Sign up for a subscription key at http://weeverapps.com/product/cms/
 1. Add the content you wish to appear in your mobile app on the build tab
 1. Style your app with launch screens, install icon, etc., in the style tab
 1. Choose launch and sharing features on the launch tab
@@ -124,6 +124,11 @@ Weever Apps custom clients include both small businesses and enterprise brands, 
 5. You can build your app inside Wordpress using a desktop computer, phone or tablet
 
 == Changelog ==
+
+= 3.0.37 =
+
+- Updating URLs.
+- Fixing issue with setBuildVersion.
 
 = 3.0.36 =
 

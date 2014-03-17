@@ -34,7 +34,7 @@
 <div id="account-expiration-warning" class="row" style="display: none;">
     <div data-alert class="alert-box secondary">
         Your free trial app expires <span id="expiry-days">in ?? days</span>
-        <a target="_blank" href="http://weeverapps.com/pricing">View plans and pricing</a>.
+        <a target="_blank" href="http://weeverapps.com/product/cms">View plans and pricing</a>.
         <a href="#" class="close">&times;</a>
     </div>
 </div>
@@ -42,7 +42,7 @@
 <div id="account-expired" class="row" style="display: none;">
     <div data-alert class="alert-box alert">
         Your app subscription is expired.
-        <a target="_blank" href="http://weeverapps.com/pricing">View plans and pricing</a>.
+        <a target="_blank" href="http://weeverapps.com/product/cms">View plans and pricing</a>.
         <a href="#" class="close">&times;</a>
     </div>
 </div>
