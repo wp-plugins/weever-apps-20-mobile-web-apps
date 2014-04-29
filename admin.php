@@ -387,12 +387,38 @@ function weever_save_postdata($post_id) {
 	}
 
 	if ( apply_filters( 'weever_show_map_meta_box', true ) ) {
-		update_post_meta($post_id, 'weever_map_address', $_POST['weever-map-address']);
+		$address = $_POST['weever-map-address'];
+		update_post_meta($post_id, 'weever_map_address', $address);
+		update_post_meta($post_id, 'geo_public', true);
 		update_post_meta($post_id, 'weever_kml', $_POST['weever-kml']);
 		update_post_meta($post_id, 'weever_map_marker', $_POST['weever-map-marker']);
+
+		// Get latitude & longitude
+		$address = urlencode( $address );
+		$response = curl_file_get_contents( "http://maps.google.com/maps/api/geocode/json?sensor=false&address=".$address );
+		$json = json_decode($response, true);
+
+		if( $json['status']='OK' ) {
+			$lat = $json['results'][0]['geometry']['location']['lat'];
+			$lng = $json['results'][0]['geometry']['location']['lng'];
+
+			update_post_meta($post_id, 'geo_latitude', $lat);
+			update_post_meta($post_id, 'geo_longitude', $lng);
+		}
 	}
 	
 	return $post_id;
+}
+
+function curl_file_get_contents($url) {
+	$c = curl_init();
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_URL, $URL);
+    $contents = curl_exec($c);
+    curl_close($c);
+
+    if ($contents) return $contents;
+    else return false;
 }
 
 add_action('save_post', 'weever_save_postdata');
