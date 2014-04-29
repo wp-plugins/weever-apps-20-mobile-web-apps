@@ -1,0 +1,73 @@
+<script type="text/template" id="install-icon">
+
+	<p class="wx-ui-title">Home Screen Icon</p>
+
+
+    <div class="row">
+        <div class="large-12 columns">
+            <p>Define the icon image and label to be used when visitors choose to install the app to their phone or tablet home screen.  144 x 144px.</p>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- start - home screen icon settings -->
+    <div class="row">
+
+        <!-- start - icon image -->
+        <div class="large-4 columns">
+            <input type="hidden" class="wx-theme-input" id="icon_live" name="icon_live" />
+            <div style="text-align: center;" class="wx-launchscreen">
+                <img id="wx-icon_live" class="" src="<%- install.icon %>" />
+            </div>
+            <br>
+            <input type="text" id="title" placeholder="My App Name" maxlength="13" style="text-align: center;" value="<%- install.name %>" class="required" />
+        </div>
+
+        <div class="large-4 columns">
+            <!-- file uploader-->
+            
+            <div class="new_uploader">
+                <div class="button success expand radius" style="position: relative; overflow: hidden; direction: ltr;">
+                    <span id="save_image">Upload image</span>
+                    <input multiple="multiple" type="file" id="file_upload" name="file_upload" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;">
+                </div>
+            </div>
+
+            <!-- save install name -->
+            <button class="success expand radius" id="save_install_icon">Update Label</button>
+        </div>
+
+        <div class="large-4 columns">
+            <p>&nbsp;</p>
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- start - install prompt on/off -->
+    <p class="wx-ui-title">Installation Instructions</p>
+    <div class="row">
+            <div class="small-8 columns">
+                <p>
+                    Install prompt for first-time visitors
+                </p>
+            </div>
+            <div class="small-4 columns">
+                <div class="switch">
+                    <input id="install-off" name="switch-install" type="radio" <%- (install.prompt == '0') ? 'checked' : '' %>>
+                    <label for="install-off" onclick="">off</label>
+                    <input id="install-on"  name="switch-install" type="radio" <%- (install.prompt == '1') ? 'checked' : '' %>>
+                    <label for="install-on" onclick="">active</label>
+                    <span></span>
+                </div>
+            </div>
+    </div>
+
+    <p>When the install prompt is active, first-time visitors see instructions on how to install your app to their phone or tablet home screen.</p>
+
+    <div class="panel">
+        <p>The install instructions do not appear if the user has previously accessed the app, or if the phone or tablet does not provide for quick and easy installation of web apps.</p>
+    </div>
+</script>

@@ -1,0 +1,76 @@
+<script type="text/template" id="advanced-options">
+
+    <p class="wx-ui-title">Icon Style</p>
+    <p>Change the visual style used for all icons within your app.</p>
+    <div>
+        <div class="row">
+            <div class="small-10 columns">
+                <select id="font-list">
+                    <option value="-1">Select One...</option>
+                </select>
+
+                <div id="icon-font-preview" style="display: none;">
+                    <p>Icon font preview:</p>
+                    <span class="wxFont-1 wxIcon-e001 large"></span>
+                    <span class="wxFont-1 wxIcon-e025 large"></span>
+                    <span class="wxFont-1 wxIcon-e046 large"></span>
+                    <span class="wxFont-1 wxIcon-e101 large"></span>
+                    <span class="wxFont-1 wxIcon-e900 large"></span>
+                </div>
+            </div>
+            <div class="small-2 columns">
+                <img id="font_loading" class="wx-load-spinner" src="<%- wx.navIconDir %>loading.gif" />
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <p class="wx-ui-title">Custom CSS</p>
+
+	<p>Customize your mobile app design with valid CSS rules.</p>
+	<textarea style="min-height: 10em;" name="css" id="css_styles"><%- design.css === undefined ? '' : design.css.styles %></textarea>
+	<button class="success radius" id="save_advanced">Save CSS and apply to app</button>
+    <br>
+
+    <div class="panel">
+        <p>To identify CSS classes use a webkit browser such as Chrome or Safari, right-click on a specific feature inside the app and then use <a target="_blank" href="https://developers.google.com/chrome-developer-tools/">web inspector</a> to identify and style the HTML / CSS elements.</p>
+    </div>
+
+
+
+    <br>
+
+    <p class="wx-ui-title">Language options</p>
+
+	<div>
+		<p>Change the language used for generic user-interface elements in the app such as the &lsquo;back&rsquo; button.</p>
+		<%
+        // Available_locales is currently an object. Convert it into an array to make it sortable.
+        var tuples = [];
+        for (var key in config.available_locales) {
+	    tuples.push([key, config.available_locales[key]]);
+        };
+        tuples.sort(function(a,b) {
+	        a = a[1];
+	        b = b[1];
+	        return a < b ? -1 : (a > b ? 1 : 0);
+        });
+		%>
+		
+		<div class="row collapse">
+			<div class="small-10 columns">
+				<select id="localizations">
+					<% for (var i = 0; i < tuples.length; i++) { %>
+						<option value="<%- tuples[i][0] %>" <%- config.localization === tuples[i][0] ? "selected='selected'" : "" %>><%- tuples[i][1] %></option>
+					<% }; %>
+				</select>
+			</div>
+			<div class="small-2 columns">
+				<img id="localizations_loading" class="wx-load-spinner" src="<%- wx.navIconDir %>loading.gif" />
+			</div>
+		</div>
+	</div>
+
+</script>

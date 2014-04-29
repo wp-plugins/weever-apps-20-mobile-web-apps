@@ -1,0 +1,77 @@
+<script type="text/template" id="subtab-edit-template">
+	<div class="large-6 small-12 columns">
+	    <div>
+	        <h2><%- typeDescription %></h2>
+	    </div>
+
+	    <div class="subtab"></div>
+
+	    <div class="wx-feed-error hide">
+	        Sorry! We were not able to preview this content.  Please verify the information and try again.
+	    </div>
+
+        <div data-alert class="alert-box alert" style="display: none">
+            <span class="message"></span>
+            <a href="#" class="close">&times;</a>
+        </div>
+
+	    <div>
+	        <label>Title for this feature inside your app</label>
+	        <input type="text" value="<%- title %>" class="wx-edit-title" />
+	    </div>
+
+        <br>
+
+        <div>
+            <button class="wx-next-button radius">Preview &nbsp;</button>
+            <button class="wx-finish-button success radius">Save and add to app</button>
+			&nbsp; <a class="wx-close-button wx-cancel-link radius">or cancel</a>
+            <img id="dialog-loader" class="wx-load-spinner" src="<%- wx.navIconDir %>loading.gif" />
+        </div>
+    </div>
+
+    <div class="large-6 small-12 columns">
+        <div class="section-container auto previewTabs" data-section>
+            <% if ( validateFeed ) { %>
+                <section class="active">
+                    <p class="title" data-section-title><a href="#panel1">Preview</a></p>
+                    <div class="content" data-section-content style="height: 315px; overflow-y: auto;">
+                        <div class="wx-validate-feed">
+                            <div class="panel wx-preview-form">
+                                <h3 class="wx-preview-msg">preview</h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <% } %>
+            <section <% if ( ! (validateFeed) ) { %>class="active"<% } %>>
+                <p class="title" data-section-title><a href="#panel2">Choose Icon</a></p>
+                <div class="content icon-selector" data-section-content style="height: 315px; overflow-y: auto;">
+                    <ul class="large-block-grid-7">
+                        <%= _.template( jQuery('#icon-selector').html(), icon || icon_id, {variable: 'icon_id'}) %>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <p class="title" data-section-title><a href="#panel3"><%- helpTitle %></a></p>
+                <div class="content" data-section-content style="height: 315px; overflow-y: auto;">
+                    <%= helpBody %>
+                    <!-- start - standard help text -->
+                    <p><b>Support</b></p>
+                    <p>Our <a target="_blank" href="http://suppport.weeverapps.com">support forum</a> has answers to common questions.
+                       Pro, premium and reseller level app subscriptions have access to <a target="_blank" href="http://support.weeverapps.com/registration">support tickets</a> and faster response times.</p>
+                    <a target="_blank" class="button radius">View plans and pricing</a>
+                    <br>
+                    <!-- endof - standard help text -->
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+	<% if ( type == 'formbuilder' ) { %>
+		<a class="wx-close-reveal-modal">&#215;</a>
+	<% } else { %>
+		<a class="close-reveal-modal">&#215;</a>
+	<% } %>
+</script>

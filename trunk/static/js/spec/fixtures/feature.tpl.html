@@ -1,0 +1,39 @@
+<script type="text/template" id="feature-template">
+
+   <!-- add feature action -->
+    <a class="wx-add-feature <%- includeClass %>" id="add-<%- featureName %>" data-reveal-id="wx-edit-area-<%-featureName %>">
+
+        &nbsp;
+
+        <!-- show "pro" label if tier is free trial or basic -->
+        <% if (tierRequired != undefined && tierRequired == 2) { %>
+            <span class="label success wx-add-feature-tier">pro</span>
+        <% } else { %>
+            <span class="label secondary wx-add-feature-tier">+ add</span>
+        <% } %>
+
+	</a>
+
+    <!-- add feature title -->
+    <div class="wx-add-feature-name">
+        <%- name %>
+    </div>
+
+
+	<% if ( featureName.toLowerCase() == 'formbuilder' || featureName.toLowerCase() == 'docusign' ) { %>
+	    <div id="wx-edit-area-<%- featureName %>" class="reveal-modal" data-options="closeOnBackgroundClick:false">
+	<% } else { %>
+		<div id="wx-edit-area-<%- featureName %>" class="reveal-modal" data-options="closeOnBackgroundClick:true">
+	<% } %>
+        Please wait...
+    </div>
+
+
+</script>
+
+
+
+<!-- Display subscription tier info -->
+<!--
+
+-->
