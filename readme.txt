@@ -3,8 +3,8 @@ Contributors: weeverapps
 Donate link: http://weeverapps.com/
 Tags: appbuilder, app builder, build app, app, apps, mobile, android, apple, ios, blackberry, tizen, HTML5, iphone, mobile plugin, responsive, mobile theme, mobile site, web app, hybrid, native, maps, gps, geo, geotag, geolocation, google maps, weever, weaver, touch
 Requires at least: 3.1
-Tested up to: 3.8
-Stable tag: 3.0.32
+Tested up to: 3.9
+Stable tag: 3.0.38
 
 The most powerful app builder for Wordpress.  Create an impressive mobile app in minutes.
 
@@ -24,7 +24,7 @@ App users will be able to quickly find your latest news, follow your social netw
 
 **Getting started:**
 
-- Sign up for an app subscription key at http://weeverapps.com/pricing
+- Sign up for an app subscription key at http://weeverapps.com/product/cms/
 - Install the plugin
 - Paste in the API key
 - Start adding content and branding to your app!
@@ -76,7 +76,7 @@ The plugin includes an option to instantly launch the app for mobile visitors to
 1. Launch your app instantly for mobile visitors to your site by putting the app 'online'
 1. OR, share your app via a simple web link, QR code and more
 
-You can obtain a subscription key at http://weeverapps.com/pricing
+You can obtain a subscription key at http://weeverapps.com/product/cms/
 
 If you need installation support visit http://support.weeverapps.com
 
@@ -85,7 +85,7 @@ If you need installation support visit http://support.weeverapps.com
 = How do I start creating my mobile app? =
 
 1. Install the plugin
-1. Sign up for a subscription key at http://weeverapps.com/pricing
+1. Sign up for a subscription key at http://weeverapps.com/product/cms/
 1. Add the content you wish to appear in your mobile app on the build tab
 1. Style your app with launch screens, install icon, etc., in the style tab
 1. Choose launch and sharing features on the launch tab
@@ -125,9 +125,34 @@ Weever Apps custom clients include both small businesses and enterprise brands, 
 
 == Changelog ==
 
+= 3.0.38 =
+
+- Prevent old Blackberries from accessing the app; it doesn't work.
+- Fixed a bug that redirected all IE11 browsers to the app.
+
+= 3.0.37 =
+
+- Updating URLs.
+- Fixing issue with setBuildVersion.
+- Updates for Wordpress 3.9.
+
+= 3.0.36 =
+
+- Making Proximity, Mapping, and WuFoo available for all users!
+- Various speed improvements & bug fixes
+
+= 3.0.35 =
+
+- Many changes, fixes, and updates for the upcoming form builder feature!
+
+= 3.0.34 =
+
+- Fixed an issue with assigning UUIDs in R3S feeds.
+
 = 3.0.33 =
 
 - Improved custom domain mapping.
+- Handle tel and mailto links with images (See also, 3.0.17)
 
 = 3.0.30 =
 
