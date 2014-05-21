@@ -1209,10 +1209,10 @@ class WeeverMdetect
             return $this->true;
         if ($this->DetectAndroid() == $this->true)
             return $this->true;
-        if ($this->DetectBlackBerryTouch() == $this->true)
+        if ($this->DetectBlackBerry10Phone() == $this->true)
             return $this->true;
-		if ($this->DetectWindowsPhone8() == $this->true)
-			return $this->true;
+	if ($this->DetectWindowsPhone8() == $this->true)
+	    return $this->true;
         else
             return $this->false;
     }
@@ -1221,8 +1221,8 @@ class WeeverMdetect
     {
         if (($this->DetectIpad() == $this->true)
             || ($this->DetectAndroidTablet() == $this->true)
-            || ($this->DetectBlackBerryTablet() == $this->true)  
-			|| ($this->DetectWindowsIE11() == $this->true))
+		/*|| ($this->DetectWindowsIE11() == $this->true) 
+		-not sure why here, this would forward a desktop windows IE11 user...*/)
             return $this->true;
         else
             return $this->false;
