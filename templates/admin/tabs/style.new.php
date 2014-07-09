@@ -1,17 +1,17 @@
 <!-- Cropper dialog -->
-<div id="wx-jcrop-dialog" class="reveal-modal">
+<div id="wx-jcrop-dialog" class="reveal-modal" data-reveal>
 
     <h2>Crop Image</h2>
     <p class="lead">Click and drag to crop the selected image or select "Done" now to use the full image without resizing.</p>
 
     <div class="row">
 
-        <div class="large-8 columns" style="padding-left: 0;">
+        <div class="medium-8 columns" style="padding-left: 0;">
             <img src="" id="wx-jcrop-dialog-img" />
             <br>
         </div>
 
-        <div class="large-4 columns">
+        <div class="medium-4 columns">
             <p><b>Final image sizes:</b></p>
 
             <div class="row">
@@ -68,48 +68,33 @@
 
 </div>
 
-
-<div class="section-container auto section-subnav" data-section>
-	<!-- Logo Area & Design -->
-	<section id="logo_design">
-		<p class="title" data-section-title>
-			<a href="#"><?php echo __( 'logo design', 'weever' ); ?></a>
-		</p> 
-		<div class="content" data-section-content>
-			<!-- logodesign.tpl.html -->
-		</div>
-	</section>
-	<!-- Launch Screen -->
-	<section id="launch_screen">
-		<p class="title" data-section-title>
-			<a href="#"><?php echo __( 'launch screens', 'weever' ); ?></a>
-		</p>
-		<div class="content" data-section-content>
-			<!-- launchscreen.tpl.html -->
-		</div>
-	</section>
-
-	<!-- Install Icon -->
-	<section id="install_icon">
-		<p class="title" data-section-title><a href="#"><?php echo __( 'installation', 'weever' ); ?></a></p>
-		<div class="content" data-section-content>
-			<!-- installicon.tpl.html -->
-		</div>
-	</section>
-
-	<!-- Custom Branding -->
-	<section id="custom_branding">
-		<p class="title" data-section-title><a href="#"><?php echo __( 'custom branding', 'weever' ); ?></a></p>
-		<div class="content" data-section-content>
-			<!-- custombranding.tpl.html -->
-		</div>
-	</section>
-
-	<!-- Advanced -->
-	<section id="advanced">
-		<p class="title" data-section-title><a href="#"><?php echo __( 'advanced', 'weever' ); ?></a></p>
-		<div class="content" data-section-content>
-			<!-- advanced.tpl.html -->
-		</div>
-	</section>
+<!-- style subtabs -->
+<ul class="tabs wx-subtabs" data-tab>
+    <li class="tab-title active"><a href="#logo_design"><?php echo __( 'Logo Design', 'weever' ); ?></a></li>
+    <li class="tab-title"><a href="#launch_screen"><?php echo __( 'Launch Screens', 'weever' ); ?></a></li>
+    <li class="tab-title"><a href="#install_icon"><?php echo __( 'Installation', 'weever' ); ?></a></li>
+    <li class="tab-title"><a href="#custom_branding"><?php echo __( 'Custom Branding', 'weever' ); ?></a></li>
+    <li class="tab-title"><a href="#advanced"><?php echo __( 'Advanced', 'weever' ); ?></a></li>
+</ul>
+<div class="tabs-content">
+    <div class="content active" id="logo_design">
+        <p>test - a</p>
+        <!-- logodesign.tpl.html -->
+    </div>
+    <div class="content" id="launch_screen">
+        <p>test - b</p>
+        <!-- launchscreen.tpl.html -->
+    </div>
+    <div class="content" id="install_icon">
+        <p>test - c</p>
+        <!-- installicon.tpl.html -->
+    </div>
+    <div class="content" id="custom_branding">
+        <p>test - d</p>
+        <!-- custombranding.tpl.html -->
+    </div>
+    <div class="content" id="advanced">
+        <p>test - e</p>
+        <!-- advanced.tpl.html -->
+    </div>
 </div>
