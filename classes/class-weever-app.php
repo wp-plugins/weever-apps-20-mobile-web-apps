@@ -152,6 +152,10 @@ class WeeverApp {
         }
     }
 
+    public function is_free() {
+        return ( $this->tier == 1 or $this->tier == 2.1 );
+    }
+
     private function is_valid() {
         return isset( $this->_data['site_key'] ) && ! empty( $this->_data['site_key'] ) && ! empty( $this->_data['primary_domain'] );
     }

@@ -1,0 +1,47 @@
+<script type="text/template" id="form-builder-weever-signature">
+	<p class="title">
+		<%- controlTitle %>
+	</p>
+	<div class="content">
+
+        <br>
+
+		<label>Label</label>
+		<input type="text" class="wx-form-builder-title-input" value="<%- title %>" />
+		<label>Button text</label>
+		<input type="text" class="wx-form-builder-label-input" value="<%- label %>" />
+
+		<% if (advanced) { %>
+		<label>Field name (optional, advanced)
+                    <span data-tooltip data-options="disable-for-touch:true"
+						  class="has-tip tip-right"
+						  title="<p><b>Field name</b><p>
+                           <p>The HTML &ldquo;name&rdquo; attribute. For use with a custom POST action.</p>
+                           <p><b>Advanced mode</b></p>
+                           <p>This option is only displayed when &ldquo;advanced mode&rdquo; is enabled.
+                           ">
+                           ?
+                    </span>
+		</label>
+		<input type="text" class="wx-form-builder-name-input" placeholder="Name" value="<%- attributes.attributes.name %>" />
+		<% } %>
+
+		<label class="<%- requiredClass %>"><input type="checkbox" class="wx-form-builder-required" <%- attributes.required || attributes.attributes.required %> /> Required</label>
+
+        <br>
+
+		<button class="wx-form-builder-delete small alert">Delete field</button>
+	</div>
+
+
+</script>
+
+<script type="text/template" id="form-builder-weever-signature-preview">
+	<label class="wx-form-builder-title">
+		<%- title %>
+		<span class="required<%= attributes.required || attributes.attributes.required == 'checked' ? '' : ' hide' %>">*</span>
+	</label>
+    <br>
+	<button class="wx-form-builder-label tiny secondary radius" style="margin-bottom: 0;"><%- label %></button>
+	<input class="wx-form-builder-<%- attributes.type || attributes.attributes.type %>-input" type="<%- attributes.type || attributes.attributes.type %>" placeholder="<%- attributes.placeholder || attributes.attributes.placeholder %>" name="<%- attributes.name || attributes.attributes.name %>" />
+</script>

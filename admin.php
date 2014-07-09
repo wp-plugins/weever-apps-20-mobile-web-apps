@@ -67,6 +67,7 @@ function weever_admin_add_page() {
 function weever_load_backbone_templates() {
     // Backbone Templates
     $backbone_template_files = glob( dirname( __FILE__ ) . '/static/js/spec/fixtures/*.html' );
+    
     foreach ( $backbone_template_files as $backbone_template_file )
         require_once( $backbone_template_file );
 }
@@ -90,10 +91,10 @@ function weever_admin_page() {
 	        $weeverapp = new WeeverApp();
 	
 	        if ( ! $weeverapp->loaded ) {
-		        add_settings_error('weever_settings', 'weever_settings', $weeverapp->error_message . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://weeverapps.com/support' ) );
+		        add_settings_error('weever_settings', 'weever_settings', $weeverapp->error_message . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://support.weeverapps.com' ) );
 	        }
 		} catch (Exception $e) {
-		    add_settings_error('weever_settings', 'weever_settings', __( 'Error loading necessary data' ) . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://weeverapps.com/support' ) );
+		    add_settings_error('weever_settings', 'weever_settings', __( 'Error loading necessary data' ) . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://support.weeverapps.com' ) );
 		}
 	
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -110,7 +111,7 @@ function weever_admin_page() {
                 $weeverapp->save();
                 add_settings_error('weever_api_key', 'weever_settings', __( 'Weever Apps account settings saved. <a href="admin.php?page=weever-list">Click here to start building your app!</a>', 'weever' ), 'updated');
             } catch (Exception $e) {
-                add_settings_error('weever_api_key', 'weever_settings', $e->getMessage() . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://weeverapps.com/support' ) );
+                add_settings_error('weever_api_key', 'weever_settings', $e->getMessage() . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://support.weeverapps.com' ) );
             }
 
 		}
@@ -118,7 +119,7 @@ function weever_admin_page() {
 		// Check if the domain is different than the current site domain
 		if ( $weeverapp->loaded && $weeverapp->site_key ) {
 			if ( ! stripos( site_url(), $weeverapp->primary_domain ) )
-				add_settings_error('weever_settings', 'weever_settings', sprintf( __( 'Your Weever App subscription key url %s does not match the current Wordpress site url %s - please verify your Wordpress settings, that you have the correct subscription key, or contact support.' ), $weeverapp->primary_domain, site_url() ) . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://weeverapps.com/support' ) );
+				add_settings_error('weever_settings', 'weever_settings', sprintf( __( 'Your Weever App subscription key url %s does not match the current Wordpress site url %s - please verify your Wordpress settings, that you have the correct subscription key, or contact support.' ), $weeverapp->primary_domain, site_url() ) . " " . sprintf( __( '<a target="_new" href="%s">Contact Weever Apps support</a>', 'weever' ), 'http://support.weeverapps.com' ) );
 		}
 		
 	} else {
@@ -135,7 +136,7 @@ function weever_admin_warnings() {
 	if ( ! get_option( 'weever_api_key' ) && ! isset( $_POST['submit']) && ( function_exists( 'is_multisite' ) || ! version_compare( $wp_version, '3.0', '<' ) ) ) {
 		function weever_warning() {
 			echo "
-			<div id='weever-warning' class='updated'><p><strong>".__('Weever Apps is almost ready.', 'weever')."</strong> ".sprintf(__('You must <a href="%1$s">enter your Weever Apps Subscription Key</a> for it to work.  Don\'t have one?  <a target="_blank" href="http://weeverapps.com/pricing">Get one here</a>.', 'weever'), "plugins.php?page=weever-account")."</p></div>
+			<div id='weever-warning' class='updated'><p><strong>".__('Weever Apps is almost ready.', 'weever')."</strong> ".sprintf(__('You must <a href="%1$s">enter your Weever Apps Subscription Key</a> for it to work.  Don\'t have one?  <a target="_blank" href="http://weeverapps.com/product/cms">Get one here</a>.', 'weever'), "plugins.php?page=weever-account")."</p></div>
 			";
 		}
 		add_action( 'admin_notices', 'weever_warning' );
@@ -280,7 +281,7 @@ function weever_page_scripts_init() {
 	        wp_enqueue_script( $file_name );
 	    }
 
-	    $pre_loaded_views = array( 'formbuilder.control.js', 'tab.js', 'subtab.edit.js', 'style.js' );
+	    $pre_loaded_views = array( 'formbuilder.control.js', 'tab.js', 'subtab.edit.js', 'subtab.formbuilder.edit.js', 'style.js' );
     	foreach ($pre_loaded_views as $i => $value) {
     		$file_name = 'views.' . basename( $value );
     		wp_register_script( $file_name, plugins_url( 'static/js/views/' . basename( $value ), __FILE__ ), array(), WeeverConst::VERSION, true );
@@ -386,12 +387,38 @@ function weever_save_postdata($post_id) {
 	}
 
 	if ( apply_filters( 'weever_show_map_meta_box', true ) ) {
-		update_post_meta($post_id, 'weever_map_address', $_POST['weever-map-address']);
+		$address = $_POST['weever-map-address'];
+		update_post_meta($post_id, 'weever_map_address', $address);
+		update_post_meta($post_id, 'geo_public', true);
 		update_post_meta($post_id, 'weever_kml', $_POST['weever-kml']);
 		update_post_meta($post_id, 'weever_map_marker', $_POST['weever-map-marker']);
+
+		// Get latitude & longitude
+		$address = urlencode( $address );
+		$response = curl_file_get_contents( "http://maps.google.com/maps/api/geocode/json?sensor=false&address=".$address );
+		$json = json_decode($response, true);
+
+		if( $json['status']='OK' ) {
+			$lat = $json['results'][0]['geometry']['location']['lat'];
+			$lng = $json['results'][0]['geometry']['location']['lng'];
+
+			update_post_meta($post_id, 'geo_latitude', $lat);
+			update_post_meta($post_id, 'geo_longitude', $lng);
+		}
 	}
 	
 	return $post_id;
+}
+
+function curl_file_get_contents($url) {
+	$c = curl_init();
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_URL, $URL);
+    $contents = curl_exec($c);
+    curl_close($c);
+
+    if ($contents) return $contents;
+    else return false;
 }
 
 add_action('save_post', 'weever_save_postdata');

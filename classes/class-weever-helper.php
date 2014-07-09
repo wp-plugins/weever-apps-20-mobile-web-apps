@@ -239,13 +239,19 @@
         }
         
         public static function get_root_weever_api_url() {
-            $retval = ( self::$_weeverapp->staging_mode ? WeeverConst::LIVE_STAGE : WeeverConst::LIVE_SERVER );
+	        $retval = self::get_root_weever_live_url();
 
             // Append the api version and endpoint
             $retval .= 'api/' . self::$_api_version . '/';
 
             return $retval;
         }
+
+	    public static function get_root_weever_live_url() {
+		    $retval = ( self::$_weeverapp->staging_mode ? WeeverConst::LIVE_STAGE : WeeverConst::LIVE_SERVER );
+
+		    return $retval;
+	    }
 
         /**
          * Retrieve and send data to the Weever Apps server
