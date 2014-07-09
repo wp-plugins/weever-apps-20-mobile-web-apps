@@ -1,9 +1,9 @@
 <div class="row" style="max-width: 100%;">
     <!-- start: left col -->
-    <div class="large-8 columns">
+    <div class="medium-8 columns">
 
         <div class="row">
-            <div class="large-12 columns">
+            <div class="small-12 columns">
                 <h2><?php echo __( 'Welcome to appBuilder!', 'weever' ); ?></h2>
                 <p class="lead">Please enter your <b>free trial</b> or <b>paid</b> app subscription key.</p>
             </div>
@@ -13,7 +13,7 @@
         <form action="" method="post">
 
             <div class="row">
-                <div class="large-12 columns">
+                <div class="small-12 columns">
                     <input <?php if ( ! $weeverapp->site_key ) echo 'class="error"'; ?> type="text" name="site_key" value="<?php echo $weeverapp->site_key; ?>" />
                     <br>
                     <div class="wx-inputContainer" id="save-button">
@@ -28,7 +28,7 @@
 
         <?php if ( $weeverapp->site_key ): ?>
             <div class="row">
-                <div class="large-12 columns">
+                <div class="small-12 columns">
                     <?php if ( $weeverapp->primary_domain ): ?>
                         <p class="lead">
                             <?php echo sprintf( __( 'Your current app building key is linked to the web address: %s', 'weever' ), $weeverapp->primary_domain ); ?>
@@ -41,11 +41,11 @@
     </div>
     <!-- endof: left col -->
 
-    <div class="large-4 columns">
+    <div class="medium-4 columns">
 
         <!-- about your current subscription -->
         <div class="row">
-            <div class="large-12 columns">
+            <div class="small-12 columns">
 
                 <div class="panel">
 

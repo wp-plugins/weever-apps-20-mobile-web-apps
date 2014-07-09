@@ -3,7 +3,7 @@
 <div id="interface" class="platform">
 
 <!-- primary navigation -->
-<nav class="top-bar" style="">
+<nav class="top-bar" data-topbar>
     <ul class="title-area">
         <!-- Title Area -->
         <li class="name"><h1>appBuilder for Wordpress</h1></li>
@@ -64,39 +64,32 @@
 
 <!-- start user interface -->
 <div class="row">
-    <div class="large-7 columns wx-column-inline">
-
-        <div class="section-container auto" data-section>
-            <!-- tabs -->
-            <section class="active">
-                <p class="title" data-section-title><a href="#panel1">1. Build <span>&rarr;</span></a></p>
-                <div class="content" data-section-content>
-                    <?php require( dirname(__FILE__) . '/tabs/list.new.php' ); ?>
-                </div>
-            </section>
-            <section>
-                <p class="title" id="edit-title" data-section-title><a href="#panel2">2. Edit <span>&rarr;</span></a></p>
-                <div class="content" data-section-content>
-                    <?php require( dirname(__FILE__) . '/tabs/edit.new.php' ); ?>
-                </div>
-            </section>
-            <section>
-                <p class="title" data-section-title><a href="#panel3">3. Style <span>&rarr;</span></a></p>
-                <div class="content" data-section-content>
-                    <?php require( dirname(__FILE__) . '/tabs/style.new.php' ); ?>
-                </div>
-            </section>
-            <section>
-                <p class="title" data-section-title><a href="#panel4">4. Launch</a></p>
-                <div class="content" data-section-content>
-                    <?php require( dirname(__FILE__) . '/tabs/launch.new.php' ); ?>
-                </div>
-            </section>
+    <div class="medium-7 columns wx-column-inline">
+        <!-- tabs -->
+        <ul class="tabs" data-tab>
+            <li class="tab-title active"><a href="#tab-build">1. Build</a></li>
+            <li class="tab-title"><a href="#tab-edit">2. Edit</a></li>
+            <li class="tab-title"><a href="#tab-style">3. Style</a></li>
+            <li class="tab-title"><a href="#tab-launch">4. Launch</a></li>
+        </ul>
+        <div class="tabs-content">
+            <div class="content active" id="tab-build">
+                <?php require( dirname(__FILE__) . '/tabs/list.new.php' ); ?>
+            </div>
+            <div class="content" id="tab-edit">
+                <?php require( dirname(__FILE__) . '/tabs/edit.new.php' ); ?>
+            </div>
+            <div class="content" id="tab-style">
+                <?php require( dirname(__FILE__) . '/tabs/style.new.php' ); ?>
+            </div>
+            <div class="content" id="tab-launch">
+                <?php require( dirname(__FILE__) . '/tabs/launch.new.php' ); ?>
+            </div>
         </div>
     </div>
 
     <!-- Phone preview -->
-    <div id="wx-preview-container" class="large-5 columns wx-column-inline">
+    <div id="wx-preview-container" class="medium-5 columns wx-column-inline">
 
         <!-- start: plugin only - mobile redirect status -->
         <!-- -->
@@ -106,7 +99,7 @@
 
         <!-- start: app preview -->
         <div class="row">
-            <div class="large-12 columns">
+            <div class="small-12 columns">
                 <div id="wx-phone-bg">
                     <!-- start: development iframe -->
                     <!--
@@ -146,7 +139,7 @@
         <br>
 
         <div class="row">
-            <div class="small-10 small-centered large-12 large-uncentered columns">
+            <div class="small-10 small-centered medium-12 medium-uncentered columns">
                 <button class="large button secondary expand radius" id="refresh_preview"><span class="appbuilder-icon icon-refresh"></span> Refresh Preview</button>
             </div>
         </div>
@@ -164,28 +157,28 @@
 
 <div class="wx-footer row" id="wx-footer-top">
     <!-- markup is different between full width and container-wrapped platforms -->
-    <div class="large-12 columns">
-        <div class="large-4 columns">
+    <div class="small-12 columns">
+        <div class="medium-4 columns">
             <p class="wx-footer-icon"><span class="appbuilder-icon icon-earth"></span></p>
             <h5>appBuilder&trade;</h5>
             <p>appBuilder is made with care by <b><a target="_blank" href="http://weeverapps.com">Weever Apps</a></b>, a company in Hamilton, Canada.  appBuilder is used in over 60 countries and 16 languages.</p>
             <p>Weever Apps clients include both small businesses and enterprise brands, like Allergan, Habitat for Humanity, and Microsoft.</p>
         </div>
-        <div class="large-8 columns">
+        <div class="medium-8 columns">
             <div class="row">
-                <div class="large-4 columns">
+                <div class="medium-4 columns">
                     <p class="wx-footer-icon"><span class="appbuilder-icon icon-rocket"></span></p>
                     <h5 class="subheader">Custom Features</h5>
                     <p><b><a target="_blank" href="http://weeverapps.com/custom-services/">weeverapps.com/custom</a></b></p>
                     <p>Our professional services department can help you take your project from idea to launch.</p>
                 </div>
-                <div class="large-4 columns">
+                <div class="medium-4 columns">
                     <p class="wx-footer-icon"><span class="appbuilder-icon icon-support"></span></p>
                     <h5 class="subheader">Support</h5>
                     <p><b><a target="_blank" href="http://support.weeverapps.com">support.weeverapps.com</a></b></p>
                     <p>Report a problem or review our support knowledgebase for tips, tricks and tutorials.</p>
                 </div>
-                <div class="large-4 columns">
+                <div class="medium-4 columns">
                     <p class="wx-footer-icon"><span class="appbuilder-icon icon-envelope"></span></p>
                     <h5 class="subheader">Get Updates</h5>
                     <p><b><a target="_blank" href="http://weeverapps.com/newsletter/">subscribe now</a></b></p>
@@ -198,8 +191,8 @@
 
 <div class="wx-footer row" id="wx-footer-bottom">
     <!-- markup is different between full width and container-wrapped platforms -->
-    <div class="large-12 columns">
-        <div class="large-4 push-8 small-12 columns">
+    <div class="small-12 columns">
+        <div class="medium-4 medium-push-8 small-12 columns">
             <div class="wx-social-links">
                 <a target="_blank" href="http://www.twitter.com/weeverapps"  class="wx-footer-bottom-icon"><span class="appbuilder-icon icon-twitter-bird-alt1"></span></a>
                 &nbsp;
@@ -208,7 +201,7 @@
                 <a target="_blank" href="http://weeverapps.com/contact" class="wx-footer-bottom-icon"><span class="appbuilder-icon icon-chat-bubble-alt1"></span></a>
             </div>
         </div>
-        <div class="large-8 pull-4 small-12 columns">
+        <div class="medium-8 medium-pull-4 small-12 columns">
             <div class="wx-inline-links">
                 <a target="_blank" href="http://weeverapps.com/">Weever Apps</a>
                 <a target="_blank" href="http://weeverapps.com/custom-services/">Custom Services</a>
@@ -221,11 +214,10 @@
 </div>
 
 <!-- subscription key -->
-<div class="reveal-modal" id="wx-account">
+<div class="reveal-modal" id="wx-account" data-reveal>
     <?php require( dirname(__FILE__) . '/tabs/account.php' ); ?>
     <a class="close-reveal-modal">&times;</a>
 </div>
-
 
 <ol class="joyride-list" data-joyride>
     <li data-id="edit-title" data-text="Got it, thanks!">
@@ -265,7 +257,14 @@
 		    wx.expectedBuildVersion = wx.currentBuildVersion;
 	    } );
 
-	    jQuery(document).foundation();
+	    jQuery(document).foundation({
+		    reveal: {
+			    root_element: '#interface'
+		    },
+		    joyride: {
+			    tip_container: '#interface'
+		    }
+	    });
 
 	    setTimeout( wx.refreshAppPreview, 500 );
 

@@ -23,13 +23,14 @@ function fix_jquery_version() {
 	$page = ( isset( $_GET['page'] ) ? basename( $_GET['page'] ) : '' );
 
 	if ( substr( $page, 0, strlen('weever-') ) == 'weever-' ) {
-		echo '<script type=\'text/javascript\' src=\'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js\'></script>';
+		echo '<script type=\'text/javascript\' src=\'http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js\'></script>';
 		// jQuery-migrate is only used for choosing to display the preview window. If possible, we should try to remove it.
 		echo '<script type=\'text/javascript\' src=\'http://code.jquery.com/jquery-migrate-1.2.1.min.js\'></script>';
 	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/jquery-ui.custom.min.js', __FILE__ ) . '\'></script>';
 	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/underscore.min.js', __FILE__ ) . '\'></script>';
 	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/backbone.min.js', __FILE__ ) . '\'></script>';
-	    global $wp_scripts;
+
+        global $wp_scripts;
 	    $wp_scripts->remove( 'jquery' );
 	}
 
@@ -205,7 +206,7 @@ function weever_page_scripts_init() {
 		wp_enqueue_script( 'weever.js' );
 		wp_localize_script( 'weever.js', 'WPText', WeeverHelper::get_js_strings() );
 
-		wp_register_script('modernizr', plugins_url( 'static/js/vendor/custom.modernizr.js', __FILE__ ));
+		wp_register_script('modernizr', plugins_url( 'static/js/vendor/modernizr.js', __FILE__ ));
 		wp_enqueue_script( 'modernizr');
 
 		// wp_register_script('jscolor', plugins_url( 'static/js/jscolor/jscolor.js', __FILE__ ));
@@ -214,40 +215,49 @@ function weever_page_scripts_init() {
 		wp_register_script( 'fileuploader.js', plugins_url( 'static/js/fileuploader.js', __FILE__ ), array(), WeeverConst::VERSION );
 		
 		// Foundation scripts
-		wp_register_script('foundation', plugins_url('static/js/foundation/foundation.js', __FILE__));
+		wp_register_script('foundation',                plugins_url('static/js/foundation/foundation.js', __FILE__));
 		wp_enqueue_script( 'foundation');
-		wp_register_script('foundation.abide', plugins_url('static/js/foundation/foundation.abide.js', __FILE__), array('foundation'));
+		wp_register_script('foundation.abide',          plugins_url('static/js/foundation/foundation.abide.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.abide');
-		wp_register_script('foundation.alerts', plugins_url('static/js/foundation/foundation.alerts.js', __FILE__), array('foundation'));
-		wp_enqueue_script( 'foundation.alerts');
-		wp_register_script('foundation.clearing', plugins_url('static/js/foundation/foundation.clearing.js', __FILE__), array('foundation'));
+        wp_register_script('foundation.accordion',      plugins_url('static/js/foundation/foundation.accordion.js', __FILE__), array('foundation'));
+        wp_enqueue_script( 'foundation.accordion');
+		wp_register_script('foundation.alert',          plugins_url('static/js/foundation/foundation.alert.js', __FILE__), array('foundation'));
+		wp_enqueue_script( 'foundation.alert');
+		wp_register_script('foundation.clearing',       plugins_url('static/js/foundation/foundation.clearing.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.clearing');
-		wp_register_script('foundation.cookie', plugins_url('static/js/foundation/foundation.cookie.js', __FILE__), array('foundation'));
-		wp_enqueue_script( 'foundation.cookie');
-		wp_register_script('foundation.dropdown', plugins_url('static/js/foundation/foundation.dropdown.js', __FILE__), array('foundation'));
+		wp_register_script('foundation.dropdown',       plugins_url('static/js/foundation/foundation.dropdown.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.dropdown');
-		wp_register_script('foundation.forms', plugins_url('static/js/foundation/foundation.forms.js', __FILE__), array('foundation'));
-		wp_enqueue_script( 'foundation.forms');
-		wp_register_script('foundation.interchange', plugins_url('static/js/foundation/foundation.interchange.js', __FILE__), array('foundation'));
+        wp_register_script('foundation.equalizer',     plugins_url('static/js/foundation/foundation.equalizer.js', __FILE__), array('foundation'));
+        wp_enqueue_script( 'foundation.equalizer');
+		wp_register_script('foundation.interchange',    plugins_url('static/js/foundation/foundation.interchange.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.interchange');
-		wp_register_script('foundation.joyride', plugins_url('static/js/foundation/foundation.joyride.js', __FILE__), array('foundation'));
+		wp_register_script('foundation.joyride',        plugins_url('static/js/foundation/foundation.joyride.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.joyride');
-		wp_register_script('foundation.magellan', plugins_url('static/js/foundation/foundation.magellan.js', __FILE__), array('foundation'));
+		wp_register_script('foundation.magellan',       plugins_url('static/js/foundation/foundation.magellan.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.magellan');
-		wp_register_script('foundation.orbit', plugins_url('static/js/foundation/foundation.orbit.js', __FILE__), array('foundation'));
+        wp_register_script('foundation.offcanvas',      plugins_url('static/js/foundation/foundation.offcanvas.js', __FILE__), array('foundation'));
+        wp_enqueue_script( 'foundation.offcanvas');
+		wp_register_script('foundation.orbit',          plugins_url('static/js/foundation/foundation.orbit.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.orbit');
-		wp_register_script('foundation.placeholder', plugins_url('static/js/foundation/foundation.placeholder.js', __FILE__), array('foundation'));
-		wp_enqueue_script( 'foundation.placeholder');
-		wp_register_script('foundation.reveal', plugins_url('static/js/foundation/foundation.reveal.js', __FILE__), array('foundation'));
+		wp_register_script('foundation.reveal',         plugins_url('static/js/foundation/foundation.reveal.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.reveal');
-		wp_register_script('foundation.section', plugins_url('static/js/foundation/foundation.section.js', __FILE__), array('foundation'));
-		wp_enqueue_script( 'foundation.section');
-		wp_register_script('foundation.tooltips', plugins_url('static/js/foundation/foundation.tooltips.js', __FILE__), array('foundation'));
-		wp_enqueue_script( 'foundation.tooltips');
-		wp_register_script('foundation.topbar', plugins_url('static/js/foundation/foundation.topbar.js', __FILE__), array('foundation'));
+        wp_register_script('foundation.slider',         plugins_url('static/js/foundation/foundation.slider.js', __FILE__), array('foundation'));
+        wp_enqueue_script( 'foundation.slider');
+        wp_register_script('foundation.tab',            plugins_url('static/js/foundation/foundation.tab.js', __FILE__), array('foundation'));
+        wp_enqueue_script( 'foundation.tab');
+		wp_register_script('foundation.tooltip',        plugins_url('static/js/foundation/foundation.tooltip.js', __FILE__), array('foundation'));
+		wp_enqueue_script( 'foundation.tooltip');
+		wp_register_script('foundation.topbar',         plugins_url('static/js/foundation/foundation.topbar.js', __FILE__), array('foundation'));
 		wp_enqueue_script( 'foundation.topbar');
 
-	    wp_register_script( 'weever.account.js', plugins_url( 'static/js/account.js', __FILE__ ), array(), WeeverConst::VERSION );
+	    wp_register_script('jquery.cookie',             plugins_url('static/js/vendor/jquery.cookie.js', __FILE__), array('foundation'), WeeverConst::VERSION, true);
+	    wp_enqueue_script( 'jquery.cookie');
+	    wp_register_script('vendor.fastclick',          plugins_url('static/js/vendor/fastclick.js', __FILE__), array('foundation'), WeeverConst::VERSION, true);
+	    wp_enqueue_script( 'vendor.fastclick');
+	    wp_register_script('vendor.placeholder',        plugins_url('static/js/vendor/placeholder.js', __FILE__), array('foundation'), WeeverConst::VERSION, true);
+	    wp_enqueue_script( 'vendor.placeholder');
+
+	    wp_register_script( 'weever.account.js',        plugins_url( 'static/js/account.js', __FILE__ ), array(), WeeverConst::VERSION );
 	    wp_enqueue_script( 'weever.account.js' );
 	    
 	    if ( ! apply_filters( 'weever_list_show_wordpress_content', true ) )
