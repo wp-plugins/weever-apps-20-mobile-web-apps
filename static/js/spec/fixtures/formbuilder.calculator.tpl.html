@@ -1,0 +1,66 @@
+<script type="text/template" id="form-builder-calculator">
+    <p class="title">
+        Calculation: <span class="wx-form-builder-label"><%- label %></span>
+    </p>
+
+    <div class="content">
+
+        <br>
+
+        <label>
+            Label
+            <input type='text' class="wx-form-builder-input wx-form-builder-label-input" value='<%- label %>' />
+        </label>
+        
+        <fieldset>
+            <% for (var i = 0; i < fields.length; i++) { var field = fields[i]; %>
+                <div class="row collapse">
+                    <div class="small-3 medium-3 large-3 columns" style="padding-right: .9375rem;">
+                        <% if ( i == 0 ) { %>
+                            &nbsp;
+                        <% } else { %>
+                            <select class="wx-calculation-operator" data-index="<%- i %>">
+                                <option value="+">+</option>
+                                <option value="-">-</option>
+                                <option value="*">×</option>
+                                <option value="/">÷</option>
+                            </select>
+                        <% } %>
+                    </div>
+                    <div class="small-7 medium-7 large-8 columns"><select class="wx-calculation-field" data-index="<%- i %>"></select></div>
+                    <div class="small-2 medium-2 large-1 columns text-right">
+                        <a href="#" class="wx-delete-calculation-field wxui-btn red" title="Delete" data-index="<%- i %>"><label class="inline">&times;</label></a>
+                    </div>
+                </div>
+                <div class="row collapse hide wx-constant" data-index="<%- i %>">
+                    <div class="small-3 medium-3 large-3 columns">&nbsp;</div>
+                    <div class="small-7 medium-7 large-8 columns">
+                        <input type="number" class="wx-constant" step="any" />
+                    </div>
+                    <div class="small-2 medium-2 large-1 columns">&nbsp;</div>
+                </div>
+            <% } %>
+            <div class="row collapse">
+                <div class="small-3 medium-3 large-3 columns" style="padding-right: .9375rem;">&nbsp;</div>
+                <div class="small-9 medium-9 large-9 columns">
+                    <a href="#" class="wx-add-calculation-field">+ add number field</a>
+                </div>
+            </div>
+            <hr/>
+            <div class="row collapse">
+                <div class="small-3 medium-3 large-3 columns text-right" style="padding-right: .9375rem;">=</div>
+                <div class="small-9 medium-9 large-9 columns wx-form-builder-label"><%- label %></div>
+            </div>
+        </fieldset>
+
+        <button class="wx-form-builder-delete small alert">Delete field</button>
+    </div>
+</script>
+
+<script type="text/template" id="form-builder-calculator-preview">
+    <label class="wx-form-builder-label"><%- label %></label>
+    <label class="wx-form-builder-input wx-form-builder-calculation-result">
+        <strong></strong>
+    </label>
+    <input type="hidden" name="<%- label.toLowerCase().replace(' ', '-') %>" />
+</script>

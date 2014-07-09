@@ -18,11 +18,11 @@
             <!--
             <li class="divider"></li>
             <!-- -->
-            <li class=""><a target="_blank" href="http://weeverapps.com/login">visitor statistics</a></li>
+            <li class=""><a target="_blank" href="http://weeverapps.com/my-account">visitor statistics</a></li>
             <!--
             <li class="divider"></li>
             <!-- -->
-            <li class=""><a target="_blank" href="http://weeverapps.com/login/">my account</a></li>
+            <li class=""><a target="_blank" href="http://weeverapps.com/my-account/">my account</a></li>
             <!--
             <li class="divider"></li>
             <!-- -->
@@ -34,7 +34,7 @@
 <div id="account-expiration-warning" class="row" style="display: none;">
     <div data-alert class="alert-box secondary">
         Your free trial app expires <span id="expiry-days">in ?? days</span>
-        <a target="_blank" href="http://weeverapps.com/pricing">View plans and pricing</a>.
+        <a target="_blank" href="http://weeverapps.com/product/cms">View plans and pricing</a>.
         <a href="#" class="close">&times;</a>
     </div>
 </div>
@@ -42,7 +42,7 @@
 <div id="account-expired" class="row" style="display: none;">
     <div data-alert class="alert-box alert">
         Your app subscription is expired.
-        <a target="_blank" href="http://weeverapps.com/pricing">View plans and pricing</a>.
+        <a target="_blank" href="http://weeverapps.com/product/cms">View plans and pricing</a>.
         <a href="#" class="close">&times;</a>
     </div>
 </div>
@@ -176,7 +176,7 @@
                 <div class="large-4 columns">
                     <p class="wx-footer-icon"><span class="appbuilder-icon icon-rocket"></span></p>
                     <h5 class="subheader">Custom Features</h5>
-                    <p><b><a target="_blank" href="http://weeverapps.com/enterprise">weeverapps.com/enterprise</a></b></p>
+                    <p><b><a target="_blank" href="http://weeverapps.com/custom-services/">weeverapps.com/custom</a></b></p>
                     <p>Our professional services department can help you take your project from idea to launch.</p>
                 </div>
                 <div class="large-4 columns">
@@ -210,10 +210,10 @@
         </div>
         <div class="large-8 pull-4 small-12 columns">
             <div class="wx-inline-links">
-                <a href="http://weeverapps.com/">Weever Apps</a>
-                <a href="http://weeverapps.com/blog/">Blog</a>
-                <a href="http://weeverapps.com/newsletter/">Newsletter</a>
-                <a href="http://weeverapps.com/contact/">Contact</a>
+                <a target="_blank" href="http://weeverapps.com/">Weever Apps</a>
+                <a target="_blank" href="http://weeverapps.com/custom-services/">Custom Services</a>
+                <a target="_blank" href="http://weeverapps.com/newsletter/">Newsletter</a>
+                <a target="_blank" href="http://weeverapps.com/contact/">Contact</a>
             </div>
             <p class="copyright">&copy; 2011 - 2013 Weever Apps Inc. All rights reserved.</p>
         </div>
@@ -247,40 +247,33 @@
     wx.baseExtensionUrl = "<?php echo admin_url( 'admin.php?page=weever-list' ); ?>";
     wx.siteKey = "<?php echo $weeverapp->site_key; ?>";
     wx.apiUrl = "<?php echo WeeverHelper::get_root_weever_api_url(); ?>";
+    wx.liveUrl = "<?php echo WeeverHelper::get_root_weever_live_url(); ?>";
     <?php $upload_dir = wp_upload_dir(); ?>
     wx.uploadPath = "<?php echo $upload_dir['path']; ?>";
     wx.uploadUrl  = "<?php echo $upload_dir['url']; ?>";
-    wx.poll = true;
+    wx.formbuilderAdvanced = <?php echo WeeverConst::ADVANCED_FORMBUILDER; ?>;
+    wx.currentUserEmail = '<?php echo wp_get_current_user()->user_email; ?>';
+    wx.currentBuildVersion = 1;
+    wx.expectedBuildVersion = 0;
+    wx.newBuildPollingHandle = null;
+    wx.refreshPreviewHandle = null;
 
     jQuery( document ).ready( function() {
 
-        jQuery(document).foundation();
-        doPoll();
+	    wx.setCurrentBuildVersion( function() {
+		    // Initialize expectedBuildVersion
+		    wx.expectedBuildVersion = wx.currentBuildVersion;
+	    } );
 
-        <?php if ( isset( $_GET['page'] ) and basename( $_GET['page'] ) == 'weever-account' ) { ?>
+	    jQuery(document).foundation();
+
+	    setTimeout( wx.refreshAppPreview, 500 );
+
+	    <?php if ( isset( $_GET['page'] ) and basename( $_GET['page'] ) == 'weever-account' ) { ?>
         jQuery('#wx-account').foundation('reveal', 'open');
         <?php } ?>
     } );
 
-    var buildNum = '';
-    function doPoll() {
-        if ( wx.poll ) {
-            console.log('Poll...')
-            wx.getText('_metadata/get_build_version', function(data) {
-                console.log(data);
-                if (data != buildNum) {
-                    buildNum = data;
-                    console.log( 'New build: ' + buildNum );
-                    wx.refreshAppPreview();
-                    wx.poll = false;
-                }
-                setTimeout(doPoll, 1000);
-            });
-        } else {
-            // Check back later.
-            setTimeout(doPoll, 1000);
-        }
-    }
 </script>
 
 <script type="text/javascript" src="<?php echo WEEVER_PLUGIN_URL; ?>static/js/jscolor/jscolor.js"></script>

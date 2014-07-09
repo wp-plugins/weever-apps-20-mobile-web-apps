@@ -19,7 +19,7 @@
                     <div class="wx-inputContainer" id="save-button">
                         <button id="wx-button-submit" class="success radius" name="submit" type="submit" value="Save Changes">Save app subscription key</button>
                     </div>
-                    <label><a target="_blank" href="http://weeverapps.com/pricing"><?php echo __( 'Need a subscription key?' ); ?></a></label>
+                    <label><a target="_blank" href="http://weeverapps.com/product/cms"><?php echo __( 'Need a subscription key?' ); ?></a></label>
                 </div>
             </div>
         </form>
@@ -66,7 +66,7 @@
 
                         <?php } ?>
 
-                    <p><a target="_blank" href="http://weeverapps.com/pricing">View plans and pricing</a></p>
+                    <p><a target="_blank" href="http://weeverapps.com/product/cms">View plans and pricing</a></p>
 
                     <p class=""><b>About</b></p>
 

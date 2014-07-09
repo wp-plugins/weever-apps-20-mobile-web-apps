@@ -60,42 +60,37 @@
 
 			<p class="wx-ui-title">Publish to app stores <span class="label secondary"><?php echo __( 'add-on service', 'weever' ); ?></span></p>
 
-            <p>Have Weever Apps create a &lsquo;hybrid app&rsquo; based on your web app and submit it to the stores you specify.  We offer discount pricing when submitting to multiple stores.</p>
+            <p>When your app is ready we can submit it on your behalf to the leading app marketplaces. We offer discount pricing when submitting to multiple stores.</p>
 
             <ul class="small-block-grid-3 large-block-grid-5">
                 <li>
-                    <a target="_blank" class="wx-launch-publish" id="publish-app-itunes" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        &nbsp;
-                    </a>
-                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">App Store&trade;</a>
+                    <a target="_blank" class="wx-launch-publish" id="publish-app-itunes" href="http://weeverapps.com/addon-services"></a>
+                    <p>iTunes</p>
                 </li>
                 <li>
-                    <a target="_blank" class="wx-launch-publish" id="publish-app-google-play" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        &nbsp;
-                    </a>
-                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">Play&trade;</a>
-
+                    <a target="_blank" class="wx-launch-publish" id="publish-app-google-play" href="http://weeverapps.com/addon-services"></a>
+                    <p>Play</p>
                 </li>
                 <li>
-                    <a target="_blank" class="wx-launch-publish" id="publish-app-windows-store" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        &nbsp;
-                    </a>
-                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">Windows&trade;</a>
+                    <a target="_blank" class="wx-launch-publish" id="publish-app-windows-store" href="http://weeverapps.com/addon-services"></a>
+                    <p>Windows</p>
                 </li>
                 <li>
-                    <a target="_blank" class="wx-launch-publish" id="publish-app-blackberry-world" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                        &nbsp;
-                    </a>
-                    <a target="_blank" class="button success expand small radius" href="http://weeverapps.com/native-app/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">BlackBerry</a>
+                    <a target="_blank" class="wx-launch-publish" id="publish-app-blackberry-world" href="http://weeverapps.com/addon-services"></a>
+                    <p>BB 10+</p>
                 </li>
             </ul>
 
+            <a target="_blank" class="button success radius" href="http://weeverapps.com/addon-services">View plans and pricing</a>
+
             <br>
+            <br>
+
 
             <!-- Push notifications -->
             <p class="wx-ui-title">Push Notifications <span class="label secondary">add-on service</span> <span class="label secondary">Hybrid Only</span></p>
             <p>Send &lsquo;push notifications&rsquo; to customers who have your hybrid app installed.</p>
-            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/native-app/">View plans and pricing</a></p>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/addon-services">View plans and pricing</a></p>
 
             <br>
 
@@ -103,7 +98,7 @@
             <p class="wx-ui-title">NFC Stickers <span class="label secondary">add-on service</span</p>
             <p>Imagine tapping a poster with your phone and seeing an app launch instantly.  That technology is here today with NFC Stickers!</p>
             <p>NFC Stickers (aka 'tags') come with a sticker backing and are pre-programmed to go to your Mobile App URL.  NFC Stickers are compatible with Android, Windows 8 and Blackberry 10 devices.</p>
-            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/nfc-tags/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">View plans and pricing</a></p>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/addon-services">View plans and pricing</a></p>
 
         </div>
 	</section>
@@ -145,7 +140,7 @@
             <!-- SMS messaging -->
             <p class="wx-ui-title">SMS Messages <span class="label secondary">add-on service</span></p>
             <p>Statistics indicate that SMS messages are ready by over 90% of recipients.  Weever Apps SMS Messaging service allows you to send targeted offers to your mobile audience.</p>
-            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/sms/">View plans and pricing</a>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/addon-services">View plans and pricing</a></p>
 
             <br>
             <br>
@@ -154,14 +149,14 @@
             <p class="wx-ui-title">NFC Stickers <span class="label secondary">add-on service</span></p>
             <p>Imagine tapping a poster with your phone and seeing an app launch instantly.  That technology is here today with NFC Stickers!</p>
             <p>NFC Stickers (aka 'tags') come with a sticker backing and are pre-programmed to go to your Mobile App URL.  Weever NFC Stickers are compatible with Android, Windows 8 and Blackberry 10 devices.</p>
-            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/nfc-tags/?site_url=<?php echo urlencode($weeverapp->primary_domain) ?>">View plans and pricing</a></p>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/addon-services">View plans and pricing</a></p>
 
             <br>
 
             <!-- Push notifications -->
             <p class="wx-ui-title">Push Notifications <span class="label secondary">add-on service</span> <span class="label secondary">Hybrid Only</span></p>
             <p>Send &lsquo;push notifications&rsquo; to customers who have downloaded your hybrid app from the App Store&trade; Google Play&trade; Windows Store&trade; or Blackberry World&trade;.</p>
-            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/native-app/">View plans and pricing</a></p>
+            <p><a target="_blank" class="button success radius" href="http://weeverapps.com/addon-services">View plans and pricing</a></p>
 
 		</div>
 	</section>
