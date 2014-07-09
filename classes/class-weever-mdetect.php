@@ -1211,8 +1211,10 @@ class WeeverMdetect
             return $this->true;
         if ($this->DetectBlackBerry10Phone() == $this->true)
             return $this->true;
-	if ($this->DetectWindowsPhone8() == $this->true)
-	    return $this->true;
+      	if ($this->DetectWindowsPhone8() == $this->true)
+      	    return $this->true;
+        if ($this->DetectTizen() == $this->true) 
+            return $this->true; 
         else
             return $this->false;
     }

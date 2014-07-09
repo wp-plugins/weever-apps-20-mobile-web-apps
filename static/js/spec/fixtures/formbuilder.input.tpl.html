@@ -1,11 +1,11 @@
 <script type="text/template" id="form-builder-input">
-	<p class="title" data-section-title>
-		<a href="#panel<%- ordinal %>">
-            <%- controlTitle %>: <span class="wx-form-builder-label"><%- label %></span> <span class="appbuilder-icon icon-move-updown"></span>
-		</a>
+	<p class="title">
+        <%- controlTitle %>: <span class="wx-form-builder-label"><%- label %></span>
 	</p>
 
-    <div class="content" data-section-content>
+    <div class="content">
+
+        <br>
 
 		<%
 		// Only "Number Slider" uses this template and has type == 'range'
@@ -47,7 +47,7 @@
 			<span data-tooltip data-options="disable-for-touch:true"
 				  class="has-tip tip-right"
 				  title="<p><b>Field name</b><p>
-				   <p>The HTML &ldquo;name&rdquo; attribute. For use with a custom POST action.</p>
+				   <p>The HTML &ldquo;name&rdquo; attribute. For use with the Calculator control, or a custom POST action.</p>
 				   <p><b>Advanced mode</b></p>
 				   <p>This option is only displayed when &ldquo;advanced mode&rdquo; is enabled.
 				   ">
@@ -58,7 +58,10 @@
         <% } %>
 
         <label class="<%- requiredClass %>"><input type="checkbox" class="wx-form-builder-required" <%- attributes.required || attributes.attributes.required %> /> Required</label>
-		<button class="wx-form-builder-delete small alert">Delete Field</button>
+
+        <br>
+
+        <button class="wx-form-builder-delete small alert">Delete field</button>
 	</div>
 </script>
 
@@ -67,5 +70,5 @@
 		<%- label %>
 		<span class="required<%= attributes.required || attributes.attributes.required == 'checked' ? '' : ' hide' %>">*</span>
 	</label>
-	<input class="wx-form-builder-<%- attributes.type || attributes.attributes.type %>-input" type="<%- attributes.type || attributes.attributes.type %>" placeholder="<%- attributes.placeholder || attributes.attributes.placeholder %>" />
+	<input data-ordinal="<%- ordinal %>" class="wx-form-builder-<%- attributes.type || attributes.attributes.type %>-input" type="<%- attributes.type || attributes.attributes.type %>" placeholder="<%- attributes.placeholder || attributes.attributes.placeholder %>" name="<%- attributes.name || attributes.attributes.name %>" />
 </script>

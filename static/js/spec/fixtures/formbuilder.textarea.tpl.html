@@ -1,10 +1,11 @@
 <script type="text/template" id="form-builder-textarea">
-	<p class="title" data-section-title>
-		<a href="#panel<%- ordinal %>">
-			<%- controlTitle %>: <span class="wx-form-builder-label"><%- label %></span> <span class="appbuilder-icon icon-move-updown"></span>
-		</a>
+	<p class="title">
+		<%- controlTitle %>: <span class="wx-form-builder-label"><%- label %></span>
 	</p>
-	<div class="content" data-section-content>
+	<div class="content">
+
+        <br>
+
 		<label>Label</label>
 
 		<input type='text' class="wx-form-builder-label-input" value='<%- label %>' />
@@ -26,7 +27,9 @@
 
         <label class="<%- requiredClass %>"><input type="checkbox" class="wx-form-builder-required" <%- attributes.attributes.required %> /> Required</label>
 
-        <button class="wx-form-builder-delete small alert">Delete Field</button>
+        <br>
+
+        <button class="wx-form-builder-delete small alert">Delete field</button>
 	</div>
 </script>
 

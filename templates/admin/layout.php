@@ -18,11 +18,11 @@
             <!--
             <li class="divider"></li>
             <!-- -->
-            <li class=""><a target="_blank" href="http://weeverapps.com/login">visitor statistics</a></li>
+            <li class=""><a target="_blank" href="http://weeverapps.com/my-account">visitor statistics</a></li>
             <!--
             <li class="divider"></li>
             <!-- -->
-            <li class=""><a target="_blank" href="http://weeverapps.com/login/">my account</a></li>
+            <li class=""><a target="_blank" href="http://weeverapps.com/my-account/">my account</a></li>
             <!--
             <li class="divider"></li>
             <!-- -->
@@ -176,7 +176,7 @@
                 <div class="large-4 columns">
                     <p class="wx-footer-icon"><span class="appbuilder-icon icon-rocket"></span></p>
                     <h5 class="subheader">Custom Features</h5>
-                    <p><b><a target="_blank" href="http://weeverapps.com/enterprise">weeverapps.com/enterprise</a></b></p>
+                    <p><b><a target="_blank" href="http://weeverapps.com/custom-services/">weeverapps.com/custom</a></b></p>
                     <p>Our professional services department can help you take your project from idea to launch.</p>
                 </div>
                 <div class="large-4 columns">
@@ -210,10 +210,10 @@
         </div>
         <div class="large-8 pull-4 small-12 columns">
             <div class="wx-inline-links">
-                <a href="http://weeverapps.com/">Weever Apps</a>
-                <a href="http://weeverapps.com/blog/">Blog</a>
-                <a href="http://weeverapps.com/newsletter/">Newsletter</a>
-                <a href="http://weeverapps.com/contact/">Contact</a>
+                <a target="_blank" href="http://weeverapps.com/">Weever Apps</a>
+                <a target="_blank" href="http://weeverapps.com/custom-services/">Custom Services</a>
+                <a target="_blank" href="http://weeverapps.com/newsletter/">Newsletter</a>
+                <a target="_blank" href="http://weeverapps.com/contact/">Contact</a>
             </div>
             <p class="copyright">&copy; 2011 - 2013 Weever Apps Inc. All rights reserved.</p>
         </div>
