@@ -397,24 +397,27 @@ function weever_save_postdata($post_id) {
 	}
 
 	if ( apply_filters( 'weever_show_map_meta_box', true ) ) {
-		$address = $_POST['weever-map-address'];
-		update_post_meta($post_id, 'weever_map_address', $address);
-		update_post_meta($post_id, 'geo_public', true);
-		update_post_meta($post_id, 'weever_kml', $_POST['weever-kml']);
-		update_post_meta($post_id, 'weever_map_marker', $_POST['weever-map-marker']);
 
-		// Get latitude & longitude
-		$address = urlencode( $address );
-		$response = curl_file_get_contents( "http://maps.google.com/maps/api/geocode/json?sensor=false&address=".$address );
-		$json = json_decode($response, true);
+		// NOTE - Commented out until weever_geolocation is ready for prime time.
 
-		if( $json['status']='OK' ) {
-			$lat = $json['results'][0]['geometry']['location']['lat'];
-			$lng = $json['results'][0]['geometry']['location']['lng'];
+		// $address = $_POST['weever-map-address'];
+		// update_post_meta($post_id, 'weever_map_address', $address);
+		// update_post_meta($post_id, 'geo_public', true);
+		// update_post_meta($post_id, 'weever_kml', $_POST['weever-kml']);
+		// update_post_meta($post_id, 'weever_map_marker', $_POST['weever-map-marker']);
 
-			update_post_meta($post_id, 'geo_latitude', $lat);
-			update_post_meta($post_id, 'geo_longitude', $lng);
-		}
+		// // Get latitude & longitude
+		// $address = urlencode( $address );
+		// $response = curl_file_get_contents( "http://maps.google.com/maps/api/geocode/json?sensor=false&address=".$address );
+		// $json = json_decode($response, true);
+
+		// if( $json['status']='OK' ) {
+		// 	$lat = $json['results'][0]['geometry']['location']['lat'];
+		// 	$lng = $json['results'][0]['geometry']['location']['lng'];
+
+		// 	update_post_meta($post_id, 'geo_latitude', $lat);
+		// 	update_post_meta($post_id, 'geo_longitude', $lng);
+		// }
 	}
 	
 	return $post_id;
