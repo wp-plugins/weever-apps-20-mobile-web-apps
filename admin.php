@@ -1,21 +1,19 @@
 <?php
 add_action('admin_print_scripts', 'fix_jquery_version', 1);
 
-add_action('admin_menu', 'weever_override_wordpress_styles');
+// add_action('admin_init', 'weever_override_wordpress_styles');
 add_action('admin_menu', 'weever_admin_add_page');
 
 weever_admin_warnings();
 
 /**
- * This method can be used to override the default WordPress stylings.
+ * This method is used to override the default WordPress stylings.
  * For more information, see the WP_Styles documentation in the WP Codex
  * http://codex.wordpress.org/Class_Reference/WP_Styles
  */
 function weever_override_wordpress_styles() {
-	// global $wp_styles;
-	// $wp_styles->registered = array();
-	// $wp_styles->add('test', WEEVER_PLUGIN_URL . 'static/css/test.css');
-	// $wp_styles->enqueue(array('test'));
+	global $wp_styles;
+	$wp_styles->registered = array();
 }
 
 function fix_jquery_version() {
@@ -299,13 +297,13 @@ function weever_page_scripts_init() {
     	}
 
 	    foreach( glob( dirname(__FILE__) . '/static/js/views/*.js' ) as $model_js_file ) {
-	    	$file_name = 'views.' . basename( $model_js_file );
-	        wp_register_script( $file_name, plugins_url( 'static/js/views/' . basename( $model_js_file ), __FILE__ ), array(), WeeverConst::VERSION, true );
+            $model_js_file = basename( $model_js_file );
+            if ( $model_js_file == 'subtab.coupon.edit.js' or $model_js_file == 'subtab.map.edit.js' )  // These models aren't used in WordPress.
+                continue;
+	    	$file_name = 'views.' . $model_js_file;
+	        wp_register_script( $file_name, plugins_url( 'static/js/views/' . $model_js_file, __FILE__ ), array(), WeeverConst::VERSION, true );
 	        wp_enqueue_script( $file_name );
 	    }
-
-		// wp_register_script( 'weever.theme.js', plugins_url( 'static/js/theme.js', __FILE__ ), array(  'fileuploader.js' ), WeeverConst::VERSION );
-		// wp_enqueue_script( 'weever.theme.js' );
 
 	}
 

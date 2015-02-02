@@ -249,6 +249,7 @@
     wx.expectedBuildVersion = 0;
     wx.newBuildPollingHandle = null;
     wx.refreshPreviewHandle = null;
+    wx.isDev = <?php echo WeeverConst::DEV; ?>;
 
     jQuery( document ).ready( function() {
 
