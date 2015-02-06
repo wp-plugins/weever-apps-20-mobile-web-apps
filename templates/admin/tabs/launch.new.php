@@ -60,7 +60,7 @@
                     <p>Install a barcode reader on your phone if one is not already pre-installed.  Try Google Goggles (<a target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.unveil">Android</a>, <a target="_blank" href="https://itunes.apple.com/us/app/google-mobile-app/id284815942">iTunes</a>)  or the <a target="_blank" href="http://www.i-nigma.mobi">i-nigma QR Reader</a>.</p>
                 </div>
                 <div class="medium-6 columns">
-                    <img src="http://qr.weeverapps.com/?site=<?php echo $weeverapp->primary_domain; ?>&style=smooth&error=3&margin=1&size=20" />
+                    <img src="//qr.weeverapps.com/?site=<?php echo $weeverapp->primary_domain; ?>&style=smooth&error=3&margin=1&size=20" />
                     <br>
                     <br>
                 </div>

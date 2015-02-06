@@ -21,9 +21,9 @@ function fix_jquery_version() {
 	$page = ( isset( $_GET['page'] ) ? basename( $_GET['page'] ) : '' );
 
 	if ( substr( $page, 0, strlen('weever-') ) == 'weever-' ) {
-		echo '<script type=\'text/javascript\' src=\'http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js\'></script>';
+		echo '<script type=\'text/javascript\' src=\'//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js\'></script>';
 		// jQuery-migrate is only used for choosing to display the preview window. If possible, we should try to remove it.
-		echo '<script type=\'text/javascript\' src=\'http://code.jquery.com/jquery-migrate-1.2.1.min.js\'></script>';
+		echo '<script type=\'text/javascript\' src=\'//code.jquery.com/jquery-migrate-1.2.1.min.js\'></script>';
 	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/jquery-ui.custom.min.js', __FILE__ ) . '\'></script>';
 	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/underscore.min.js', __FILE__ ) . '\'></script>';
 	    echo '<script type=\'text/javascript\' src=\'' . plugins_url( 'static/js/vendor/backbone.min.js', __FILE__ ) . '\'></script>';

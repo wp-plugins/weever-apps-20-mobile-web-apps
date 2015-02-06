@@ -2,7 +2,7 @@
 
 final class WeeverConst
 {
-    const VERSION		= '3.1.4';
+    const VERSION		= '3.1.5';
     // const RELEASE_TYPE	= '';
     // const RELEASE_NAME	= '2.0 BETA';
     const NAME			= 'Weever Apps - appBuilder(tm) for Wordpress';
@@ -15,7 +15,7 @@ final class WeeverConst
     // const RELEASE_DATE	= '';
     // const BUGS_EMAIL 	= 'bugs@weeverapps.com';
     // const SUPPORT_WEB	= 'http://www.weeverapps.com/';
-    const LIVE_SERVER	= 'http://weeverapp.com/';
+    const LIVE_SERVER	= '//weeverapp.com/';
     // const LIVE_SERVER   = 'http://enceladus.weeverdev.com/';
     const LIVE_STAGE	= 'http://stage.weeverapp.com/';
     const API_VERSION 	= 'v2';

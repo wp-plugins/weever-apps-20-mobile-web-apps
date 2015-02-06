@@ -26,7 +26,7 @@
         <p></p>
         <div>
             <a href="#" class="wx-form-builder-warning-proceed button radius disabled">Proceed</a>
-            &nbsp; <a class="wx-close-button wx-cancel-link radius">or cancel</a>
+            &nbsp; <a class="wx-dd-close-button wx-cancel-link radius">or cancel</a>
         </div>
     </div>
     <div class="form-builder-step-one">
@@ -308,13 +308,22 @@
             <div class="row">
                 <div class="medium-8 columns end">
 
-
+                    <% var emailPDF = false %>
+                    <% if ( emailDetails.value.length > 0 ) {
+                        emailPDF = true;
+                    } %>
                         <label>
-                            <input type="checkbox" name="on-complete-events" value="email-pdf" class="email-pdf-to-recipients" />
+                            <input
+                                    type="checkbox"
+                                    name="on-complete-events"
+                                    value="email-pdf"
+                                    class="email-pdf-to-recipients"
+                                    <%= emailPDF ? 'checked="checked"' : '' %>
+                                    />
                             Also email a PDF copy of submitted form entries to the people I specify
                         </label>
 
-                        <div class="wx-email-action" style="display: none">
+                        <div class="wx-email-action" style="display: <%= emailPDF ? 'block' : 'none' %>">
                             <label>Email recipients (separate multiple emails with commas)</label>
                             <input class="wx-form-builder-action wx-form-builder-action-email" placeholder="Email addresses" type="email" value="<%- emailDetails.value %>" />
                             <label><input class="wx-form-builder-send-current-user-email" type="checkbox" <%- emailDetails.useCurrentUserEmail %> /> Email <span class="wx-current-user-email"><%- emailDetails.currentUserEmail %></span></label>
@@ -351,7 +360,7 @@
                         <br>
 
                         <label>Give this form a title</label>
-                        <input type="text" value="<%- title %>" class="wx-edit-title" />
+                        <input type="text" value="<%- title %>" class="wx-edit-title wx-edit-form-title" />
 
 
                     <br>
@@ -381,6 +390,7 @@
                     <div class="small-12 columns">
                         <div class="wx-form-builder-action-email-pdfheader">
 
+                            <% // console.log( 'pdfHeader', pdfHeader ) %>
                             <label>PDF document title</label>
                             <input type="text" class="wx-form-builder-pdfheader-title" placeholder="PDF Document title" value="<%- pdfHeader ? pdfHeader.title : '' %>" />
 
@@ -448,6 +458,14 @@
             </ul>
             <div class="tabs-content" id="wx-tabs-content-addfieldtabs">
                 <div class="content active" id="panel-new-form-fields">
+
+                    <div class="add-element-ddl-container" style="display: none">
+                        Add elements to:<br/>
+                        <select class="add-element-to-form">
+                            <option value="">Main Form</option>
+                        </select>
+                    </div>
+
                     <!-- start: fields -->
                     <ul class="small-block-grid-2" id="add-fields">
                         <!-- text fields and common elements -->
@@ -765,6 +783,16 @@
                                     </span>
                                 </button>
                             </li>
+                            <li>
+                                <button class="small expand radius wx-form-builder-add-repeatable-form">
+                                    <div class="wx-button-label">Repeatable Field Group</div>
+                                    <span data-tooltip data-options="disable-for-touch:true" class="has-tip tip-right"
+                                        title="<p><b>Repeatable Field Group</b><p>
+                                           <p>Documentation coming soon</p>">
+                                            ?
+                                    </span>
+                                </button>
+                            </li>
                         <% } %>
                         <% if ( config.isDocuSign.toString() == 'true' ) { %>
                             <li>
@@ -836,7 +864,7 @@
                 <div class="content active" id="panel-form-preview">
                     <div class="wx-validate-feed panel">
                         <h3 class="subheader" style="font-size: 1.25rem; margin: 1.25rem;"><%- title %> &mdash; preview</h3>
-                        <div class="wx-preview-form">
+                        <div class="wx-preview-form wx-main-preview-form">
                         </div>
                         <br/>
                         <div class="wx-form-preview-row">
