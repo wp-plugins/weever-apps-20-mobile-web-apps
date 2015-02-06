@@ -202,8 +202,8 @@ class WeeverApp {
             
             $server = ($this->staging_mode ? WeeverConst::LIVE_STAGE : WeeverConst::LIVE_SERVER);
             
-            $qr_site_url = "http://qr.weeverapps.com/?site=" . $this->primary_domain;
-            $qr_app_url = "http://qr.weeverapps.com/?site=" . urlencode( str_replace('http://', '', $server) . 'app/' . $this->primary_domain . $queryExtra );
+            $qr_site_url = "//qr.weeverapps.com/?site=" . $this->primary_domain;
+            $qr_app_url = "//qr.weeverapps.com/?site=" . urlencode( str_replace('http://', '', $server) . 'app/' . $this->primary_domain . $queryExtra );
 
             // Set the urls to the direct link by default
             $this->_data['qr_code_private'] = $qr_app_url;

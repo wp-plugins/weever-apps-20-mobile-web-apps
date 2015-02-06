@@ -7,51 +7,7 @@
 </ul>
 <div class="tabs-content">
     <div class="content active" id="launch_share">
-        <!-- Share App Online -->
-        <p class="wx-ui-title"><?php echo __( 'Web Address', 'weever' ); ?></p>
-        <p>
-            <?php echo __( 'Your "web app" launches instantly for all popular phone and tablet browsers when online.  Share it with a simple web link.', 'weever' ); ?>
-            <br>
-            <br>
-            <input type="text" value="http://<?php echo $weeverapp->primary_domain; ?>" />
-        </p>
-        <br>
-        <p class="wx-ui-title"><?php echo __( 'Share your app on social media', 'weever' ); ?></p>
-        <p>
-            <?php echo __( 'Share a link to your web app.  You\'ll get the opportunity to preview your message before it goes out.', 'weever' ); ?>
-        </p>
-        <ul class="small-block-grid-3 medium-block-grid-5">
-            <li>
-                <a target="_blank" class="wx-launch-share" id="share-app-twitter" href="http://twitter.com/intent/tweet?url=<?php echo urlencode($weeverapp->primary_domain) ?>&via=WeeverApps">
-                    &nbsp;
-                </a>
-                <a target="blank" class="button success expand small radius" href="http://twitter.com/intent/tweet?url=<?php echo urlencode($weeverapp->primary_domain) ?>&via=WeeverApps">Twitter</a>
-            </li>
-            <li>
-                <a target="_blank" class="wx-launch-share" id="share-app-facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($weeverapp->primary_domain) ?>">
-                    &nbsp;
-                </a>
-                <a target="blank" class="button success expand small radius" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($weeverapp->primary_domain) ?>">Facebook</a>
-            </li>
-            <li>
-                <a target="_blank" class="wx-launch-share" id="share-app-email" href="mailto:?subject=Share App&body=Link to App: <?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++QR Code Link: http%3A%2F%2Fchart.apis.google.com%2Fchart%3Fcht%3Dqr%2526chs%3D250x250%2526choe%3DUTF-8%2526chld%3DH%7C0%2526chl%3D<?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++via appBuilder&trade; - Build your app today at http://weeverapps.com/">
-                    &nbsp;
-                </a>
-                <a target="blank" class="button success expand small radius" href="mailto:?subject=Share App&body=Link to App: <?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++QR Code Link: http%3A%2F%2Fchart.apis.google.com%2Fchart%3Fcht%3Dqr%2526chs%3D250x250%2526choe%3DUTF-8%2526chld%3DH%7C0%2526chl%3D<?php echo urlencode($weeverapp->primary_domain) ?>%0A%0A++++++++++++via appBuilder&trade; - Build your app today at http://weeverapps.com/">Email</a>
-            </li>
-            <li>
-                <a target="_blank" class="wx-launch-share" id="share-app-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($weeverapp->primary_domain) ?>&title={<?php echo urlencode($weeverapp->primary_domain) ?>}source=Weever%20appBuilder">
-                    &nbsp;
-                </a>
-                <a target="blank" class="button success expand small radius" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($weeverapp->primary_domain) ?>&title={<?php echo urlencode($weeverapp->primary_domain) ?>}source=Weever%20appBuilder">LinkedIn</a>
-            </li>
-            <li>
-                <a target="_blank" class="wx-launch-share" id="share-app-pinterest" href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode($weeverapp->primary_domain) ?>&media=http%3A%2F%2Fweeverapps.com%2Fwp-content%2Fplugins%2Fweever-apps-for-wordpress%2Fstatic%2Fimages%2Ftablet_load_default.png">
-                    &nbsp;
-                </a>
-                <a target="blank" class="button success expand small radius" href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode($weeverapp->primary_domain) ?>&media=http%3A%2F%2Fweeverapps.com%2Fwp-content%2Fplugins%2Fweever-apps-for-wordpress%2Fstatic%2Fimages%2Ftablet_load_default.png">Pinterest</a>
-            </li>
-        </ul>
+        <!-- launch-share.tpl.html -->
     </div>
     <div class="content" id="launch_publishing">
         <!-- App Stores -->
@@ -104,7 +60,7 @@
                     <p>Install a barcode reader on your phone if one is not already pre-installed.  Try Google Goggles (<a target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.unveil">Android</a>, <a target="_blank" href="https://itunes.apple.com/us/app/google-mobile-app/id284815942">iTunes</a>)  or the <a target="_blank" href="http://www.i-nigma.mobi">i-nigma QR Reader</a>.</p>
                 </div>
                 <div class="medium-6 columns">
-                    <img src="http://qr.weeverapps.com/?site=<?php echo $weeverapp->primary_domain; ?>&style=smooth&error=3&margin=1&size=20" />
+                    <img src="//qr.weeverapps.com/?site=<?php echo $weeverapp->primary_domain; ?>&style=smooth&error=3&margin=1&size=20" />
                     <br>
                     <br>
                 </div>

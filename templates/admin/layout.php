@@ -120,7 +120,7 @@
                             <div id="preview-app-dialog-no-webkit" style="display: none;margin: 0 auto;width: 300px;height: 568px;border: 1px #222 solid;box-sizing: content-box;padding: 0 10px;">
                                 <div style="padding-top: 3.75em; text-align: center">
                                     <p>Scan this QR Code with a touch-based smart phone to preview your app!</p>
-                                    <p><img src="http://qr.weeverapps.com/?site=<?php echo $weeverapp->primary_domain; ?>"  class="wx-qr-imgprev" /></p>
+                                    <p><img src="//qr.weeverapps.com/?site=<?php echo $weeverapp->primary_domain; ?>"  class="wx-qr-imgprev" /></p>
                                     <p>To view a preview of your app while you build, open this page with the <a target="_blank" href="http://google.com/chrome/">Google Chrome</a> or <a href="http://www.apple.com/safari/">Safari</a> web browser.</p>
                                 </div>
                             </div>
@@ -249,6 +249,7 @@
     wx.expectedBuildVersion = 0;
     wx.newBuildPollingHandle = null;
     wx.refreshPreviewHandle = null;
+    wx.isDev = <?php echo WeeverConst::DEV; ?>;
 
     jQuery( document ).ready( function() {
 
