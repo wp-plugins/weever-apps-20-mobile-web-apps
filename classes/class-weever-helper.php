@@ -273,6 +273,19 @@
                 // Append the api version and endpoint
                 $server .= 'api/' . $api_version . '/' . $endpoint;
 
+                // If no protocol is provided, supply one.
+                if ( substr($server, 0, '2') === '//' ) {
+                    $isSecure = false;
+                    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+                        $isSecure = true;
+                    }
+                    elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+                        $isSecure = true;
+                    }
+                    $protocol = $isSecure ? 'https:' : 'http:';
+                    $server = $protocol . $server;
+                }
+
             	if ( ! isset( $postdata['site_key'] ) )
             	    $postdata['site_key'] = self::$_weeverapp->site_key;
 
