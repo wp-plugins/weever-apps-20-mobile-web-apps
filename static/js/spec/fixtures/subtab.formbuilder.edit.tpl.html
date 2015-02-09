@@ -13,7 +13,22 @@
         }
     };
     if ( emailDetails ) { pdfHeader = emailDetails.pdfHeader; }
+    if ( !postDetails ) {
+        postDetails = {};
+    }
     %>
+    <div class="form-builder-delete-data" style="display: none;">
+        <h1>Warning!</h1>
+        <p>Modifying a form means that <strong>all data collected by that form will be deleted.</strong> Because this action <strong>cannot be undone</strong>, you should probably <a href="<%- wx.apiUrl %>_formbuilder/get_csv?tab_id=<%- id %>" class="wx-form-builder-warning-export" target="_BLANK">export your data first</a>. When you&rsquo;re ready to continue, click Proceed.</p>
+        <a href="<%- wx.apiUrl %>_formbuilder/get_csv?tab_id=<%- id %>" class="wx-form-builder-warning-export" target="_BLANK">Export data to a CSV</a>
+        <p></p>
+        <label><input type="checkbox" class="wx-form-builder-warning-acknowledged" value="1" /> I understand the warning and wish to proceed.</label>
+        <p></p>
+        <div>
+            <a href="#" class="wx-form-builder-warning-proceed button radius disabled">Proceed</a>
+            &nbsp; <a class="wx-dd-close-button wx-cancel-link radius">or cancel</a>
+        </div>
+    </div>
     <div class="form-builder-step-one">
         <% if ( config.isDocuSign.toString() == 'true' ) { %>
             <!-- start: DocuSign Login / Account Info -->
@@ -293,13 +308,22 @@
             <div class="row">
                 <div class="medium-8 columns end">
 
-
+                    <% var emailPDF = false %>
+                    <% if ( emailDetails.value.length > 0 ) {
+                        emailPDF = true;
+                    } %>
                         <label>
-                            <input type="checkbox" name="on-complete-events" value="email-pdf" class="email-pdf-to-recipients" />
+                            <input
+                                    type="checkbox"
+                                    name="on-complete-events"
+                                    value="email-pdf"
+                                    class="email-pdf-to-recipients"
+                                    <%= emailPDF ? 'checked="checked"' : '' %>
+                                    />
                             Also email a PDF copy of submitted form entries to the people I specify
                         </label>
 
-                        <div class="wx-email-action" style="display: none">
+                        <div class="wx-email-action" style="display: <%= emailPDF ? 'block' : 'none' %>">
                             <label>Email recipients (separate multiple emails with commas)</label>
                             <input class="wx-form-builder-action wx-form-builder-action-email" placeholder="Email addresses" type="email" value="<%- emailDetails.value %>" />
                             <label><input class="wx-form-builder-send-current-user-email" type="checkbox" <%- emailDetails.useCurrentUserEmail %> /> Email <span class="wx-current-user-email"><%- emailDetails.currentUserEmail %></span></label>
@@ -336,7 +360,7 @@
                         <br>
 
                         <label>Give this form a title</label>
-                        <input type="text" value="<%- title %>" class="wx-edit-title" />
+                        <input type="text" value="<%- title %>" class="wx-edit-title wx-edit-form-title" />
 
 
                     <br>
@@ -366,6 +390,7 @@
                     <div class="small-12 columns">
                         <div class="wx-form-builder-action-email-pdfheader">
 
+                            <% // console.log( 'pdfHeader', pdfHeader ) %>
                             <label>PDF document title</label>
                             <input type="text" class="wx-form-builder-pdfheader-title" placeholder="PDF Document title" value="<%- pdfHeader ? pdfHeader.title : '' %>" />
 
@@ -433,6 +458,14 @@
             </ul>
             <div class="tabs-content" id="wx-tabs-content-addfieldtabs">
                 <div class="content active" id="panel-new-form-fields">
+
+                    <div class="add-element-ddl-container" style="display: none">
+                        Add elements to:<br/>
+                        <select class="add-element-to-form">
+                            <option value="">Main Form</option>
+                        </select>
+                    </div>
+
                     <!-- start: fields -->
                     <ul class="small-block-grid-2" id="add-fields">
                         <!-- text fields and common elements -->
@@ -688,6 +721,20 @@
                             </button>
                         </li>
                         <li>
+                            <button class="small expand radius wx-form-builder-add-time-input">
+                                <div class="wx-button-label">Time</div>
+                                <span data-tooltip data-options="disable-for-touch:true" class="has-tip tip-right"
+                                      title="<p><b>Time</b><p>
+                                       <p>Adds an input field for a time.</p>
+                                       <p>On selection the app will show a &ldquo;time picker&rdquo; with hour, minute, and AM/PM options.</p>
+                                       <p><b>Example:</b></p>
+                                       <label>What time did you arrive?</label>
+                                       <input type='time'>">
+                                        ?
+                                </span>
+                            </button>
+                        </li>
+                        <li>
                             <button class="small expand radius wx-form-builder-add-password-input">
                                 <div class="wx-button-label">Password</div>
                                 <span data-tooltip data-options="disable-for-touch:true" class="has-tip tip-right"
@@ -725,6 +772,28 @@
                                 </span>
                             </button>
                         </li>
+                        <% if ( wx.formbuilderAdvanced ) { %>
+                            <li>
+                                <button class="small expand radius wx-form-builder-add-hierarchical-drop-down-list">
+                                    <div class="wx-button-label">Hierarchical Drop Down List</div>
+                                    <span data-tooltip data-options="disable-for-touch:true" class="has-tip tip-right"
+                                        title="<p><b>Hierarchical Drop Down List</b><p>
+                                           <p>Documentation coming soon</p>">
+                                            ?
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="small expand radius wx-form-builder-add-repeatable-form">
+                                    <div class="wx-button-label">Repeatable Field Group</div>
+                                    <span data-tooltip data-options="disable-for-touch:true" class="has-tip tip-right"
+                                        title="<p><b>Repeatable Field Group</b><p>
+                                           <p>Documentation coming soon</p>">
+                                            ?
+                                    </span>
+                                </button>
+                            </li>
+                        <% } %>
                         <% if ( config.isDocuSign.toString() == 'true' ) { %>
                             <li>
                                 <button class="small expand radius wx-form-builder-add-docusign-signature">
@@ -759,7 +828,7 @@
                     <!-- endof: fields -->
                 </div>
                 <div class="content form-build-area" id="panel-field-settings">
-                    <div class="wx-form-builder-row panel wx-active" id="wx-button-controls">
+                    <div class="wx-form-builder-row panel wx-active wx-button-controls">
                         <p class="title">
                             Form Submission Button: <span class="submit-button-text"><%- config.submitButtonText %></span>
                         </p>
@@ -795,7 +864,7 @@
                 <div class="content active" id="panel-form-preview">
                     <div class="wx-validate-feed panel">
                         <h3 class="subheader" style="font-size: 1.25rem; margin: 1.25rem;"><%- title %> &mdash; preview</h3>
-                        <div class="wx-preview-form">
+                        <div class="wx-preview-form wx-main-preview-form">
                         </div>
                         <br/>
                         <div class="wx-form-preview-row">
